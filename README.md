@@ -1,66 +1,133 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Ski Safe Web Application
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Description
 
-## About Laravel
+Ski Safe is an interactive web platform designed to enhance the safety and experience of ski resort visitors through real-time updates and community engagement. Further info can be found within the official documentation:
+[LINK HERE](https://docs.google.com/document/d/1fkFRzoqBK4NOMsmGVumy4AMriLB77H0921RYfwzomGY/edit?usp=sharing)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Team Members
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+-   Damaris Jean Jorge
+-   David Štafa
+-   Joe Kane
+-   Jakub Kozler
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Repository Link
 
-## Learning Laravel
+[GitHub repository](https://github.com/david-stafa/Ski-Safe.git)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Tech Stack
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Core Technologies
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Single page React application (MI6 look a like).
 
-## Laravel Sponsors
+-   Laravel
+-   React
+-   MapBox
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Helping Features
 
-### Premium Partners
+-   Laravel Fortify
+-   Axios
+-   Sass
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## Git Workflow
+
+### Branching Strategy
+
+We use a developer name-feature branching strategy. Each team member will create and use their own branches named `name/feature` for development.
+Merging will be done continuously when needed.
+
+Team member will always work, add, commit & push work just on their branches!
+
+### Commit Messages
+
+Commits should be clear and descriptive, reflecting the user story's changes. Here is an example of a good commit message:
+
+```bash
+git commit -m "Add login form validation"
+```
+
+### Pull Requests and Merging
+
+Only Pull Request Master (PRM) is authorized to handle pull requests and merge them into the main branch. All team members must push changes to their branches and create a pull request for integration. PRM will review these pull requests for a final check before merging.
+
+### Issue Tracking
+
+We use Trello for our issue tracking.
+Each issue Git commit should reference the Trello IssueName it relates to for easy tracking of work progress.
+
+```bash
+ git commit -m "IssueName: comment"
+```
+
+## Coding Conventions
+
+-   **Clean Code**: Aim to write clean, readable, and well-structured code.
+-   **File Length**: Files should not exceed 40 lines of code to promote the use of components and maintain readability. If more lines are necessary, include a comment explaining the reason. Goal is to have max 40 lines of code, Ideally no more than 20.
+-   **Comments**: Comment your code to describe complex logic or when deviating from the standard file length due to necessary complexity.
+
+## Development Setup
+
+Instructions on setting up the development environment will be added here.
+
+1. git clone
+2. www.skisafe.test
+3. vhost, etc/hosts
+4. .env
+5. set up folder
+6. composer install
+7. npm install
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### For Team Members
 
-## Code of Conduct
+To contribute to the project, follow these steps:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+! Always make sure to push your local changes to your github branch before proceeding further.
+! If not sure, please consult with PMR.
 
-## Security Vulnerabilities
+1. Pull the latest changes from the main branch.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+ git checkout main && git pull
+```
+
+2. Create a new branch for your user story:
+
+```bash
+git checkout -b name/feature
+```
+
+3. Make your changes and commit them with a descriptive message, (issues -> referencing the IssueName ).
+
+```bash
+git add -A && git commit -m "comment"
+```
+
+4. Push your branch to the remote repository:
+
+```bash
+git push
+```
+
+5. Create a pull request and assign it to PRM for review and merging.
+
+### For Pull Request Master
+
+-> Assigned Jakub K.
+
+1. Review the pull request for code quality and adherence to the user story.
+2. If everything is in order, merge the pull request into the main branch.
+3. (optional) Delete the feature branch after a successful merge to keep the repository clean.
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+All rights are for fun as we will be using chatGPT and phind as hell...
+
+## ACCESSING PREVIEW!
+
+SHIFT - COMMNAND - P
+-> then Markdown: Open Preview
