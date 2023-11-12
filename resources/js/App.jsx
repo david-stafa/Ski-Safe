@@ -1,11 +1,15 @@
 import React from "react";
-import Map from "./Map/Map";
+
+import TestModal from "./components/Modal/TestModal";
+import Homepage from "./components/homepage/homepage";
+import { BrowserRouter } from "react-router-dom";
+import "../css/app.css";
 
 export default function App() {
     return (
-        <>
-            <h1>Skisafe</h1>;
-            <Map />;
-        </>
+        <BrowserRouter>
+            <Homepage />
+            <TestModal />
+        </BrowserRouter>
     );
 }
