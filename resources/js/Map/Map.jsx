@@ -1,9 +1,10 @@
 import { useRef, useEffect } from "react";
 import mapboxgl from "mapbox-gl";
 import "./map.scss";
+import { mapBoxToken } from "./helpers/map-helper";
 
-mapboxgl.accessToken =
-    "pk.eyJ1IjoidGhlbWFpbmthbmUiLCJhIjoiY2xvdHl0MXpoMGVnazJsbGwyYTV1cXgyYyJ9.Q1RCNY1cqjoBj_JnpEDhVQ";
+mapboxgl.accessToken = mapBoxToken;
+
 export default function Map() {
     const mapContainer = useRef();
 
