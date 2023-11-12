@@ -8,18 +8,17 @@ import { RemoveScroll } from "react-remove-scroll"; // user is unable to scroll 
 import "./Modal.css";
 
 export default function Modal({ handleDismiss, children }) {
-    // This allows to dismiss the modal using Escape
-    // React.useEffect(() => {
-    //     function handleKeyDown(event) {
-    //         if (event.code === "Escape") {
-    //             handleDismiss();
-    //         }
-    //     }
-    //     window.addEventListener("keydown", handleKeyDown);
-    //     return () => {
-    //         window.removeEventListener("keydown", handleKeyDown);
-    //     };
-    // }, [handleDismiss]);
+    React.useEffect(() => {
+        function handleKeyDown(event) {
+            if (event.code === "Escape") {
+                handleDismiss();
+            }
+        }
+        window.addEventListener("keydown", handleKeyDown);
+        return () => {
+            window.removeEventListener("keydown", handleKeyDown);
+        };
+    }, [handleDismiss]);
 
     return (
         <FocusLock>
