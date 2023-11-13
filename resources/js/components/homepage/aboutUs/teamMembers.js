@@ -29,4 +29,11 @@ export const teamMembers = [
         bio: "UI/UX Designer who crafts intuitive interfaces and engaging digital solutions.",
         id: uuidv4(),
     },
+    {
+        src: "/images/About/damaris.png",
+        alt: "Damaris",
+        title: "David the Spain",
+        bio: "Frontend Developer with a passion for UI design and bringing concepts to life.",
+        id: uuidv4(),
+    },
 ];
