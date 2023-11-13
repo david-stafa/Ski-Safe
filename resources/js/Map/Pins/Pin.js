@@ -38,14 +38,3 @@ export const Pin = (map) => {
         },
     });
 };
-
-// for (const feature of geojson.features) {
-//     // create a HTML element for each feature
-//     const myPin = document.createElement("div");
-//     myPin.className = "myPin";
-
-//     // make a marker for each feature and add to the map
-//     new mapboxgl.Marker(myPin)
-//         .setLngLat(feature.geometry.coordinates)
-//         .addTo(map);
-// }
