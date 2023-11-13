@@ -19,15 +19,17 @@ export default function Map() {
             pitch: 60,
         });
         // ...this coverts the 2d style to a 3D 'model'
+
         map.on("load", () => {
-            map.addSource("mapbox-dem", {
+            const uniqueSourceId = "ski-safe" + Date.now();
+            map.addSource(uniqueSourceId, {
                 type: "raster-dem",
                 url: "mapbox://mapbox.mapbox-terrain-dem-v1",
                 tileSize: 512,
                 maxZoom: 100,
             });
             //   this adds a sky layer to the map
-            map.setTerrain({ source: "mapbox-dem", exaggeration: 1 });
+            map.setTerrain({ source: uniqueSourceId, exaggeration: 1 });
             map.addLayer({
                 id: "sky",
                 type: "sky",
