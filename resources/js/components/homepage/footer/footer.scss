@@ -1,0 +1,20 @@
+$footer-background-color: #f8f8f7;
+$footer-text-color: #333;
+$footer-border-color: #e5e5e5;
+
+footer {
+    background-color: $footer-background-color;
+    color: $footer-text-color;
+    text-align: center;
+    padding: 20px 0;
+    border-top: 1px solid $footer-border-color;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+
+    h1 {
+        margin: 0;
+        font-size: 18px;
+        font-weight: normal;
+    }
+}

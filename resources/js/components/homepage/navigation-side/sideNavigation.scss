@@ -1,0 +1,61 @@
+.sidenav{
+        position: relative;
+        z-index: 1;
+        height: 100vh;
+        width: 20%;
+        background-color: rgba(97, 176, 210, 0.6);
+
+        &__content{
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        &__link {
+            height: 2rem;
+            text-decoration: none;
+            color: black;
+            padding-left: 1rem;
+            display: flex;
+            align-items: center;
+            &:hover {
+                background-color: rgba(97, 176, 210, 0.3);
+            }
+        }
+
+        &__image {
+        width: 5rem;
+        padding: 0.5rem 0;
+        margin: 0 auto;
+        border-radius: 50%;
+        }
+    
+        &__arrow {
+            width: 1.5rem;
+            border-radius: 0px 12px 12px 0px ;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            right: -1.5rem;
+            top: 1rem;
+            background-color: red;
+            cursor: pointer;
+            &::after {
+                content: '<';
+            }
+            &_closed {
+                &::after {
+                    content: '>';
+                }
+            }
+        }
+}
+
+.sidenav_closed {
+    width: 0px;
+}
+
+
