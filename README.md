@@ -123,6 +123,10 @@ git push
 2. If everything is in order, merge the pull request into the main branch.
 3. (optional) Delete the feature branch after a successful merge to keep the repository clean.
 
+## Responsive Design
+
+We will adhere to the recommended conventions for breakpoints at 480px and 768px, resulting in three distinct views. The range of 0-480px is primarily targeted at mobile devices, 481-768px accommodates medium-sized screens, and 769px upwards caters to larger displays.
+
 ## License
 
 All rights are for fun as we will be using chatGPT and phind as hell...
