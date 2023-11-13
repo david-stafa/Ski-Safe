@@ -26,7 +26,7 @@ export default function Map() {
                 type: "raster-dem",
                 url: "mapbox://mapbox.mapbox-terrain-dem-v1",
                 tileSize: 512,
-                maxZoom: 100,
+                maxZoom: 14,
             });
             //   this adds a sky layer to the map
             map.setTerrain({ source: uniqueSourceId, exaggeration: 1 });

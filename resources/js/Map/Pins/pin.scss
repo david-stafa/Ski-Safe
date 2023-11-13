@@ -1,8 +1,9 @@
 .myPin {
-    background-image: url("resources\js\Map\Pins\pin-img\mapbox-icon.png");
+    background-image: url("/images/pin-imgs/mapbox-marker-icon-20px-blue.png");
     background-size: cover;
     width: 50px;
     height: 50px;
     border-radius: 50%;
+    z-index: 1000;
     cursor: pointer;
 }
