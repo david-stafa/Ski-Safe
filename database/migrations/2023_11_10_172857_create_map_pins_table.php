@@ -13,20 +13,15 @@ return new class extends Migration
     {
         Schema::create('map_pins', function (Blueprint $table) {
             $table->id();
-            $table->varchar('title');
+            $table->string('title');
             $table->text('description');
             $table->unsignedBigInteger('category_id'); 
             $table->unsignedBigInteger('type_id'); 
             $table->unsignedBigInteger('creator_id'); 
             $table->float('latitude');
             $table->float('longitude');
-            $table->varchar('images');
+            $table->string('images');
             $table->timestamps(); 
-
-           
-            $table->foreign('category_id')->references('id')->on('pin_categories');
-            $table->foreign('type_id')->references('id')->on('pin_severity');
-            $table->foreign('creator_id')->references('id')->on('users');
         });
     }
 
