@@ -3,6 +3,7 @@ import mapboxgl from "mapbox-gl";
 import "./map.scss";
 import { mapBoxToken } from "./helpers/map-helper";
 import { Pin } from "./Pins/Pin";
+// import { newPin } from "./Pins/newPin";
 
 mapboxgl.accessToken = mapBoxToken;
 
@@ -18,18 +19,10 @@ export default function Map() {
             zoom: 14,
             pitch: 60,
         });
+
         // ...this coverts the 2d style to a 3D 'model'
 
         map.on("load", () => {
-            const uniqueSourceId = "ski-safe" + Date.now();
-            map.addSource(uniqueSourceId, {
-                type: "raster-dem",
-                url: "mapbox://mapbox.mapbox-terrain-dem-v1",
-                tileSize: 512,
-                maxZoom: 14,
-            });
-            //   this adds a sky layer to the map
-            map.setTerrain({ source: uniqueSourceId, exaggeration: 1 });
             map.addLayer({
                 id: "sky",
                 type: "sky",
@@ -39,8 +32,10 @@ export default function Map() {
                     "sky-atmosphere-sun-intensity": 15,
                 },
             });
+
             // calling the pin function from Pin.js
             Pin(map);
+            // newPin(map); Still glitchy, removed for now, in there as a back up option.
         });
         // *************end of useEffect**************
     }, []);
