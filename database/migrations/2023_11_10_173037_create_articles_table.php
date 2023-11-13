@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
-            $table->varchar('title');
+            $table->string('title');
             $table->text('content');
             $table->unsignedBigInteger('author_id');
             $table->dateTime('published_at');

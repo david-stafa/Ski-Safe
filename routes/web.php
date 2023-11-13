@@ -12,7 +12,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/test-user-status', function() {
+    dd(Auth::user());
 });
+
+
+Route::view('/{path?}', 'welcome')->where('path', '.*');
