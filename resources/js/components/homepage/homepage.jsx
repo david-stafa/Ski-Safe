@@ -8,11 +8,18 @@ import Register from "./register/Register";
 import Login from "./login/Login";
 import { Route, Routes } from "react-router-dom";
 import Map from "../../Map/Map";
+import SideNavigation from "./navigation-side/SideNavigation";
 
 export default function Homepage() {
     return (
         <>
             <Navigation />
+
+
+
+            {/* <SideNavigation /> */}
+
+
             <Routes>
                 <Route path="/" element={<MainContent />}></Route>
                 <Route path="/about-us" element={<AboutUs />}></Route>

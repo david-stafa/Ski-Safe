@@ -16,5 +16,5 @@ Route::get('/test-user-status', function() {
     dd(Auth::user());
 });
 
-
 Route::view('/{path?}', 'welcome')->where('path', '.*');
+
