@@ -1,3 +1,58 @@
-.logo {
-    width: 10rem;
+// colors done by adobe, variables, we can use for other parts
+
+$nav-background-color: rgba(
+    #f8f8f7,
+    0.7
+); // we can adjust the "blur" effect by opacity
+$nav-text-color: #333;
+$nav-hover-color: #ccc;
+$nav-border-color: #e5e5e5;
+$nav-logo-size: 36px;
+
+.left-panel-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; // please adjust carefully, especially with modal window!
+    display: flex;
+    align-items: center;
+    background-color: $nav-background-color;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px); // just for a Safari
+    border-bottom: 1px solid $nav-border-color;
+    padding: 10px 20px;
+    transition: background-color 0.3s;
+
+    .logo {
+        height: $nav-logo-size;
+        margin-right: 20px;
+    }
+
+    .nav {
+        display: flex;
+        align-items: center;
+
+        a {
+            color: $nav-text-color;
+            text-decoration: none;
+            padding: 10px 15px;
+            font-size: 14px;
+            font-weight: 400;
+            margin: 0 10px;
+
+            &:hover {
+                background-color: $nav-hover-color;
+                border-radius: 10px;
+            }
+        }
+    }
+
+    .sidenav__arrow {
+        // You may use Feather icons for the arrow
+    }
+}
+
+body {
+    padding-top: 60px; // Should be equal to or greater than the height of the navbar!! Avoid stuck under the nav
 }

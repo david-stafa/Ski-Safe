@@ -4,7 +4,6 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build"
-        
     },
     "devDependencies": {
         "axios": "^1.6.1",
@@ -20,6 +19,7 @@
         "react-feather": "^2.0.10",
         "react-focus-lock": "^2.9.6",
         "react-remove-scroll": "^2.5.7",
-        "react-router-dom": "^6.18.0"
+        "react-router-dom": "^6.18.0",
+        "uuid": "^9.0.1"
     }
 }
