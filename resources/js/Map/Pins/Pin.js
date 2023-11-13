@@ -1,37 +1,41 @@
-export const Pin = () => {
-    const geoJson = {
-        type: "FeatureCollection",
-        features: {
-            type: "Feature",
-            geometry: {
-                type: "Point",
-                coordinates: [-77.032, 38.913],
-            },
-            properties: {
-                title: "Practice Pin",
-                description: "Pin Head",
-            },
-        },
-    };
+import "./pin.scss";
 
+export const Pin = (map) => {
+    // pin data
+    const geojson = {
+        type: "FeatureCollection",
+        features: [
+            {
+                type: "Feature",
+                geometry: {
+                    type: "Point",
+                    coordinates: [-117.2532, 52.1878],
+                },
+                properties: {
+                    title: "Practice Pin",
+                    description: "Pin Head",
+                },
+            },
+        ],
+    };
+    // after the map has loaded, add the source for the pins
     map.on("load", () => {
         map.addSource("points", {
             type: "geojson",
-            data: {
-                type: "FeatureCollection",
-                features: [
-                    {
-                        type: "Feature",
-                        geometry: {
-                            type: "Point",
-                            coordinates: [-117.2532, 52.1878],
-                        },
-                        properties: {
-                            title: "Mapbox DC",
-                        },
-                    },
-                ],
-            },
+            data: geojson,
         });
+
+        setTimeout(() => {
+            for (const feature of geojson.features) {
+                // create a HTML element for each feature
+                const myPin = document.createElement("div");
+                myPin.className = "myPin";
+
+                // make a marker for each feature and add to the map
+                new mapboxgl.Marker(myPin)
+                    .setLngLat(feature.geometry.coordinates)
+                    .addTo(map);
+            }
+        }, 5000);
     });
 };

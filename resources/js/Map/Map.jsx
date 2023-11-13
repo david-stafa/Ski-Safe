@@ -2,6 +2,7 @@ import { useRef, useEffect } from "react";
 import mapboxgl from "mapbox-gl";
 import "./map.scss";
 import { mapBoxToken } from "./helpers/map-helper";
+import { Pin } from "./Pins/Pin";
 
 mapboxgl.accessToken = mapBoxToken;
 
@@ -36,6 +37,8 @@ export default function Map() {
                     "sky-atmosphere-sun-intensity": 15,
                 },
             });
+            // calling the pin function from Pin.js
+            Pin(map);
         });
         // *************end of useEffect**************
     }, []);
