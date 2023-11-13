@@ -5,7 +5,6 @@ export default function Navigation() {
     return (
         <>
             <div className="left-panel-container">
-                {/* Add our LOGO */}
                 <img
                     className="logo"
                     src="/images/Logo/logo.png"
