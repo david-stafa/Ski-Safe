@@ -3,7 +3,7 @@ import mapboxgl from "mapbox-gl";
 import "./map.scss";
 import { mapBoxToken } from "./helpers/map-helper";
 import { Pin } from "./Pins/Pin";
-// import { newPin } from "./Pins/newPin";
+import { popUp } from "./popUp/popUp";
 
 mapboxgl.accessToken = mapBoxToken;
 
@@ -35,7 +35,7 @@ export default function Map() {
 
             // calling the pin function from Pin.js
             Pin(map);
-            // newPin(map); Still glitchy, removed for now, in there as a back up option.
+            popUp(map);
         });
         // *************end of useEffect**************
     }, []);

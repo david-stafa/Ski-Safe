@@ -10,15 +10,24 @@ export default function Login(props) {
 
     const [errors, setErrors] = useState({});
 
-    const { setUser } = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
+
+
+    const [userName, setUserName] = useState("");
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
         try {
             const response = await axios.post("/login", values);
+            console.log(response);
 
             setUser(null);
+
+            if (response.status == 200) {
+                const paragraph = document.querySelector(".success-login");
+                paragraph.style.display = "block";
+            }
         } catch (error) {
             switch (error.response.status) {
                 case 422:
@@ -86,6 +95,9 @@ export default function Login(props) {
                 ""
             )}
             <button>Login</button>
+            <p className="success-login">
+                Hello {user?.name}, you have successfully logged in.
+            </p>
         </form>
     );
 }
