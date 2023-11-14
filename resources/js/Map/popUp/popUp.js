@@ -1,4 +1,5 @@
 import mapboxgl from "mapbox-gl";
+import { pinOnMap } from "../Pins/addPinOnMap";
 
 export const popUp = (map) => {
     const myPopUp = new mapboxgl.Popup({
@@ -39,5 +40,6 @@ export const popUp = (map) => {
     // remove mouse style as user leaves
     map.on("mouseleave", "points", () => {
         map.getCanvas().style.cursor = "";
+
     });
 };

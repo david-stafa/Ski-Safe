@@ -25,8 +25,6 @@ export default function Homepage() {
                 <Route path="/log-in" element={<Login />}></Route>
             </Routes>
 
-            {/* <Map /> */}
-
             <Footer />
         </>
     );
