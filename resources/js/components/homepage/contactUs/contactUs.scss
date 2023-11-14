@@ -33,9 +33,14 @@ $nav-text-color: #333;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     }
 
-    label,
-    .type-display {
+    label {
         font-size: 1rem;
+        color: #333;
+        margin: 0;
+    }
+
+    .type-display {
+        font-size: 0.8rem;
         color: #333;
         margin: 0 0 10px 0;
     }
@@ -52,10 +57,12 @@ $nav-text-color: #333;
     textarea {
         box-sizing: border-box;
         width: 100%;
-        padding: 30px;
+        height: 10rem;
+        padding: 10px;
         margin-bottom: 20px;
         border: 1px solid #ccc;
         border-radius: 5px;
+        resize: none;
     }
 
     button {

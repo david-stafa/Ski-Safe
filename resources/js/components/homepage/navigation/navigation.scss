@@ -27,6 +27,23 @@ $nav-logo-size: 36px;
     transition: background-color 0.3s;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 
+    // use div .backdrop and wrap everything except for .left-panel-container
+    // .backdrop {
+    //     position: absolute;
+    //     inset: 0;
+    //     --extended-by: 100px;
+    //     bottom: calc(-1 * var(--extended-by));
+    //     --cutoff: calc(100% - var(--extended-by));
+    //     -webkit-mask-image: linear-gradient(
+    //         to bottom,
+    //         black 0,
+    //         black var(--cutoff) transparent var(--cutoff)
+    //     );
+    //     --blur: 15px;
+    //     -webkit-backdrop-filter: blur(var(--blur));
+    //     backdrop-filter: blur(var(--blur));
+    // }
+
     .logo {
         height: $nav-logo-size;
         margin-right: 20px;
