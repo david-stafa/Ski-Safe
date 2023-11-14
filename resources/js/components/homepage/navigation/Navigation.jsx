@@ -51,9 +51,14 @@ export default function Navigation() {
                                 <Link to={"/log-in"}>Log in</Link>
                             </div>
                         ) : (
-                            <div>
-                                <span>Welcome {user.name}</span>
-                            <button onClick={handleLogout}>Log out</button>
+                            <div className="login">
+                                <span className="login-welcome">
+                                    Welcome{" "}
+                                    <span className="login-welcome-name">
+                                        {user.name}
+                                    </span>
+                                </span>
+                                <button onClick={handleLogout}>Log out</button>
                             </div>
                         )}
                     </div>
