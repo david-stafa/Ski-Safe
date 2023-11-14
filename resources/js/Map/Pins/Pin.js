@@ -1,3 +1,5 @@
+import { getPins } from "./getPins";
+
 export const Pin = (map) => {
     // pin data
     const geojson = {

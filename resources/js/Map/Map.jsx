@@ -6,6 +6,7 @@ import { Pin } from "./Pins/Pin";
 import { pinOnMap } from "./Pins/addPinOnMap";
 // import { newPin } from "./Pins/newPin";
 import { popUp } from "./popUp/popUp";
+import { getPins } from "./Pins/getPins";
 
 mapboxgl.accessToken = mapBoxToken;
 
@@ -38,10 +39,10 @@ export default function Map() {
                     "sky-atmosphere-sun-intensity": 15,
                 },
             });
-
+            // calling get pins test
+            getPins();
             // calling the pin function from Pin.js
             Pin(map);
-            // newPin(map); Still glitchy, removed for now, in there as a back up option.
 
             //user can click and add a pin
             // pinOnMap(map);
