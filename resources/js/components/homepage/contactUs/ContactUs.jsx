@@ -21,7 +21,7 @@ export default function ContactUs() {
         const messageData = {
             category: type,
             message: contactText,
-            // user_id: null -> when finished Auth
+            user_id: null,
         };
 
         try {
