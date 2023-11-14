@@ -1,13 +1,18 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "./map.scss";
 import { mapBoxToken } from "./helpers/map-helper";
 import { Pin } from "./Pins/Pin";
+import { pinOnMap } from "./Pins/addPinOnMap";
 // import { newPin } from "./Pins/newPin";
 
 mapboxgl.accessToken = mapBoxToken;
 
 export default function Map() {
+    // const [coordinates, setCoordinates]=useState({
+    //     longitude: null,
+    //     latitude: null
+    // })
     const mapContainer = useRef();
 
     useEffect(() => {
@@ -36,6 +41,9 @@ export default function Map() {
             // calling the pin function from Pin.js
             Pin(map);
             // newPin(map); Still glitchy, removed for now, in there as a back up option.
+
+            //user can click and add a pin
+            pinOnMap(map);
         });
         // *************end of useEffect**************
     }, []);

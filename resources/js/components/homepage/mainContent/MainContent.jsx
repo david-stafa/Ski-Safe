@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import Map from "../../../Map/Map";
 
 
 export default function MainContent(){
@@ -6,7 +7,7 @@ export default function MainContent(){
     return(
        <>
 
-            <h1>Main Content</h1>
+            <Map />
 
        </>
     )

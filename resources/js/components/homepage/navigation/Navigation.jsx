@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./navigation.scss";
 import UserContext from "../../../context/UserContext";
 import axios from "axios";
+import TestModal from "../../Modal/TestModal";
 
 export default function Navigation() {
     const { user, setUser } = useContext(UserContext);
@@ -33,11 +34,13 @@ export default function Navigation() {
     return (
         <>
             <div className="left-panel-container">
-                <img
-                    className="logo"
-                    src="/images/Logo/logo.png"
-                    alt="logo ski safe"
-                />
+                <Link to={"/"}>
+                    <img
+                        className="logo"
+                        src="/images/Logo/logo.png"
+                        alt="logo ski safe"
+                    />
+                </Link>
                 <div className="nav">
                     <div className="nav-links">
                         <Link to={"/"}>Home</Link>
