@@ -3,6 +3,8 @@ import mapboxgl from "mapbox-gl";
 export const pinOnMap = (map) => {
     // Create constants for the latitude and longitude.
 
+    let markerOnMap = false;
+
     let geojson = {
         type: "FeatureCollection",
         features: [
@@ -36,9 +38,16 @@ export const pinOnMap = (map) => {
         console.log(
             `${geojson.features[0].geometry.coordinates[0]}, ${geojson.features[0].geometry.coordinates[1]}`
         );
+        
+        if (markerOnMap) {  
+            marker.remove()
+            markerOnMap = false
+        } else {
+            marker
+                .setLngLat(geojson.features[0].geometry.coordinates)
+                .addTo(map);
+            markerOnMap = true;
+        }  
 
-        marker
-            .setLngLat(geojson.features[0].geometry.coordinates)
-            .addTo(map);
     });
 };
