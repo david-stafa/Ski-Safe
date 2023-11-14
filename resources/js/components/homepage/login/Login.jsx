@@ -51,53 +51,70 @@ export default function Login(props) {
     };
 
     return (
-        <form action="/login" method="post" onSubmit={handleSubmit}>
-            Email:
-            <br />
-            <input
-                type="email"
-                name="email"
-                value={values.email}
-                onChange={handleChange}
-            />
-            <br />
-            {errors.email ? (
-                <div className="errors">
-                    {errors.email.map((error, i) => (
-                        <div key={i} className="error">
-                            {error}
+        <div className="register-container">
+            <form
+                action="/login"
+                method="post"
+                onSubmit={handleSubmit}
+                className="register-form"
+            >
+                <div className="input-group">
+                    <label htmlFor="email">Email:</label>
+                    <br />
+                    <input
+                        id="email"
+                        type="email"
+                        name="email"
+                        value={values.email}
+                        onChange={handleChange}
+                        className="input-field"
+                    />
+                    <br />
+                    {errors.email ? (
+                        <div className="errors">
+                            {errors.email.map((error, i) => (
+                                <div key={i} className="error">
+                                    {error}
+                                </div>
+                            ))}
                         </div>
-                    ))}
+                    ) : (
+                        ""
+                    )}
                 </div>
-            ) : (
-                ""
-            )}
-            Password:
-            <br />
-            <input
-                type="password"
-                name="password"
-                value={values.password}
-                onChange={handleChange}
-            />
-            <br />
-            {errors.password ? (
-                <div className="errors">
-                    {errors.password.map((error, i) => (
-                        <div key={i} className="error">
-                            {error}
+
+                <div className="input-group">
+                    <label htmlFor="password">Password:</label>
+                    <br />
+                    <input
+                        id="password"
+                        type="password"
+                        name="password"
+                        value={values.password}
+                        onChange={handleChange}
+                        className="input-field"
+                    />
+                    <br />
+                    {errors.password ? (
+                        <div className="errors">
+                            {errors.password.map((error, i) => (
+                                <div key={i} className="error">
+                                    {error}
+                                </div>
+                            ))}
                         </div>
-                    ))}
+                    ) : (
+                        ""
+                    )}
                 </div>
-            ) : (
-                ""
-            )}
-            <button>Login</button>
-            <p className="success-login">
-                {user
-                    ? `Hello ${user.name}, you have successfully logged in.`
-                    : ""}
-            </p>
-        </form>
+
+                <button className="submit-button">Login</button>
+                <p className="success-message">
+                    {user
+                        ? `Hello ${user.name}, you have successfully logged in.`
+                        : ""}
+                </p>
+            </form>
+        </div>
     );
 }
