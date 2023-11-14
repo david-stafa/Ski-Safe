@@ -12,7 +12,6 @@ export default function Login(props) {
 
     const { user, setUser } = useContext(UserContext);
 
-
     const [userName, setUserName] = useState("");
 
     const handleSubmit = async (event) => {
@@ -96,7 +95,9 @@ export default function Login(props) {
             )}
             <button>Login</button>
             <p className="success-login">
-                Hello {user?.name}, you have successfully logged in.
+                {user
+                    ? `Hello ${user?.name}, you have successfully logged in.`
+                    : ""}
             </p>
         </form>
     );

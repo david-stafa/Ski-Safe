@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
@@ -38,9 +39,7 @@ class MessageController extends Controller
             'category' => $validatedStore['category'],
             'message' => $validatedStore['message'],
             'read' => false,
-            'user_id' => null,
-            // once we have auth working
-            // Auth::id()
+            'user_id' => Auth::id(),
         ]);
 
         return response()->json($message, 201);
