@@ -15,10 +15,7 @@ export default function Homepage() {
         <>
             <Navigation />
 
-
-
             {/* <SideNavigation /> */}
-
 
             <Routes>
                 <Route path="/" element={<MainContent />}></Route>

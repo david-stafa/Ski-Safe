@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,15 +12,18 @@ return new class extends Migration
     {
         Schema::create('map_pins', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('description');
-            $table->unsignedBigInteger('category_id'); 
-            $table->unsignedBigInteger('type_id'); 
-            $table->unsignedBigInteger('creator_id'); 
-            $table->float('latitude');
             $table->float('longitude');
-            $table->string('images');
-            $table->timestamps(); 
+            $table->float('latitude');
+            $table->string('title');
+            $table->unsignedBigInteger('severity_id');
+            $table->string('slug');
+            $table->text('description');
+            $table->unsignedBigInteger('type_id')->nullable();
+            $table->unsignedBigInteger('creator_id')->nullable();
+            $table->string('video')->nullable();
+            $table->string('images')->nullable();
+            $table->boolean('active');
+            $table->timestamps();
         });
     }
 

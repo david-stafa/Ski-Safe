@@ -3,8 +3,8 @@ import { pinOnMap } from "../Pins/addPinOnMap";
 
 export const popUp = (map) => {
     const myPopUp = new mapboxgl.Popup({
-        closeButton: true,
-        closeOnClick: false,
+        closeButton: false,
+        closeOnClick: true,
     });
 
     map.on("click", "points", (e) => {
