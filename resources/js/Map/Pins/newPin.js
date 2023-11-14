@@ -1,6 +1,6 @@
 import "./pin.scss";
 import mapboxgl from "mapbox-gl";
-
+// *************Not being used, still here for backup & experimentation********************
 export const newPin = (map) => {
     // pin data
     const geojson = {
