@@ -1,5 +1,3 @@
-import "./pin.scss";
-
 export const Pin = (map) => {
     // pin data
     const geojson = {
@@ -12,12 +10,16 @@ export const Pin = (map) => {
                     coordinates: [-117.2532, 52.1878],
                 },
                 properties: {
-                    title: "Practice Pin",
-                    description: "Pin Head",
+                    title: "Animal Sighting",
+                    severity: "Moderate",
+                    description:
+                        "A Brown bear was spotted, bears are recenlty out of hibernation and can be extremely Hangry, please keep your distance.",
+                    image: "/images/Hazards/bear.jpg",
                 },
             },
         ],
     };
+
     // after the map has loaded, add the source for the pins
 
     map.addSource("points", {
@@ -29,11 +31,11 @@ export const Pin = (map) => {
         type: "symbol",
         source: "points",
         layout: {
-            "icon-image": "shop",
+            "icon-image": "mountain",
             // get the title name from the source's "title" property
             "text-field": ["get", "title"],
             "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-            "text-offset": [0, 1.25],
+            "text-offset": [0, 0.5],
             "text-anchor": "top",
         },
     });
