@@ -41,6 +41,5 @@ export const popUp = (map) => {
     map.on("mouseleave", "points", () => {
         map.getCanvas().style.cursor = "";
 
-        // pinOnMap(map)
     });
 };
