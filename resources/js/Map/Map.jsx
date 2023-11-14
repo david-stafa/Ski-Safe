@@ -44,7 +44,7 @@ export default function Map() {
             // newPin(map); Still glitchy, removed for now, in there as a back up option.
 
             //user can click and add a pin
-            pinOnMap(map);
+            // pinOnMap(map);
             popUp(map);
         });
         // *************end of useEffect**************
