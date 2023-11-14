@@ -39,12 +39,16 @@ export default function Navigation() {
                     alt="logo ski safe"
                 />
                 <div className="nav">
-                    <Link to={"/"}>Home</Link>
-                    <Link to={"/about-us"}>About us</Link>
-                    <Link to={"/contact-us"}>Contact us</Link>
-                    <Link to={"/register"}>Register</Link>
-                    <Link to={"/log-in"}>Log in</Link>
-                    <button onClick={handleLogout}>Log out</button>
+                    <div className="nav-links">
+                        <Link to={"/"}>Home</Link>
+                        <Link to={"/about-us"}>About us</Link>
+                        <Link to={"/contact-us"}>Contact us</Link>
+                    </div>
+                    <div className="nav-actions">
+                        <Link to={"/register"}>Register</Link>
+                        <Link to={"/log-in"}>Log in</Link>
+                        <button onClick={handleLogout}>Log out</button>
+                    </div>
                 </div>
                 <span className="sidenav__arrow"></span>
             </div>

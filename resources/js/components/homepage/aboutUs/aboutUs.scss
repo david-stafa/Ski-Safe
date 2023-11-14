@@ -16,6 +16,7 @@ $nav-text-color: #333;
 
 .flex-container {
     display: flex;
+    max-width: 800px;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
@@ -34,6 +35,27 @@ $nav-text-color: #333;
     &:hover {
         transform: translateY(-5px);
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .icon-container {
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+        svg {
+            width: 30px;
+            height: 30px;
+            stroke: $nav-text-color;
+            stroke-width: 1.5;
+            transition: stroke 0.3s, transform 0.3s;
+
+            &:hover {
+                stroke: darken($nav-text-color, 10%);
+                transform: scale(1.1);
+            }
+        }
     }
 
     .content-title {
@@ -59,6 +81,7 @@ $nav-text-color: #333;
 
 .creator-box {
     flex: 0 1 calc(30% - 20px);
+    position: relative;
     background-color: #f8f8f7;
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -74,6 +97,20 @@ $nav-text-color: #333;
     &:hover {
         transform: translateY(-5px);
         box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .linkedin-logo {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 24px;
+        height: 24px;
+
+        img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
     }
 
     .creator-bio {
