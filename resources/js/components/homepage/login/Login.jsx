@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import UserContext from "../../../context/UserContext";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 import "./login.scss";
 
@@ -14,7 +15,7 @@ export default function Login(props) {
 
     const { user, setUser } = useContext(UserContext);
 
-    const [userName, setUserName] = useState("");
+    const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -24,22 +25,18 @@ export default function Login(props) {
             console.log(response);
 
             setUser(null);
-
-            if (response.status == 200) {
+            if (response.status === 200) {
                 const paragraph = document.querySelector(".success-login");
                 paragraph.style.display = "block";
+                navigate("/");
             }
         } catch (error) {
-            switch (error.response.status) {
-                case 422:
-                    console.log(
-                        "VALIDATION FAILED:",
-                        error.response.data.errors
-                    );
-                    break;
-                case 500:
-                    console.log("UNKNOWN ERROR", error.response.data);
-                    break;
+            if (error.response && error.response.status === 422) {
+                console.log("VALIDATION FAILED:", error.response.data.errors);
+                setErrors(error.response.data.errors);
+            } else {
+                console.log("ERROR", error);
+                setErrors({ general: ["An unexpected error occurred."] });
             }
         }
     };
@@ -98,7 +95,7 @@ export default function Login(props) {
             <button>Login</button>
             <p className="success-login">
                 {user
-                    ? `Hello ${user?.name}, you have successfully logged in.`
+                    ? `Hello ${user.name}, you have successfully logged in.`
                     : ""}
             </p>
         </form>
