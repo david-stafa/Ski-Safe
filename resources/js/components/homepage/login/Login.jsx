@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import UserContext from "../../../context/UserContext";
 import axios from "axios";
 
+import "./login.scss";
+
 export default function Login(props) {
     const [values, setValues] = useState({
         email: "",
