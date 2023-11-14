@@ -52,6 +52,9 @@ export default function Login(props) {
 
     return (
         <div className="register-container">
+            <div className="register-header">
+                <h1>LET'S LOGIN</h1>
+            </div>
             <form
                 action="/login"
                 method="post"
