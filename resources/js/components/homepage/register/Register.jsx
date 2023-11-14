@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import UserContext from "../../../context/UserContext";
 import axios from "axios";
+import "./Register.scss";
 
 export default function Register(props) {
     const [values, setValues] = useState({
@@ -23,7 +24,7 @@ export default function Register(props) {
 
         try {
             const response = await axios.post("/register", values);
-            
+
             setUser(null);
         } catch (error) {
             switch (error.response.status) {
@@ -49,97 +50,132 @@ export default function Register(props) {
     };
 
     return (
-        <form action="/register" method="post" onSubmit={handleSubmit}>
-            Name:
-            <br />
-            <input
-                type="text"
-                name="name"
-                value={values.name}
-                onChange={handleChange}
-            />
-            <br />
-            Surname:
-            <br />
-            <input
-                type="text"
-                name="surname"
-                value={values.surname}
-                onChange={handleChange}
-            />
-            <br />
-            {errors.name ? (
-                <div className="errors">
-                    {errors.name.map((error, i) => (
-                        <div key={i} className="error">
-                            {error}
-                        </div>
-                    ))}
+        <div className="register-container">
+            <div className="register-header">
+                <h1>REGISTER TO OUR SITE</h1>
+            </div>
+
+            <form
+                action="/register"
+                method="post"
+                onSubmit={handleSubmit}
+                className="register-form"
+            >
+                <div className="input-group">
+                    <label htmlFor="name">Name:</label>
+                    <br />
+                    <input
+                        id="name"
+                        type="text"
+                        name="name"
+                        value={values.name}
+                        onChange={handleChange}
+                        className="input-field"
+                    />
                 </div>
-            ) : (
-                ""
-            )}
-            Email:
-            <br />
-            <input
-                type="email"
-                name="email"
-                value={values.email}
-                onChange={handleChange}
-            />
-            <br />
-            {errors.email ? (
-                <div className="errors">
-                    {errors.email.map((error, i) => (
-                        <div key={i} className="error">
-                            {error}
+
+                <div className="input-group">
+                    <label htmlFor="surname">Surname:</label>
+                    <br />
+                    <input
+                        id="surname"
+                        type="text"
+                        name="surname"
+                        value={values.surname}
+                        onChange={handleChange}
+                        className="input-field"
+                    />
+                    <br />
+                    {errors.name ? (
+                        <div className="errors">
+                            {errors.name.map((error, i) => (
+                                <div key={i} className="error">
+                                    {error}
+                                </div>
+                            ))}
                         </div>
-                    ))}
+                    ) : (
+                        ""
+                    )}
                 </div>
-            ) : (
-                ""
-            )}
-            Password:
-            <br />
-            <input
-                type="password"
-                name="password"
-                value={values.password}
-                onChange={handleChange}
-            />
-            <br />
-            {errors.password ? (
-                <div className="errors">
-                    {errors.password.map((error, i) => (
-                        <div key={i} className="error">
-                            {error}
+
+                <div className="input-group">
+                    <label htmlFor="email">Email:</label>
+                    <br />
+                    <input
+                        id="email"
+                        type="email"
+                        name="email"
+                        value={values.email}
+                        onChange={handleChange}
+                        className="input-field"
+                    />
+                    <br />
+                    {errors.email ? (
+                        <div className="errors">
+                            {errors.email.map((error, i) => (
+                                <div key={i} className="error">
+                                    {error}
+                                </div>
+                            ))}
                         </div>
-                    ))}
+                    ) : (
+                        ""
+                    )}
                 </div>
-            ) : (
-                ""
-            )}
-            Confirm pasword:
-            <br />
-            <input
-                type="password"
-                name="password_confirmation"
-                value={values.password_confirmation}
-                onChange={handleChange}
-            />
-            <br />
-            {errors.password_confirmation ? (
-                <div className="errors">
-                    {errors.password_confirmation.map((error, i) => (
-                        <div key={i} className="error">
-                            {error}
+
+                <div className="input-group">
+                    <label htmlFor="password">Password:</label>
+                    <br />
+                    <input
+                        id="password"
+                        type="password"
+                        name="password"
+                        value={values.password}
+                        onChange={handleChange}
+                        className="input-field"
+                    />
+                    <br />
+                    {errors.password ? (
+                        <div className="errors">
+                            {errors.password.map((error, i) => (
+                                <div key={i} className="error">
+                                    {error}
+                                </div>
+                            ))}
                         </div>
-                    ))}
+                    ) : (
+                        ""
+                    )}
                 </div>
-            ) : (
-                ""
-            )}
-            <button>Register</button>
-        </form>
+
+                <div className="input-group">
+                    <label htmlFor="confirmpassword">Confirm Password:</label>
+                    <br />
+                    <input
+                        id="confirmpassword"
+                        type="password"
+                        name="password_confirmation"
+                        value={values.password_confirmation}
+                        onChange={handleChange}
+                        className="input-field"
+                    />
+
+                    <br />
+                    {errors.password_confirmation ? (
+                        <div className="errors">
+                            {errors.password_confirmation.map((error, i) => (
+                                <div key={i} className="error">
+                                    {error}
+                                </div>
+                            ))}
+                        </div>
+                    ) : (
+                        ""
+                    )}
+                </div>
+                <button className="submit-button">Register</button>
+            </form>
+        </div>
     );
 }
