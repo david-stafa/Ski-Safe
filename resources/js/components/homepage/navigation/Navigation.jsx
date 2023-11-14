@@ -45,9 +45,17 @@ export default function Navigation() {
                         <Link to={"/contact-us"}>Contact us</Link>
                     </div>
                     <div className="nav-actions">
-                        <Link to={"/register"}>Register</Link>
-                        <Link to={"/log-in"}>Log in</Link>
-                        <button onClick={handleLogout}>Log out</button>
+                        {!user ? (
+                            <div>
+                                <Link to={"/register"}>Register</Link>
+                                <Link to={"/log-in"}>Log in</Link>
+                            </div>
+                        ) : (
+                            <div>
+                                <span>Welcome {user.name}</span>
+                            <button onClick={handleLogout}>Log out</button>
+                            </div>
+                        )}
                     </div>
                 </div>
                 <span className="sidenav__arrow"></span>

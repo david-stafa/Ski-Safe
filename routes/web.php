@@ -18,3 +18,5 @@ Route::get('/test-user-status', function() {
 
 Route::view('/{path?}', 'welcome')->where('path', '.*');
 
+
+
