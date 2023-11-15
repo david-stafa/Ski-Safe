@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 import "./login.scss";
+import SideNavigation from "../navigation-side/SideNavigation";
 
 export default function Login(props) {
     const [values, setValues] = useState({
@@ -118,6 +119,8 @@ export default function Login(props) {
                         : ""}
                 </p>
             </form>
+
+            <SideNavigation />
         </div>
     );
 }
