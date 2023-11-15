@@ -2,7 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "./map.scss";
 import { mapBoxToken } from "./helpers/map-helper";
-import { Pin } from "./Pins/Pin";
+import { addPinLayer } from "./Pins/addPinLayer";
 import { pinOnMap } from "./Pins/addPinOnMap";
 import { popUp } from "./popUp/popUp";
 import { getPins } from "./Pins/getPins";
@@ -15,6 +15,7 @@ export default function Map() {
     //     latitude: null
     // })
     const mapContainer = useRef();
+    // const [mapState, setMapState] = useState(null);
 
     useEffect(() => {
         // as the page mounts this renders our personalised map style (2D)
@@ -25,8 +26,6 @@ export default function Map() {
             zoom: 14,
             pitch: 60,
         });
-
-        // ...this coverts the 2d style to a 3D 'model'
 
         map.on("load", () => {
             map.addLayer({
@@ -39,24 +38,21 @@ export default function Map() {
                 },
             });
             // calling get pins test
-            getPins();
+            // getPins();
 
             //REMOVED FOR FGET PINS TESTING
-            // Pin({ map });
+            addPinLayer(map);
             // popUp(map);
 
             //DEVELOPMENTAL user can click and add a pin
             // pinOnMap(map);
         });
-
-        // ****cleanup function*****
-        return () => {
-            if (map) {
-                map.remove();
-            }
-        };
-        // *************end of useEffect**************
+        // setMapState(map);
     }, []);
 
-    return <div className="map" id="map" ref={mapContainer}></div>;
+    return (
+        <>
+            <div className="map" id="map" ref={mapContainer}></div>
+        </>
+    );
 }

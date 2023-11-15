@@ -4,11 +4,10 @@ export const getPins = async () => {
     try {
         const response = await axios.get("/api/map-pins");
         const data = response.data;
-        console.log(data);
+        // console.log(data);
 
-        const pins = data.map((item, index) => ({
-            key: index,
-            type: "Feature", //changed from feature to feature collection
+        const pins = data.map((item) => ({
+            type: "Feature",
             geometry: {
                 type: "Point",
                 // coordinates [Longditude, Latitude]
@@ -26,6 +25,7 @@ export const getPins = async () => {
                 active: item.active,
             },
         }));
+        console.log(pins);
         return pins;
     } catch (error) {
         console.error("Error fetching pins:", error);
