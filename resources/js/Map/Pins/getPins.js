@@ -4,14 +4,14 @@ export const getPins = async () => {
     try {
         const response = await axios.get("/api/map-pins");
         const data = response.data;
-        // console.log(data);
+        console.log(data);
 
         const pins = data.map((item) => ({
             type: "Feature",
             geometry: {
                 type: "Point",
-                // coordinates [Longditude, Latitude]
-                coordinates: [item.longditude, item.latitude],
+                // coordinates [Longitude,Latitude]
+                coordinates: [item.longitude, item.latitude],
             },
             properties: {
                 title: item.title,

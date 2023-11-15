@@ -2,7 +2,7 @@
                 type: "Feature",
                 geometry: {
                     type: "Point",
-                    // coordinates [Longditude, Latitude]
+                    // coordinates [longitude, Latitude]
                     coordinates: [-117.2532, 52.1878],
                 },
                 properties: {

@@ -45,7 +45,7 @@ export default function Map() {
             // popUp(map);
 
             //DEVELOPMENTAL user can click and add a pin
-            // pinOnMap(map);
+            pinOnMap(map);
         });
         // setMapState(map);
     }, []);
