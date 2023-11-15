@@ -4,7 +4,6 @@ import "./map.scss";
 import { mapBoxToken } from "./helpers/map-helper";
 import { Pin } from "./Pins/Pin";
 import { pinOnMap } from "./Pins/addPinOnMap";
-// import { newPin } from "./Pins/newPin";
 import { popUp } from "./popUp/popUp";
 import { getPins } from "./Pins/getPins";
 
@@ -41,13 +40,21 @@ export default function Map() {
             });
             // calling get pins test
             getPins();
-            // calling the pin function from Pin.js
-            Pin(map);
 
-            //user can click and add a pin
+            //REMOVED FOR FGET PINS TESTING
+            // Pin({ map });
+            // popUp(map);
+
+            //DEVELOPMENTAL user can click and add a pin
             // pinOnMap(map);
-            popUp(map);
         });
+
+        // ****cleanup function*****
+        return () => {
+            if (map) {
+                map.remove();
+            }
+        };
         // *************end of useEffect**************
     }, []);
 
