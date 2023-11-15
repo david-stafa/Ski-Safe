@@ -4,7 +4,7 @@ import "./map.scss";
 import { mapBoxToken } from "./helpers/map-helper";
 import { addPinLayer } from "./Pins/addPinLayer";
 import { pinOnMap } from "./Pins/addPinOnMap";
-import { popUp } from "./popUp/popUp";
+import { ShowPopUp } from "./popUp/showPopUp";
 import { getPins } from "./Pins/getPins";
 
 mapboxgl.accessToken = mapBoxToken;
@@ -42,7 +42,7 @@ export default function Map() {
 
             //REMOVED FOR FGET PINS TESTING
             addPinLayer(map);
-            // popUp(map);
+            ShowPopUp(map);
 
             //DEVELOPMENTAL user can click and add a pin
             pinOnMap(map);
