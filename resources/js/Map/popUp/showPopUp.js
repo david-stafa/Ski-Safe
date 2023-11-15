@@ -1,4 +1,5 @@
 import mapboxgl from "mapbox-gl";
+import "./pop-up.scss";
 import { getPins } from "../Pins/getPins";
 import { pinOnMap } from "../Pins/addPinOnMap";
 
@@ -20,12 +21,14 @@ export const ShowPopUp = async (map) => {
         myPopUp
             .setLngLat(coordinates)
             .setHTML(
-                `<h3 style="color: #333; font-size: 16px;">${title}</h3>
-                    <p style="color: #666; font-size: 14px;">${slug}</p>
-                    <p style="color: #f00; font-size: 14px;">
-                        Severity: ${severity}
-                    </p>
-                    <button>Details</button`
+                `<div class="pop-up">
+                   <h3 class="pop-up__title">${title}</h3>
+                        <p class="pop-up__slug">${slug}</p>
+                        <p class= "pop-up__severity">
+                            Severity: ${severity}
+                        </p>
+                        <button>Details</button
+                </div>`
             )
             .addTo(map);
     });

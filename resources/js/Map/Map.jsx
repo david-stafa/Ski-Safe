@@ -5,7 +5,6 @@ import { mapBoxToken } from "./helpers/map-helper";
 import { addPinLayer } from "./Pins/addPinLayer";
 import { pinOnMap } from "./Pins/addPinOnMap";
 import { ShowPopUp } from "./popUp/showPopUp";
-import { getPins } from "./Pins/getPins";
 
 mapboxgl.accessToken = mapBoxToken;
 
@@ -24,7 +23,7 @@ export default function Map() {
             style: "mapbox://styles/themainkane/clou0eblx00un01o46rwmb8f4",
             center: [-117.2532, 52.1878],
             zoom: 14,
-            pitch: 60,
+            pitch: 70,
         });
 
         map.on("load", () => {
@@ -37,15 +36,15 @@ export default function Map() {
                     "sky-atmosphere-sun-intensity": 15,
                 },
             });
-            // calling get pins test
-            // getPins();
+
+            map.rotateTo(190, { duration: 3000 });
 
             //REMOVED FOR FGET PINS TESTING
             addPinLayer(map);
             ShowPopUp(map);
 
             //DEVELOPMENTAL user can click and add a pin
-            pinOnMap(map);
+            // pinOnMap(map);
         });
         // setMapState(map);
     }, []);
