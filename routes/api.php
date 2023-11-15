@@ -21,8 +21,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
+//map_pin controller
 Route::get('/map-pins', [Map_pinController::class, 'index'])->name('pins');
+Route::get('/map-pins/{id}', [Map_pinController::class, 'destroy'])->name('destroy');
+//message controller
 Route::get('/messages', [MessageController::class, 'index'])->name('messages');
 Route::post('/messages/store', [MessageController::class, 'store'])->name('message.store');
 

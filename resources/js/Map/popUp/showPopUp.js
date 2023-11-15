@@ -25,7 +25,8 @@ export const ShowPopUp = async (map) => {
                     <p style="color: #f00; font-size: 14px;">
                         Severity: ${severity}
                     </p>
-                    <button>Details</button`
+                    <button id="pop-up__delete">Details</button
+                    <button id="pop-up__delete" >Delete</button`
             )
             .addTo(map);
     });
