@@ -2,10 +2,10 @@ import { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "./map.scss";
 import { mapBoxToken } from "./helpers/map-helper";
-import { Pin } from "./Pins/Pin";
+import { addPinLayer } from "./Pins/addPinLayer";
 import { pinOnMap } from "./Pins/addPinOnMap";
-// import { newPin } from "./Pins/newPin";
 import { popUp } from "./popUp/popUp";
+import { getPins } from "./Pins/getPins";
 
 mapboxgl.accessToken = mapBoxToken;
 
@@ -15,6 +15,7 @@ export default function Map() {
     //     latitude: null
     // })
     const mapContainer = useRef();
+    // const [mapState, setMapState] = useState(null);
 
     useEffect(() => {
         // as the page mounts this renders our personalised map style (2D)
@@ -26,8 +27,6 @@ export default function Map() {
             pitch: 60,
         });
 
-        // ...this coverts the 2d style to a 3D 'model'
-
         map.on("load", () => {
             map.addLayer({
                 id: "sky",
@@ -38,17 +37,22 @@ export default function Map() {
                     "sky-atmosphere-sun-intensity": 15,
                 },
             });
+            // calling get pins test
+            // getPins();
 
-            // calling the pin function from Pin.js
-            Pin(map);
-            // newPin(map); Still glitchy, removed for now, in there as a back up option.
+            //REMOVED FOR FGET PINS TESTING
+            addPinLayer(map);
+            // popUp(map);
 
-            //user can click and add a pin
-            // pinOnMap(map);
-            popUp(map);
+            //DEVELOPMENTAL user can click and add a pin
+            pinOnMap(map);
         });
-        // *************end of useEffect**************
+        // setMapState(map);
     }, []);
 
-    return <div className="map" id="map" ref={mapContainer}></div>;
+    return (
+        <>
+            <div className="map" id="map" ref={mapContainer}></div>
+        </>
+    );
 }
