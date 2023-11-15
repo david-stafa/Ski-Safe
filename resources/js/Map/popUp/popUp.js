@@ -40,6 +40,5 @@ export const popUp = (map) => {
     // remove mouse style as user leaves
     map.on("mouseleave", "points", () => {
         map.getCanvas().style.cursor = "";
-
     });
 };

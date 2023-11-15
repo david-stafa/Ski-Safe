@@ -19,10 +19,11 @@ export default function App() {
             },
         });
 
-        if (response.status === 200) {
-            const data = await response.json();
+        const data = await response.json();
+
+        if (!(data.unauthorized || false)) {
             setUser(data);
-        } else if (response.status === 401) {
+        } else {
             setUser(false); // false - user not logged in
         }
     };
