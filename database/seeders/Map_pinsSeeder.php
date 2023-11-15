@@ -17,7 +17,7 @@ class Map_pinsSeeder extends Seeder
             [
                 'longitude' => -117.29,
                 // -117.23 with aberration 0.06
-                'latitude' => 52.10,
+                'latitude' => 52.33,
                 // 52.16 with aberration 0.06
                 'title' => 'Location Three Retreat',
                 'severity_id' => 3,
@@ -75,9 +75,9 @@ class Map_pinsSeeder extends Seeder
                 'active' => true,
             ],
             [
-                'longitude' => -117.29,
+                'longitude' => -117.9,
                 // -117.23 with aberration 0.06
-                'latitude' => 52.10,
+                'latitude' => 52.50,
                 // 52.16 with aberration 0.06
                 'title' => 'Location Eight Retreat',
                 'severity_id' => 2,
@@ -87,9 +87,9 @@ class Map_pinsSeeder extends Seeder
                 'active' => true,
             ],
             [
-                'longitude' => -117.23,
+                'longitude' => -117.83,
                 // -117.23 with aberration 0.06
-                'latitude' => 52.16,
+                'latitude' => 52.3,
                 // 52.16 with aberration 0.06
                 'title' => 'Location Nine Retreat',
                 'severity_id' => 1,
@@ -99,7 +99,7 @@ class Map_pinsSeeder extends Seeder
                 'active' => true,
             ],
             [
-                'longitude' => -117.29,
+                'longitude' => -118.00,
                 // -117.23 with aberration 0.06
                 'latitude' => 52.10,
                 // 52.16 with aberration 0.06
@@ -111,9 +111,9 @@ class Map_pinsSeeder extends Seeder
                 'active' => true,
             ],
             [
-                'longitude' => -117.17,
+                'longitude' => -116.9,
                 // -117.23 with aberration 0.06
-                'latitude' => 52.22,
+                'latitude' => 52.88,
                 // 52.16 with aberration 0.06
                 'title' => 'Location Eleven Retreat',
                 'severity_id' => 3,
@@ -123,9 +123,9 @@ class Map_pinsSeeder extends Seeder
                 'active' => true,
             ],
             [
-                'longitude' => -117.23,
+                'longitude' => -117.43,
                 // -117.23 with aberration 0.06
-                'latitude' => 52.16,
+                'latitude' => 53.16,
                 // 52.16 with aberration 0.06
                 'title' => 'Location Twelve Retreat',
                 'severity_id' => 1,
@@ -137,7 +137,7 @@ class Map_pinsSeeder extends Seeder
             [
                 'longitude' => -117.29,
                 // -117.23 with aberration 0.06
-                'latitude' => 52.10,
+                'latitude' => 51.90,
                 // 52.16 with aberration 0.06
                 'title' => 'Location Thirteen Retreat',
                 'severity_id' => 2,
@@ -147,9 +147,9 @@ class Map_pinsSeeder extends Seeder
                 'active' => true,
             ],
             [
-                'longitude' => -117.17,
+                'longitude' => -118.17,
                 // -117.23 with aberration 0.06
-                'latitude' => 52.22,
+                'latitude' => 53.22,
                 // 52.16 with aberration 0.06
                 'title' => 'Location Fourteen Retreat',
                 'severity_id' => 3,
@@ -159,9 +159,9 @@ class Map_pinsSeeder extends Seeder
                 'active' => true,
             ],
             [
-                'longitude' => -117.23,
+                'longitude' => -117.63,
                 // -117.23 with aberration 0.06
-                'latitude' => 52.16,
+                'latitude' => 53.86,
                 // 52.16 with aberration 0.06
                 'title' => 'Location Fifteen Retreat',
                 'severity_id' => 1,
@@ -171,9 +171,9 @@ class Map_pinsSeeder extends Seeder
                 'active' => true,
             ],
             [
-                'longitude' => -117.29,
+                'longitude' => -117.89,
                 // -117.23 with aberration 0.06
-                'latitude' => 52.10,
+                'latitude' => 54.00,
                 // 52.16 with aberration 0.06
                 'title' => 'Location Sixteen Retreat',
                 'severity_id' => 2,
@@ -183,9 +183,9 @@ class Map_pinsSeeder extends Seeder
                 'active' => true,
             ],
             [
-                'longitude' => -117.17,
+                'longitude' => -117.71,
                 // -117.23 with aberration 0.06
-                'latitude' => 52.22,
+                'latitude' => 51.22,
                 // 52.16 with aberration 0.06
                 'title' => 'Location Seventeen Retreat',
                 'severity_id' => 3,
@@ -195,9 +195,9 @@ class Map_pinsSeeder extends Seeder
                 'active' => true,
             ],
             [
-                'longitude' => -117.23,
+                'longitude' => -117.00,
                 // -117.23 with aberration 0.06
-                'latitude' => 52.16,
+                'latitude' => 53.16,
                 // 52.16 with aberration 0.06
                 'title' => 'Location Eighteen Retreat',
                 'severity_id' => 1,
@@ -207,9 +207,9 @@ class Map_pinsSeeder extends Seeder
                 'active' => true,
             ],
             [
-                'longitude' => -117.29,
+                'longitude' => -116.29,
                 // -117.23 with aberration 0.06
-                'latitude' => 52.10,
+                'latitude' => 54.10,
                 // 52.16 with aberration 0.06
                 'title' => 'Location Nineteen Retreat',
                 'severity_id' => 2,
@@ -219,9 +219,9 @@ class Map_pinsSeeder extends Seeder
                 'active' => true,
             ],
             [
-                'longitude' => -117.17,
+                'longitude' => -116.17,
                 // -117.23 with aberration 0.06
-                'latitude' => 52.22,
+                'latitude' => 53.22,
                 // 52.16 with aberration 0.06
                 'title' => 'Location Twenty Retreat',
                 'severity_id' => 3,
