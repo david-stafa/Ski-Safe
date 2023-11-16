@@ -15,11 +15,13 @@ class Map_pinController extends Controller
         return $map_pins;
     }
 
+    //******************delete From Joe */
     public function delete($id)
     {
         $map_pin = Map_pin::findOrFail($id);
         $map_pin->delete();
 
-        return null;
+        return response()->json(['message' => 'Pin deleted succesfully'], 200);
     }
+    //end of delete ************************
 }
