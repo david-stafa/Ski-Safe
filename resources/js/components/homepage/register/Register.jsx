@@ -3,17 +3,23 @@ import UserContext from "../../../context/UserContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./Register.scss";
+import SuccessModal from "./SuccessModal";
+import Modal from "react-modal";
 
 export default function Register(props) {
     const [values, setValues] = useState({
         email: "",
         name: "",
-        surname: "",
+        // surname: "",
         password: "",
         password_confirmation: "",
     });
+    useEffect(() => {
+        Modal.setAppElement("#root"); // Set the app element when the component mounts
+    }, []);
 
     const [errors, setErrors] = useState({});
+    const [showModal, setShowModal] = useState(false);
 
     const { setUser } = useContext(UserContext);
 
@@ -27,8 +33,13 @@ export default function Register(props) {
 
         try {
             const response = await axios.post("/register", values);
-            navigate("/");
-            setUser(response.data.user);
+            setShowModal(true);
+            // navigate("/");
+            // setUser(null);
+            setTimeout(() => {
+                navigate("/");
+                setUser(null);
+            }, 3000);
         } catch (error) {
             if (error.response && error.response.status === 422) {
                 console.log(
@@ -65,7 +76,7 @@ export default function Register(props) {
                 className="register-form"
             >
                 <div className="input-group">
-                    <label htmlFor="name">Name:</label>
+                    <label htmlFor="name">Username:</label>
                     <br />
                     <input
                         id="name"
@@ -77,8 +88,8 @@ export default function Register(props) {
                     />
                 </div>
 
-                <div className="input-group">
-                    <label htmlFor="surname">Surname:</label>
+                {/* <div className="input-group">
+                    <label htmlFor="surname">Fullname:</label>
                     <br />
                     <input
                         id="surname"
@@ -100,7 +111,7 @@ export default function Register(props) {
                     ) : (
                         ""
                     )}
-                </div>
+                </div> */}
 
                 <div className="input-group">
                     <label htmlFor="email">Email:</label>
@@ -178,6 +189,10 @@ export default function Register(props) {
                     )}
                 </div>
                 <button className="submit-button">Register</button>
+                <SuccessModal
+                    isOpen={showModal}
+                    onRequestClose={() => setShowModal(false)}
+                />
             </form>
         </div>
     );

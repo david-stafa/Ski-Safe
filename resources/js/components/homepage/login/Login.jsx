@@ -24,11 +24,11 @@ export default function Login(props) {
             const response = await axios.post("/login", values);
             console.log(response);
 
-            setUser(null);
             if (response.status === 200) {
+                setUser(null);
                 const paragraph = document.querySelector(".success-login");
                 paragraph.style.display = "block";
-                navigate("/");
+                // navigate("/");
             }
         } catch (error) {
             if (error.response && error.response.status === 422) {
@@ -40,6 +40,12 @@ export default function Login(props) {
             }
         }
     };
+
+    useEffect(() => {
+        if (user) {
+            navigate("/");
+        }
+    }, [user]);
 
     const handleChange = (event) => {
         setValues((previous_values) => {
