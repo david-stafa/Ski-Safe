@@ -1,0 +1,36 @@
+.search-bar {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    svg {
+        stroke: white;
+    }
+
+    &__input {
+        flex: 1;
+        padding: 0.5rem;
+        margin-left: 0.5rem; // Adjust as needed
+        border: none;
+        border-radius: 4px;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    // Initial state where search bar is not expanded
+    width: 3rem; // width of the icon
+    overflow: hidden;
+    transition: width 0.3s ease-in-out;
+
+    // State when search bar is expanded
+    &.expanded {
+        width: 100%; // Adjust as needed
+        .search-bar__input {
+            width: calc(100% - 4rem); // Adjust the width calculation as needed
+            opacity: 1;
+            transition: opacity 0.3s ease-in-out 0.1s; // Delay the input display
+        }
+    }
+}
