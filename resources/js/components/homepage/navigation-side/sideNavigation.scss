@@ -13,15 +13,8 @@ $nav-text-color: #333;
         "Helvetica Neue", Arial, sans-serif;
     color: $nav-text-color;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    transition: width 0.3s ease-in-out;
+    transition: width 0.4s ease-in-out;
     overflow: hidden;
-
-    a,
-    a:hover,
-    a:focus,
-    a:active {
-        text-decoration: none;
-    }
 }
 
 .sidenav__content {
@@ -46,6 +39,7 @@ $nav-text-color: #333;
     color: #fff;
     white-space: nowrap;
     transition: opacity 0.3s ease-in-out;
+    cursor: pointer;
     &:hover {
         background-color: darken(rgba(97, 176, 210, 0.6), 10%);
     }

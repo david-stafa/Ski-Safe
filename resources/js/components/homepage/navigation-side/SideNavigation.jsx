@@ -1,9 +1,8 @@
-import { Link } from "react-router-dom";
 import "./sideNavigation.scss";
 import { useState, useRef } from "react";
 import { AlertTriangle, Search, Sliders } from "react-feather";
 
-export default function SideNavigation() {
+export default function SideNavigation({ onItemSelect }) {
     const [navClosed, setNavClosed] = useState(true);
     const [navExpanded, setNavExpanded] = useState(false);
     const hoverRef = useRef();
@@ -38,18 +37,29 @@ export default function SideNavigation() {
                     className="sidenav__logo"
                 />
 
-                <Link to={"/"} className="sidenav__link" aria-label="Search">
+                <div
+                    className="sidenav__link"
+                    onClick={() => onItemSelect("search")}
+                >
                     <Search size={24} />
                     <span>Search</span>
-                </Link>
-                <Link to={"/"} className="sidenav__link" aria-label="Severity">
+                </div>
+
+                <div
+                    className="sidenav__link"
+                    onClick={() => onItemSelect("severity")}
+                >
                     <AlertTriangle size={24} />
                     <span>Severity</span>
-                </Link>
-                <Link to={"/"} className="sidenav__link" aria-label="Filters">
+                </div>
+
+                <div
+                    className="sidenav__link"
+                    onClick={() => onItemSelect("filters")}
+                >
                     <Sliders size={24} />
                     <span>Filters</span>
-                </Link>
+                </div>
             </div>
         </nav>
     );
