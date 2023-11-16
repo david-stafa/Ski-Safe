@@ -4,7 +4,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./Register.scss";
 
-
 export default function Register(props) {
     const [values, setValues] = useState({
         email: "",
@@ -30,7 +29,6 @@ export default function Register(props) {
             const response = await axios.post("/register", values);
             navigate("/");
             setUser(response.data.user);
-
         } catch (error) {
             if (error.response && error.response.status === 422) {
                 console.log(
