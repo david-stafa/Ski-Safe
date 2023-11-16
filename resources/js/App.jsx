@@ -9,7 +9,7 @@ import "../css/app.css";
 export default function App() {
     const [content, setContent] = useState("");
 
-    const [user, setUser] = useState(null); // null - user status unknown
+    const [user, setUser] = useState(null); //null - user status unknown
     // false - user not logged in (but we know that)
 
     const loadUserStatus = async () => {
@@ -19,10 +19,11 @@ export default function App() {
             },
         });
 
-        if (response.status === 200) {
-            const data = await response.json();
+        const data = await response.json();
+
+        if (!(data.unauthorized || false)) {
             setUser(data);
-        } else if (response.status === 401) {
+        } else {
             setUser(false); // false - user not logged in
         }
     };
