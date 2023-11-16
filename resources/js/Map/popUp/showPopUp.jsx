@@ -1,5 +1,7 @@
 import mapboxgl from "mapbox-gl";
 import "./pop-up.scss";
+import { getPins } from "../Pins/getPins";
+import { pinOnMap } from "../Pins/addPinOnMap/addPinOnMap";
 import { deletePin } from "../Pins/deletePin";
 
 // modal 1/4
