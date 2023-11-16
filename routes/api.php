@@ -23,8 +23,12 @@ Route::get('/user', function (Request $request) {
 
 //map_pin controller
 Route::get('/map-pins', [Map_pinController::class, 'index'])->name('pins');
+
+Route::post('/pin/store', [Map_pinController::class, 'store'])->name('pins.store');
+
 Route::delete('/map-pins/{id}', [Map_pinController::class, 'delete'])->name('delete');
 //message controller
+
 Route::get('/messages', [MessageController::class, 'index'])->name('messages');
 Route::post('/messages/store', [MessageController::class, 'store'])->name('message.store');
 
