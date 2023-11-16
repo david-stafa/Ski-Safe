@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import "./navigation.scss";
 import UserContext from "../../../context/UserContext";
 import axios from "axios";
-import TestModal from "../../Modal/TestModal";
 
 export default function Navigation() {
     const { user, setUser } = useContext(UserContext);
@@ -66,7 +65,6 @@ export default function Navigation() {
                         )}
                     </div>
                 </div>
-                <span className="sidenav__arrow"></span>
             </div>
         </>
     );
