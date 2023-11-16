@@ -1,7 +1,7 @@
 import mapboxgl from "mapbox-gl";
 import "./pop-up.scss";
 import { getPins } from "../Pins/getPins";
-import { pinOnMap } from "../Pins/addPinOnMap";
+import { pinOnMap } from "../Pins/addPinOnMap/addPinOnMap";
 
 // modal 1/4
 import React from "react";

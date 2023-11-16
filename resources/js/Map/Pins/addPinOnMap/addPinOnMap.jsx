@@ -1,10 +1,11 @@
 import mapboxgl from "mapbox-gl";
 import axios from "axios";
+import './addPinOnMap.scss'
 
 // modal 1/4
 import React, { useState } from "react";
 import { createRoot } from "react-dom/client";
-import Modal from "../../components/Modal/Modal";
+import Modal from "../../../components/Modal/Modal";
 
 
 const MyFormModalContent = ({lng, lat}) => {
@@ -15,7 +16,7 @@ const MyFormModalContent = ({lng, lat}) => {
         latitude: lat,
         longitude: lng,
         severity_id: 1,
-        slug:'David sucks',
+        slug: "",
         active: true
     });
 
@@ -35,22 +36,46 @@ const MyFormModalContent = ({lng, lat}) => {
     
     return (
         <form action="" onSubmit={handleSubmit}>
-            <input
-                type="text"
-                name="title"
-                value={formData.title}
-                onChange={handleChange}
-            />
-            <textarea
-                name="description"
-                value={formData.description}
-                onChange={handleChange}
-            />
+            
+            <div className="input-group">
+                <label htmlFor="title">Title</label>
+                <input
+                    id="title"
+                    type="text"
+                    name="title"
+                    value={formData.title}
+                    onChange={handleChange}
+                    className="input-field"
+                />
+            </div>
 
-            <input type="hidden" name="longitude" id="longitude" value={lng} />
-            <input type="hidden" name="latitude" id="latitude" value={lat} />
+            
+           <div className="input-group"> 
+                <label htmlFor="slug">Slug</label>
+                <input type="text" name="slug" id="slug" value={formData.slug} onChange={handleChange} className="input-field"/>
+           </div>
 
-            <button type="submit">Submit</button>
+            <div className="input-group">
+                <label htmlFor="description">Description</label>
+                <textarea
+                    name="description"
+                    id="description"
+                    value={formData.description}
+                    onChange={handleChange}
+                />
+            </div>
+
+            <div className="input-group">
+                <label htmlFor="severity_id">Severity state</label>
+                <select name="severity_id" id="severity_id" value={formData.severity_id || ''} onChange={handleChange} className="input-field">
+                    <option value="1">Low</option>
+                    <option value="2">Moderate</option>
+                    <option value="3">High</option>
+                </select>
+            </div>
+
+
+            <button type="submit" className="submit-button">Submit</button>
         </form>
     );
 };
@@ -80,11 +105,13 @@ export const pinOnMap = (map) => {
     });
 
     //on click function
-    map.on("click", (event) => {
+    map.on("dblclick", (event) => {
         const popup = new mapboxgl.Popup().setHTML(
             `
-                <h3>[${event.lngLat.lng.toFixed(6)}, ${event.lngLat.lat.toFixed(6)}]</h4>
-                <button id="create-form-button">Create a pin</button>
+                <div class="pop-up">
+                    <h3>[${event.lngLat.lng.toFixed(6)}, ${event.lngLat.lat.toFixed(6)}]</h4>
+                    <button id="create-form-button">Create a pin</button>
+                </div>
             `
         );
 
@@ -94,10 +121,12 @@ export const pinOnMap = (map) => {
                 .getElementById("create-form-button")
                 .addEventListener("click", () => {
                     handleToggleModal(
-                        <div>
-                            <h2 style={{ color: "green" }}>
-                                Create a pin.
-                            </h2>
+                        <div className="register-container">
+                            <div className="register-header">
+                                <h2>
+                                    Create a pin.
+                                </h2>
+                            </div>
 
                             <MyFormModalContent lng={event.lngLat.lng.toFixed(6)} lat={event.lngLat.lat.toFixed(6)}/>
                         </div>
