@@ -38,6 +38,7 @@ export const ShowPopUp = async (map) => {
         const title = e.features[0].properties.title;
         const slug = e.features[0].properties.slug;
         const severity = e.features[0].properties.severity;
+        const description = e.features[0].properties.description;
 
         myPopUp
             .setLngLat(coordinates)
@@ -70,10 +71,7 @@ export const ShowPopUp = async (map) => {
                             </p>
                             <h4>Basic Description:</h4>
                             <p>{slug}</p>
-                            <p>
-                                description is not working... i think there were
-                                some changes in db???
-                            </p>
+                            <p>{description}</p>
                             <img
                                 className="image"
                                 src="/images/ModalPin/ModalPin.png"
