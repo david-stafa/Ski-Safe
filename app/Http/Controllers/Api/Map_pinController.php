@@ -19,6 +19,7 @@ class Map_pinController extends Controller
         return $map_pins;
     }
 
+
     public function store(Request $request)
     {
 
@@ -47,4 +48,15 @@ class Map_pinController extends Controller
             return
                 response()->json(['message' => 'Pin updated succesfully']);
     }
+
+
+    public function delete($id)
+    {
+        $map_pin = Map_pin::findOrFail($id);
+        $map_pin->delete();
+
+        return response()->json(['message' => 'Pin deleted succesfully'], 200);
+    }
+
+
 }
