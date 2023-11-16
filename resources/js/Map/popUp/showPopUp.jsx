@@ -38,6 +38,7 @@ export const ShowPopUp = async (map) => {
         const title = e.features[0].properties.title;
         const slug = e.features[0].properties.slug;
         const severity = e.features[0].properties.severity;
+        const description = e.features[0].properties.severity;
 
         myPopUp
             .setLngLat(coordinates)
