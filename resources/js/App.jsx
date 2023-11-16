@@ -9,7 +9,7 @@ import "../css/app.css";
 export default function App() {
     const [content, setContent] = useState("");
 
-    const [user, setUser] = useState(null); // null - user status unknown
+    const [user, setUser] = useState(null); //null - user status unknown
     // false - user not logged in (but we know that)
 
     const loadUserStatus = async () => {
