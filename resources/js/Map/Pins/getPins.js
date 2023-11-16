@@ -14,6 +14,7 @@ export const getPins = async () => {
                 coordinates: [item.longitude, item.latitude],
             },
             properties: {
+                id: item.id,
                 title: item.title,
                 severity: item.severity.name,
                 slug: item.slug,

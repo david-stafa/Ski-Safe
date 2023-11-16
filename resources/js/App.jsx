@@ -39,7 +39,6 @@ export default function App() {
         <UserContext.Provider value={{ user, setUser }}>
             <BrowserRouter>
                 <Homepage />
-                <TestModal />
             </BrowserRouter>
         </UserContext.Provider>
     );
