@@ -21,13 +21,8 @@ export const addPinLayer = async (map) => {
             type: "symbol",
             source: "points",
             layout: {
-                "icon-image": "mountain",
-                // get the title name from the source's "title" property
-                // "text-field": ["get", "title"],
-                // "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-                // //style the pin further here, use mapbox studio to help generate the js
-                // "text-offset": [0, 0.5],
-                // "text-anchor": "top",
+                "icon-image": "exclamation",
+                "icon-size": 0.3,
             },
         });
     } catch (error) {
