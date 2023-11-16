@@ -1,11 +1,8 @@
 import mapboxgl from "mapbox-gl";
 import "./pop-up.scss";
-<<<<<<< HEAD
 import { getPins } from "../Pins/getPins";
 import { pinOnMap } from "../Pins/addPinOnMap/addPinOnMap";
-=======
 import { deletePin } from "../Pins/deletePin";
->>>>>>> 64ebc0fd012c4413d2ba54a26409ed1adc004d7f
 
 // modal 1/4
 import React from "react";
