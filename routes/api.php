@@ -18,11 +18,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/user', function (Request $request) {
-    return $request->user() ?? ["unauthorized"=> true];
+    return $request->user() ?? ["unauthorized" => true];
 });
 
-
+//map_pin controller
 Route::get('/map-pins', [Map_pinController::class, 'index'])->name('pins');
+Route::delete('/map-pins/{id}', [Map_pinController::class, 'delete'])->name('delete');
+//message controller
 Route::get('/messages', [MessageController::class, 'index'])->name('messages');
 Route::post('/messages/store', [MessageController::class, 'store'])->name('message.store');
 
