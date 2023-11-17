@@ -5,6 +5,7 @@ import AdjacentRectangle from "../navigation-side/AdjacentRectangle";
 
 export default function MainContent() {
     const [activeItem, setActiveItem] = useState(null);
+    const [navExpanded, setNavExpanded] = useState(false);
 
     const handleItemSelect = (item) => {
         setActiveItem((prevItem) => (prevItem === item ? null : item));
@@ -18,11 +19,16 @@ export default function MainContent() {
         <>
             <div className="main-content">
                 <Map />
-                <SideNavigation onItemSelect={handleItemSelect} />
+                <SideNavigation
+                    onItemSelect={handleItemSelect}
+                    setNavExpanded={setNavExpanded}
+                    navExpanded={navExpanded}
+                />
                 {activeItem && (
                     <AdjacentRectangle
                         activeItem={activeItem}
                         onClose={handleClose}
+                        navExpanded={navExpanded}
                     />
                 )}
             </div>

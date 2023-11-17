@@ -2,9 +2,13 @@ import "./sideNavigation.scss";
 import { useState, useRef } from "react";
 import { AlertTriangle, Search, Sliders } from "react-feather";
 
-export default function SideNavigation({ onItemSelect }) {
+export default function SideNavigation({
+    onItemSelect,
+    setNavExpanded,
+    navExpanded,
+}) {
     const [navClosed, setNavClosed] = useState(true);
-    const [navExpanded, setNavExpanded] = useState(false);
+
     const hoverRef = useRef();
 
     const handleMouseEnter = () => {
