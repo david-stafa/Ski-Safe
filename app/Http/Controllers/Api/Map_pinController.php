@@ -44,7 +44,7 @@ class Map_pinController extends Controller
             // $map_pin->video = $request->input('video');
             // $map_pin->image = $request->input('image');
             $map_pin->save();
-    
+
             return
                 response()->json(['message' => 'Pin updated succesfully']);
     }

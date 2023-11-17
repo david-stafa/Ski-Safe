@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/test-user-status', function() {
     dd(Auth::user());
 });
+
 
 Route::view('/{path?}', 'welcome')->where('path', '.*');
 
