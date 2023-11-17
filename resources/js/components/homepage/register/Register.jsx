@@ -10,7 +10,6 @@ export default function Register(props) {
     const [values, setValues] = useState({
         email: "",
         name: "",
-        // surname: "",
         password: "",
         password_confirmation: "",
     });
@@ -87,31 +86,6 @@ export default function Register(props) {
                         className="input-field"
                     />
                 </div>
-
-                {/* <div className="input-group">
-                    <label htmlFor="surname">Fullname:</label>
-                    <br />
-                    <input
-                        id="surname"
-                        type="text"
-                        name="surname"
-                        value={values.surname}
-                        onChange={handleChange}
-                        className="input-field"
-                    />
-                    <br />
-                    {errors.name ? (
-                        <div className="errors">
-                            {errors.name.map((error, i) => (
-                                <div key={i} className="error">
-                                    {error}
-                                </div>
-                            ))}
-                        </div>
-                    ) : (
-                        ""
-                    )}
-                </div> */}
 
                 <div className="input-group">
                     <label htmlFor="email">Email:</label>

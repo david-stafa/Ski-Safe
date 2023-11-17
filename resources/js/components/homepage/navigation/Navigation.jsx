@@ -3,9 +3,12 @@ import { Link } from "react-router-dom";
 import "./navigation.scss";
 import UserContext from "../../../context/UserContext";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Navigation() {
     const { user, setUser } = useContext(UserContext);
+
+    const navigate = useNavigate();
 
     const handleLogout = async (ev) => {
         ev.preventDefault();
@@ -15,6 +18,7 @@ export default function Navigation() {
             const response_data = response.data;
 
             setUser(null);
+            navigate("/");
         } catch (error) {
             switch (error.response.status) {
                 case 422:
@@ -45,6 +49,10 @@ export default function Navigation() {
                         <Link to={"/"}>Home</Link>
                         <Link to={"/about-us"}>About us</Link>
                         <Link to={"/contact-us"}>Contact us</Link>
+                        {user && <Link to={"/profile"}>Profile</Link>}
+                        {user && user.role === "admin" && (
+                            <Link to={"/admin"}>Admin</Link>
+                        )}
                     </div>
                     <div className="nav-actions">
                         {!user ? (

@@ -1,0 +1,33 @@
+// Admin.scss
+
+.admin-container {
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+}
+
+.admin-title {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.admin-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.admin-list-item {
+    margin-bottom: 10px;
+    font-size: 16px;
+    margin-right: 40rem;
+}
+
+.admin-select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-right: 50rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
