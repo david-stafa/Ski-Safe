@@ -1,59 +1,78 @@
+$nav-text-color: #333;
+
 .sidenav {
-    position: relative;
-    z-index: 1;
-    height: 100vh;
-    width: 20%;
+    position: fixed;
+    border-radius: 25px;
+    z-index: 10; // Higher than the map
+    top: 100px;
+    left: 20px;
+    height: 230px;
+    width: 50px;
     background-color: rgba(97, 176, 210, 0.6);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+    color: $nav-text-color;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: width 0.4s ease-in-out;
+    overflow: hidden;
+}
 
-    &__content {
-        display: flex;
-        flex-direction: column;
-        align-items: left;
-        width: 100%;
-        overflow: hidden;
+.sidenav__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.sidenav__logo {
+    width: 3rem;
+    margin-bottom: 1rem;
+    border-radius: 50%;
+}
+
+.sidenav__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3rem;
+    width: 100%;
+    color: #fff;
+    white-space: nowrap;
+    transition: opacity 0.3s ease-in-out;
+    cursor: pointer;
+    &:hover {
+        background-color: darken(rgba(97, 176, 210, 0.6), 10%);
     }
+    &.active {
+        background-color: rgba(97, 176, 210, 0.9);
+    }
+    span {
+        margin-left: 10px;
+        display: none;
+    }
+}
 
-    &__link {
-        height: 2rem;
-        text-decoration: none;
-        color: black;
+.sidenav_expanded {
+    width: 130px;
+
+    .sidenav__link {
+        justify-content: flex-start;
         padding-left: 1rem;
-        display: flex;
-        align-items: center;
-        &:hover {
-            background-color: rgba(97, 176, 210, 0.3);
-        }
-    }
+        opacity: 1;
 
-    &__image {
-        width: 5rem;
-        padding: 0.5rem 0;
-        margin: 0 auto;
-        border-radius: 50%;
-    }
-
-    &__arrow {
-        width: 1.5rem;
-        border-radius: 0px 12px 12px 0px;
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        right: -1.5rem;
-        top: 1rem;
-        background-color: red;
-        cursor: pointer;
-        &::after {
-            content: "<";
-        }
-        &_closed {
-            &::after {
-                content: ">";
-            }
+        span {
+            display: inline;
+            text-transform: uppercase;
         }
     }
 }
 
 .sidenav_closed {
-    width: 0px;
+    .sidenav__link {
+        justify-content: center;
+
+        span {
+            display: none;
+        }
+    }
 }

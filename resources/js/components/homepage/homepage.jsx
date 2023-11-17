@@ -9,15 +9,11 @@ import UserProfile from "../profile/UserProfile";
 import Login from "./login/Login";
 import Admin from "../admin/Admin";
 import { Route, Routes } from "react-router-dom";
-import Map from "../../Map/Map";
-import SideNavigation from "./navigation-side/SideNavigation";
 
 export default function Homepage() {
     return (
         <>
             <Navigation />
-
-            {/* <SideNavigation /> */}
 
             <Routes>
                 <Route path="/" element={<MainContent />}></Route>

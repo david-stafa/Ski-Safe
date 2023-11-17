@@ -3,7 +3,7 @@ import mapboxgl from "mapbox-gl";
 import "./map.scss";
 import { mapBoxToken } from "./helpers/map-helper";
 import { addPinLayer } from "./Pins/addPinLayer";
-import { pinOnMap } from "./Pins/addPinOnMap";
+import { pinOnMap } from "./Pins/addPinOnMap/addPinOnMap";
 import { ShowPopUp } from "./popUp/showPopUp";
 
 mapboxgl.accessToken = mapBoxToken;
@@ -36,7 +36,7 @@ export default function Map() {
                     "sky-atmosphere-sun-intensity": 15,
                 },
             });
-
+            map.doubleClickZoom.disable();
             map.rotateTo(190, { duration: 3000 });
 
             //REMOVED FOR FGET PINS TESTING
@@ -44,7 +44,7 @@ export default function Map() {
             ShowPopUp(map);
 
             //DEVELOPMENTAL user can click and add a pin
-            // pinOnMap(map);
+            pinOnMap(map);
         });
         // setMapState(map);
     }, []);
