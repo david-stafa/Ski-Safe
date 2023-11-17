@@ -32,3 +32,6 @@ Route::delete('/map-pins/{id}', [Map_pinController::class, 'delete'])->name('del
 Route::get('/messages', [MessageController::class, 'index'])->name('messages');
 Route::post('/messages/store', [MessageController::class, 'store'])->name('message.store');
 
+// File Uploads
+Route::post('/upload', [FileUploadController::class, 'store'])->name('file.store');
+
