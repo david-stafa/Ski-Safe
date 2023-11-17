@@ -25,7 +25,7 @@ export default function Filters({ onClose }) {
                     />
                     <span className="slider"></span>
                 </label>
-                <p>Filter One Description</p>
+                <p>Change Joe</p>
             </div>
 
             <div className="filter-option">
@@ -37,7 +37,7 @@ export default function Filters({ onClose }) {
                     />
                     <span className="slider"></span>
                 </label>
-                <p>Filter Two Description</p>
+                <p>Lifts</p>
             </div>
         </div>
     );

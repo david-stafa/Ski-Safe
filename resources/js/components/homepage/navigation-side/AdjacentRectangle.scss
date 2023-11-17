@@ -2,7 +2,6 @@
     position: fixed;
     border-radius: 25px;
     top: 100px;
-    left: 350px;
     z-index: 11;
     width: 200px;
     height: 230px;
@@ -16,6 +15,7 @@
     justify-content: center;
     align-items: center;
     transition: transform 0.3s;
+    transition: left 0.4s ease-in-out;
     transform: translateX(-100%);
 }
 
