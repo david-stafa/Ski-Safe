@@ -15,6 +15,11 @@ export const addPinLayer = async (map) => {
                   type: "geojson",
                   data: geojson,
               });
+        
+        // It deletes the current layer before refresh - to prevend having duplicate layers
+        if (map.getLayer('points')) {
+            map.removeLayer('points')
+        }
 
         map.addLayer({
             id: "points",
@@ -28,11 +33,4 @@ export const addPinLayer = async (map) => {
     } catch (error) {
         console.error("Error fetching pins", error);
     }
-
-    // add a dependency to this useEffect once we start posting new pins
-    // useEffect(() => {
-    //     if (map) {
-    //         updateMap();
-    //     }
-    // }, []); //add dependencies once we are succesfully posting pin-data so that new pins are rendered.
 };
