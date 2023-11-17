@@ -4,6 +4,7 @@ import { useState } from "react";
 import AdjacentRectangle from "../navigation-side/AdjacentRectangle";
 
 export default function MainContent() {
+
     const [activeItem, setActiveItem] = useState(null);
     const [navExpanded, setNavExpanded] = useState(false);
 
@@ -34,4 +35,5 @@ export default function MainContent() {
             </div>
         </>
     );
+
 }

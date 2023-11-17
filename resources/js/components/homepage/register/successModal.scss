@@ -1,0 +1,136 @@
+.custom-modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1); /* Combine both transformations */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+
+    transform: scale(1);
+    .custom-overlay {
+        background: rgba(0, 0, 0, 0);
+        animation: fadeIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+        .modal {
+            height: 75px;
+            width: 75px;
+            border-radius: 75px;
+            overflow: hidden;
+            animation: bondJamesBond 1.5s cubic-bezier(0.165, 0.84, 0.44, 1)
+                forwards;
+            h2,
+            p {
+                opacity: 0;
+                position: relative;
+                animation: modalContentFadeIn 0.5s 1.4s linear forwards;
+            }
+        }
+    }
+    &.out {
+        animation: fadeOut 0.5s 1.5s linear forwards; /* Change slowFade to fadeOut */
+        .modal-background {
+            background-color: rgba(0, 0, 0, 0.7);
+            animation: fadeToRed 2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+            .modal {
+                border-radius: 3px;
+                height: 162px;
+                width: 227px;
+                animation: killShot 1s cubic-bezier(0.165, 0.84, 0.44, 1)
+                    forwards;
+                h2,
+                p {
+                    animation: modalContentFadeOut 0.5s 0.5s
+                        cubic-bezier(0.165, 0.84, 0.44, 1) forwards; /* Add 's' to the delay value */
+                }
+            }
+        }
+    }
+}
+
+.custom-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.welcome-message {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.modal-message {
+    font-size: 1.2em;
+    color: #666;
+}
+@keyframes fadeIn {
+    0% {
+        background: rgba(0, 0, 0, 0);
+    }
+    100% {
+        background: rgba(0, 0, 0, 0.7);
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        background: rgba(0, 0, 0, 0.7);
+    }
+    100% {
+        background: rgba(0, 0, 0, 0);
+    }
+}
+
+@keyframes bondJamesBond {
+    0% {
+        transform: translateX(1000px);
+    }
+    80% {
+        transform: translateX(0px);
+        border-radius: 75px;
+        height: 75px;
+        width: 75px;
+    }
+    90% {
+        border-radius: 3px;
+        height: 182px;
+        width: 247px;
+    }
+    100% {
+        border-radius: 3px;
+        height: 162px;
+        width: 227px;
+    }
+}
+
+@keyframes modalContentFadeIn {
+    0% {
+        opacity: 0;
+        top: -20px;
+    }
+    100% {
+        opacity: 1;
+        top: 0;
+    }
+}
+
+@keyframes modalContentFadeOut {
+    0% {
+        opacity: 1;
+        top: 0px;
+    }
+    100% {
+        opacity: 0;
+        top: -20px;
+    }
+}
