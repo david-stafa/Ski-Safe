@@ -7,6 +7,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { createRoot } from "react-dom/client";
 import Modal from "../../components/Modal/Modal";
+import EditPin from "../Pins/editPin";
 
 // modal 2/4
 const handleToggleModal = (content) => {
@@ -79,18 +80,27 @@ export const ShowPopUp = async (map) => {
                                 alt="modalpin"
                             />
                             {console.log(id)}
-                            <button
-                                id="delete-pin"
-                                onClick={() => {
-                                    deletePin(id);
-                                }}
-                            >
-                                Delete
-                            </button>
+                            <div className="buttons">
+                                <button
+                                    id="delete-pin"
+                                    onClick={() => {
+                                        deletePin(id);
+                                    }}
+                                >
+                                    Delete
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        handleToggleModal(<EditPin id={id} />);
+                                    }}
+                                >
+                                    Edit
+                                </button>
+                            </div>
                         </div>
                     );
                 });
-        }, 0);
+        });
     });
 
     // syle the mouse as user enters points
