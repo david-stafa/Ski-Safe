@@ -6,63 +6,73 @@ import { deletePin } from "../Pins/deletePin";
 import React, { useEffect, useState } from "react";
 import Modal from "../../components/Modal/Modal";
 import useToggle from "../../components/Modal/use-toggle";
-
-// modal 2/4
+import PopUpContent from "./popUpContent";
+import { createRoot } from "react-dom/client";
+import { ReactDOM } from "react-dom";
 
 export default function ShowPopUp({ map }) {
     const [isModalOpen, toggleIsModalOpen] = useToggle(false);
-    const [title, setTitle] = useState("");
-    const [slug, setSlug] = useState("");
-    const [severity, setSeverity] = useState("");
-    const [description, setDescription] = useState("");
-    const [id, setId] = useState("");
+    const [details, setDetails] = useState({
+        longitude: null,
+        latitude: null,
+        title: "",
+        slug: "",
+        severity: "",
+        description: "",
+        id: "",
+    });
 
     useEffect(() => {
-        map.on("click", "points", (e) => {
-            // when we click points, create a pop up at the coordinates and use the description included in the geoJson.
-            const pinProperties = e.features[0].properties; //making variable access DRY
-            const coordinates = e.features[0].geometry.coordinates.slice();
-            const id = pinProperties.id;
+        console.log(details);
+    }, [details]);
 
-            setTitle(pinProperties.title);
-            setSlug(pinProperties.slug);
-            setSeverity(pinProperties.severity);
-            setDescription(pinProperties.description);
-            setId(pinProperties.id);
+    map.on("click", "points", (e) => {
+        // when we click points, create a pop up at the coordinates and use the description included in the geoJson.
 
-            const myPopUp = new mapboxgl.Popup({
-                closeButton: false,
-                closeOnClick: true,
-            })
-                .setLngLat(coordinates)
-                .setHTML(
-                    `
-           <h3 class="pop-up__title">${title}</h3>
-           <p class="pop-up__slug">${slug}</p>
-           <p class="pop-up__severity">Severity: ${severity}</p>
-           <button id="more-details-button">More Details</button>
-            `
-                )
-                .addTo(map);
+        const pinProperties = e.features[0].properties; //making variable access DRY
+        const coordinates = e.features[0].geometry.coordinates.slice();
+        const id = pinProperties.id;
 
-            document
-                .getElementById("more-details-button")
-                .addEventListener("click", () => {
-                    toggleIsModalOpen(!isModalOpen);
-                    // map.getPopup().remove();
-                });
+        setDetails({
+            title: pinProperties.title,
+            slug: pinProperties.slug,
         });
 
-        // syle the mouse as user enters points
-        map.on("mouseenter", "points", () => {
-            map.getCanvas().style.cursor = "pointer";
-        });
+        console.log(pinProperties);
+        console.log(details);
 
-        // remove mouse style as user leaves
-        map.on("mouseleave", "points", () => {
-            map.getCanvas().style.cursor = "";
-        });
-    }, [title, slug, severity]);
+        const placeHolder = document.createElement("div");
+        placeHolder.className = "pop-up";
+        const popUpRoot = createRoot(placeHolder);
+        popUpRoot.render(
+            <PopUpContent
+                isModalOpen={isModalOpen}
+                toggleIsModalOpen={toggleIsModalOpen}
+                details={details}
+            />
+        );
+        const myPopUp = new mapboxgl.Popup({
+            closeButton: false,
+            closeOnClick: true,
+        })
+            .setDOMContent(placeHolder)
+            .setLngLat(coordinates)
+            .addTo(map);
+    });
+
+    // syle the mouse as user enters points
+    map.on("mouseenter", "points", () => {
+        map.getCanvas().style.cursor = "pointer";
+    });
+
+    // remove mouse style as user leaves
+    map.on("mouseleave", "points", () => {
+        map.getCanvas().style.cursor = "";
+    });
+
+    const renderButton = () => {
+        return react.crea;
+    };
 
     return (
         <>
