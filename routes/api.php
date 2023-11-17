@@ -4,9 +4,9 @@
 use App\Http\Controllers\Api\Map_pinController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\UserProfileController; 
-use App\Http\Controllers\Api\Admin\AdminController; 
-use App\Http\Controllers\Api\Admin\RoleController; 
+use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\Api\Admin\AdminController;
+use App\Http\Controllers\Api\Admin\RoleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -31,7 +31,7 @@ Route::get('/map-pins', [Map_pinController::class, 'index'])->name('pins');
 Route::post('/pin/store', [Map_pinController::class, 'store'])->name('pins.store');
 
 Route::delete('/map-pins/{id}', [Map_pinController::class, 'delete'])->name('delete');
-Route::get('/map-pins/edit/{id}', [Map_pinController::class, 'edit'])->name('edit');
+Route::post('/map-pins/edit/{id}', [Map_pinController::class, 'edit'])->name('edit');
 Route::get('/map-pins/show/{id}', [Map_pinController::class, 'show'])->name('show');
 //message controller
 
@@ -40,7 +40,7 @@ Route::post('/messages/store', [MessageController::class, 'store'])->name('messa
 Route::post("/profile", [UserProfileController::class, 'update'])->name("profile.update");
 
 
-Route::middleware(['auth', 'can:admin'])->group(function() { // using can:: will save us from making any conditions in the AdminController
+Route::middleware(['auth', 'can:admin'])->group(function () { // using can:: will save us from making any conditions in the AdminController
 
     Route::get('/admin', [AdminController::class, 'showJson']);
     Route::get('/user-roles', [RoleController::class, "getAllRoles"]);

@@ -9,7 +9,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { createRoot } from "react-dom/client";
 import Modal from "../../components/Modal/Modal";
-import EditPin from "../Pins/editPin";
+import { MyFormModalContent } from "../Pins/addPinOnMap/MyFormModalContent";
 
 // modal 2/4
 const handleToggleModal = (content) => {
@@ -43,6 +43,8 @@ export const ShowPopUp = async (map) => {
         const slug = pinProperties.slug;
         const severity = pinProperties.severity;
         const description = pinProperties.description;
+        const existingLng = coordinates[0];
+        const existingLat = coordinates[1];
 
         myPopUp
             .setLngLat(coordinates)
@@ -93,7 +95,17 @@ export const ShowPopUp = async (map) => {
                                 </button>
                                 <button
                                     onClick={() => {
-                                        handleToggleModal(<MyForm />);
+                                        handleToggleModal(
+                                            <MyFormModalContent
+                                                id={id}
+                                                title={title}
+                                                slug={slug}
+                                                description={description}
+                                                existingLat={existingLat}
+                                                existingLng={existingLng}
+                                            />,
+                                            console.log(id)
+                                        );
                                     }}
                                 >
                                     Edit
