@@ -1,14 +1,11 @@
 import mapboxgl from "mapbox-gl";
 import "./pop-up.scss";
 import { deletePin } from "../Pins/deletePin";
-
-// modal 1/4
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Modal from "../../components/Modal/Modal";
 import useToggle from "../../components/Modal/use-toggle";
 import PopUpContent from "./popUpContent";
 import { createRoot } from "react-dom/client";
-import { ReactDOM } from "react-dom";
 
 export default function ShowPopUp({ map }) {
     const [isModalOpen, toggleIsModalOpen] = useToggle(false);
@@ -26,39 +23,51 @@ export default function ShowPopUp({ map }) {
         console.log(details);
     }, [details]);
 
-    map.on("click", "points", (e) => {
-        // when we click points, create a pop up at the coordinates and use the description included in the geoJson.
+    const handleClick = useCallback(
+        (e) => {
+            const pinProperties = e.features[0].properties;
+            const coordinates = e.features[0].geometry.coordinates.slice();
+            const id = pinProperties.id;
 
-        const pinProperties = e.features[0].properties; //making variable access DRY
-        const coordinates = e.features[0].geometry.coordinates.slice();
-        const id = pinProperties.id;
+            setDetails({
+                title: pinProperties.title,
+                slug: pinProperties.slug,
+            });
 
-        setDetails({
-            title: pinProperties.title,
-            slug: pinProperties.slug,
-        });
+            const placeHolder = document.createElement("div");
+            placeHolder.className = "pop-up";
+            const popUpRoot = createRoot(placeHolder);
+            popUpRoot.render(
+                <PopUpContent
+                    isModalOpen={isModalOpen}
+                    toggleIsModalOpen={toggleIsModalOpen}
+                    details={details}
+                />
+            );
+            const myPopUp = new mapboxgl.Popup({
+                closeButton: false,
+                closeOnClick: true,
+            })
+                .setDOMContent(placeHolder)
+                .setLngLat(coordinates)
+                .addTo(map);
 
-        console.log(pinProperties);
-        console.log(details);
+            myPopUp.on("close", () => {
+                if (myPopUp.isOpen()) {
+                    myPopUp.remove();
+                }
+            });
+        },
+        [map, details]
+    );
 
-        const placeHolder = document.createElement("div");
-        placeHolder.className = "pop-up";
-        const popUpRoot = createRoot(placeHolder);
-        popUpRoot.render(
-            <PopUpContent
-                isModalOpen={isModalOpen}
-                toggleIsModalOpen={toggleIsModalOpen}
-                details={details}
-            />
-        );
-        const myPopUp = new mapboxgl.Popup({
-            closeButton: false,
-            closeOnClick: true,
-        })
-            .setDOMContent(placeHolder)
-            .setLngLat(coordinates)
-            .addTo(map);
-    });
+    useEffect(() => {
+        map.on("click", "points", handleClick);
+
+        return () => {
+            map.off("click", "points", handleClick);
+        };
+    }, [map, details, handleClick]);
 
     // syle the mouse as user enters points
     map.on("mouseenter", "points", () => {
@@ -70,10 +79,6 @@ export default function ShowPopUp({ map }) {
         map.getCanvas().style.cursor = "";
     });
 
-    const renderButton = () => {
-        return react.crea;
-    };
-
     return (
         <>
             {isModalOpen && (
@@ -83,7 +88,14 @@ export default function ShowPopUp({ map }) {
                             You have successfully displayed more details!!!
                         </h2>
                     </div>
-                    {/* <h3>Event: {title}</h3>
+                </Modal>
+            )}
+        </>
+    );
+}
+
+{
+    /* <h3>Event: {title}</h3>
                         <p className="pop-up__severity">Severity: {severity}</p>
                         <h4>Basic Description:</h4>
                         <p>{slug}</p>
@@ -102,9 +114,5 @@ export default function ShowPopUp({ map }) {
                         >
                             Delete
                         </button>
-                    </div> */}
-                </Modal>
-            )}
-        </>
-    );
+                    </div> */
 }
