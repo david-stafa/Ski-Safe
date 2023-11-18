@@ -19,10 +19,6 @@ export default function ShowPopUp({ map }) {
         id: "",
     });
 
-    useEffect(() => {
-        console.log(details);
-    }, [details]);
-
     const handleClick = useCallback(
         (e) => {
             const pinProperties = e.features[0].properties;
