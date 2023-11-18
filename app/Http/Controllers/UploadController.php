@@ -56,9 +56,19 @@ class UploadController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        // Upload detail
+        $upload = Upload::find($id);
+        if(!$upload){
+            return response()->json([
+                'message' => 'Image Not Found.'
+            ],404);
+        }
+
+        return response()->json([
+            'upload' => $upload
+        ], 200);
     }
 
     /**
@@ -72,9 +82,45 @@ class UploadController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UploadStoreRequest $request, $id)
     {
-        //
+        try {
+            // Find image
+            $upload = Upload::find($id);
+            if(!$upload){
+                return response()->json([
+                    'message' => 'Oops, Image not found!'
+                ],404);
+            }
+
+            // echo "request : $request->name"; working!
+            // echo "description : $request->description";
+            $upload->name = $request->name;
+            $upload->description = $request->description;
+
+            if($request->image) {
+                $storage = Storage::disk('public');
+
+                // delete old image
+                if($storage->exists($upload->image))
+                    $storage->delete($upload->image);
+
+                $imageName = Str::random(32).".".$request->image->getClientOriginalExtension();
+                $upload->image = $imageName;
+
+                $storage->put($imageName, file_get_contents($request->image));
+            }
+
+            $upload->save();
+
+
+            return response()->json([
+                'message' => "Image successfully updated."
+            ],200);
+
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Something went terribly wrong!'], 500);
+        }
     }
 
     /**
@@ -82,6 +128,22 @@ class UploadController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $upload = Upload::find($id);
+        if(!$upload){
+            return response()->json([
+                'message' => "Image not found!"
+            ],404);
+        }
+
+        $storage = Storage::disk('public');
+
+        if($storage->exists($upload->image))
+            $storage->delete($upload->image);
+
+        $upload->delete();
+
+        return response()->json([
+            'message' => "Image successfully deleted!"
+        ], 200);
     }
 }

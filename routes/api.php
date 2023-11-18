@@ -43,6 +43,8 @@ Route::post("/profile", [UserProfileController::class, 'update'])->name("profile
 Route::get('/uploads', [UploadController::class, 'index']);
 Route::get('/uploads/{id}', [UploadController::class, 'show']);
 Route::post('/uploads', [UploadController::class, 'store']);
+Route::put('/uploadsupdate/{id}', [UploadController::class, 'update']);
+Route::delete('/uploadsdelete/{id}', [UploadController::class, 'destroy']);
 
 
 Route::middleware(['auth', 'can:admin'])->group(function() { // using can:: will save us from making any conditions in the AdminController

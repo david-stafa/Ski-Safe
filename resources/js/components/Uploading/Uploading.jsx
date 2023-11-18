@@ -1,91 +1,97 @@
-import React, { useState, useRef } from "react";
-import "./Uploading.scss";
-import { Upload } from "react-feather";
+import React, { useEffect, useState } from "react";
+import Modal from "../Modal/Modal";
+import useToggle from "../Modal/use-toggle";
 import axios from "axios";
 
-export default function Uploading(props) {
-    const [highlight, setHighlight] = useState(false);
-    const fileInputRef = useRef(null);
+export default function Uploading() {
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("Profile picture");
+    const [file, setFile] = useState("");
+    const [isModalOpen, toggleIsModalOpen] = useToggle(false);
 
-    const openFileDialog = () => {
-        if (props.disabled) return;
-        fileInputRef.current.click();
-    };
-
-    const onFilesAdded = (evt) => {
-        if (props.disabled) return;
-        const files = evt.target.files;
-        if (props.onFilesAdded) {
-            const array = fileListToArray(files);
-            props.onFilesAdded(array);
-        }
+    const handleSubmit = async (event) => {
+        event.preventDefault();
 
         const formData = new FormData();
-        for (const file of files) {
-            formData.append("file", file);
-        }
+        formData.append("name", name);
+        formData.append("description", description);
+        formData.append("image", file);
 
-        axios
-            .post("/api/upload", formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
-            })
-            .then((response) => {
-                console.log("File uploaded successfully", response.data);
-            })
-            .catch((error) => {
-                console.error("Error uploading file", error);
+        try {
+            const response = await axios.post("/api/uploads", formData, {
+                headers: { "Content-Type": "multipart/form-data" },
             });
-    };
-
-    const onDragOver = (evt) => {
-        evt.preventDefault();
-        if (props.disabled) return;
-        setHighlight(true);
-    };
-
-    const onDragLeave = () => {
-        setHighlight(false);
-    };
-
-    const onDrop = (event) => {
-        event.preventDefault();
-        if (props.disabled) return;
-        const files = event.dataTransfer.files;
-        if (props.onFilesAdded) {
-            const array = fileListToArray(files);
-            props.onFilesAdded(array);
+            // console.log(response);
+            response ? toggleIsModalOpen(true) : "";
+            setName("");
+            setDescription("");
+            setFile("");
+            setTimeout(() => {
+                window.location.reload();
+            }, 2000);
+        } catch (error) {
+            console.error(
+                "Something is wrong, picture is not updated: ",
+                error
+            );
+            alert("Failed to update your picture. Please try again.");
         }
-        setHighlight(false);
-    };
-
-    const fileListToArray = (list) => {
-        const array = [];
-        for (var i = 0; i < list.length; i++) {
-            array.push(list.item(i));
-        }
-        return array;
     };
 
     return (
-        <div
-            className={`Dropzone ${highlight ? "Highlight" : ""}`}
-            onDragOver={onDragOver}
-            onDragLeave={onDragLeave}
-            onDrop={onDrop}
-            onClick={openFileDialog}
-            style={{ cursor: props.disabled ? "default" : "pointer" }}
-        >
-            <input
-                ref={fileInputRef}
-                className="FileInput"
-                type="file"
-                multiple
-                onChange={onFilesAdded}
-            />
-            <Upload />
-            <span>Drag n'drop or Click</span>
-        </div>
+        <>
+            <h1>Profile Picture</h1>
+
+            <h4>If picture, see picture + EDIT + DELETE</h4>
+
+            <h4>No picture, see ADD</h4>
+            <form className="picture-form" onSubmit={handleSubmit}>
+                <label htmlFor="name">Name:</label>
+                <input
+                    required
+                    placeholder="Write short name..."
+                    type="text"
+                    id="name"
+                    value={name}
+                    onChange={(event) => {
+                        setName(event.target.value);
+                    }}
+                />
+                <br />
+
+                <label htmlFor="description">Short Description:</label>
+                <input
+                    required
+                    type="text"
+                    id="description"
+                    value={description}
+                    onChange={(event) => {
+                        setDescription(event.target.value);
+                    }}
+                />
+                <br />
+
+                <label htmlFor="file">Profile Picture</label>
+                <input
+                    required
+                    type="file"
+                    id="file"
+                    onChange={(event) => {
+                        setFile(event.target.files[0]);
+                    }}
+                />
+                <br />
+
+                <button type="submit">Add Picture</button>
+            </form>
+
+            {isModalOpen && (
+                <Modal handleDismiss={toggleIsModalOpen}>
+                    <h2 style={{ color: "green" }}>
+                        Your Profile picture has been succesfully updated!
+                    </h2>
+                </Modal>
+            )}
+        </>
     );
 }

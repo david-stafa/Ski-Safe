@@ -78,13 +78,13 @@ export default function UserProfile() {
                         <button onClick={() => setIsEditMode(true)}>
                             Edit Details
                         </button>
+
+                        <Uploading />
                     </>
                 )
             ) : (
                 <p>Loading user data...</p>
             )}
-
-            <Uploading />
         </div>
     );
 }
