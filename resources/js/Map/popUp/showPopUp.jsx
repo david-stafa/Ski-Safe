@@ -41,7 +41,7 @@ export const ShowPopUp = async (map) => {
         const id = pinProperties.id;
         const title = pinProperties.title;
         const slug = pinProperties.slug;
-        const severity = pinProperties.severity;
+        const severity_id = pinProperties.severity_id;
         const description = pinProperties.description;
         const existingLng = coordinates[0];
         const existingLat = coordinates[1];
@@ -100,6 +100,7 @@ export const ShowPopUp = async (map) => {
                                                 id={id}
                                                 title={title}
                                                 slug={slug}
+                                                severity_id={severity_id}
                                                 description={description}
                                                 existingLat={existingLat}
                                                 existingLng={existingLng}
