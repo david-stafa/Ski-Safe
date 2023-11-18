@@ -6,7 +6,6 @@ import { types } from "./types";
 import FieldsetBox from "./FieldsetBox/FieldsetBox";
 import Modal from "../../Modal/Modal";
 import useToggle from "../../Modal/use-toggle";
-import Uploading from "../../Uploading/Uploading";
 
 const typeNames = Object.entries(types);
 
@@ -45,11 +44,6 @@ export default function ContactUs() {
 
     return (
         <div className="contact-container">
-            {/* DELETE, just for testing !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */}
-
-            <Uploading />
-
-            {/* DELETE, just for testing !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */}
             <div className="contact-header">
                 <h1>CONTACT US</h1>
             </div>
