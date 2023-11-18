@@ -5,6 +5,8 @@ import useToggle from "../Modal/use-toggle";
 import Modal from "../Modal/Modal";
 import { ThumbsUp } from "react-feather";
 
+import "./EditUpload.scss";
+
 export default function EditUpload() {
     const { id } = useParams();
 
@@ -66,52 +68,56 @@ export default function EditUpload() {
 
     return (
         <>
-            <h1>Edit</h1>
-            <form className="picture-form" onSubmit={handleSubmit}>
-                <label htmlFor="name">Name:</label>
-                <input
-                    required
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={inputs.name}
-                    onChange={handleChange}
-                />
-                <br />
+            <h1 className="edit-header">Edit</h1>
+            <form className="edit-form" onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <label htmlFor="name">Name:</label>
+                    <input
+                        required
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={inputs.name}
+                        onChange={handleChange}
+                    />
+                </div>
 
-                <label htmlFor="description">Short Description:</label>
-                <input
-                    required
-                    type="text"
-                    id="description"
-                    name="description"
-                    value={inputs.description}
-                    onChange={handleChange}
-                />
-                <br />
+                <div className="form-group">
+                    <label htmlFor="description">Short Description:</label>
+                    <input
+                        required
+                        type="text"
+                        id="description"
+                        name="description"
+                        value={inputs.description}
+                        onChange={handleChange}
+                    />
+                </div>
 
-                <label htmlFor="file">Profile Picture</label>
-                <img
-                    src={`/storage/${inputs.image}`}
-                    alt="{inputs.name}"
-                    height={90}
-                    width={90}
-                />
-                <input
-                    required
-                    type="file"
-                    id="file"
-                    onChange={(event) => setFile(event.target.files[0])}
-                />
-                <br />
+                <div className="form-group">
+                    <label htmlFor="file">Profile Picture</label>
+                    <img
+                        src={`/storage/${inputs.image}`}
+                        alt={inputs.name}
+                        className="profile-image-preview"
+                    />
+                    <input
+                        required
+                        type="file"
+                        id="file"
+                        onChange={(event) => setFile(event.target.files[0])}
+                    />
+                </div>
 
-                <button type="submit">Edit Picture</button>
+                <button type="submit" className="edit-submit-button">
+                    Edit Picture
+                </button>
             </form>
 
             {isModalOpen && (
                 <Modal handleDismiss={toggleIsModalOpen}>
                     <h2 style={{ color: "green" }}>
-                        Your Profile picture has been succesfully updated!
+                        Your Profile picture has been successfully updated!
                     </h2>
                     <ThumbsUp />
                 </Modal>

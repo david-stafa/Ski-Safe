@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+import "./ProfilePictures.scss";
+
 export default function ProfilePictures() {
     const [upload, setUpload] = useState([]);
 
@@ -36,26 +38,48 @@ export default function ProfilePictures() {
 
     return (
         <>
-            <h2>pictures</h2>
-            <ul>
-                {upload.map((image, index) => (
-                    <li key={index}>
-                        Image Nr. {index + 1}, {image.name} its description:{" "}
-                        {image.description} with{" "}
-                        <img
-                            src={`/storage/${image.image}`}
-                            alt="{image.name}"
-                            height={90}
-                            width={90}
-                        />
-                        , here you can
-                        <Link to={`/editupload/${image.id}/edit`}>EDIT</Link> or
-                        <button onClick={() => deleteUpload(image.id)}>
-                            Delete
-                        </button>
-                    </li>
-                ))}
-            </ul>
+            <h1 className="pictures-header">PICTURES</h1>
+            <table className="pictures-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Image</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {upload.map((image, index) => (
+                        <tr key={index} className="picture-row">
+                            <td>{index + 1}</td>
+                            <td>{image.name}</td>
+                            <td>{image.description}</td>
+                            <td className="image-cell">
+                                <img
+                                    src={`/storage/${image.image}`}
+                                    alt={image.name}
+                                    className="profile-image"
+                                />
+                            </td>
+                            <td className="action-cell">
+                                <Link
+                                    to={`/editupload/${image.id}/edit`}
+                                    className="edit-link"
+                                >
+                                    Edit
+                                </Link>
+                                <button
+                                    onClick={() => deleteUpload(image.id)}
+                                    className="delete-button"
+                                >
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </>
     );
 }

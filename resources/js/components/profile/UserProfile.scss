@@ -1,8 +1,9 @@
 $nav-text-color: #333;
-$add-color: #007bff;
+$edit-color: #28a745;
+$save-color: #007bff;
 
-.uploading-container {
-    .uploading-header {
+.user-profile {
+    .profile-header {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
             "Helvetica Neue", Arial, sans-serif;
         text-align: center;
@@ -10,17 +11,12 @@ $add-color: #007bff;
         margin-bottom: 20px;
     }
 
-    .uploading-instruction {
-        text-align: center;
-        color: $nav-text-color;
-    }
-
-    .uploading-form {
+    .edit-form,
+    .user-details {
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 15px;
-        margin-bottom: 30px;
 
         .form-group {
             display: flex;
@@ -40,18 +36,33 @@ $add-color: #007bff;
             }
         }
 
-        .upload-button {
+        .save-button,
+        .edit-button {
             padding: 5px 10px;
-            background-color: $add-color;
-            color: white;
             border: none;
             border-radius: 5px;
+            color: white;
             cursor: pointer;
             transition: background-color 0.3s;
-            margin-bottom: 30px;
 
             &:hover {
-                background-color: darken($add-color, 10%);
+                opacity: 0.9;
+            }
+        }
+
+        .save-button {
+            background-color: $save-color;
+
+            &:hover {
+                background-color: darken($save-color, 10%);
+            }
+        }
+
+        .edit-button {
+            background-color: $edit-color;
+
+            &:hover {
+                background-color: darken($edit-color, 10%);
             }
         }
     }

@@ -3,6 +3,8 @@ import Modal from "../Modal/Modal";
 import useToggle from "../Modal/use-toggle";
 import axios from "axios";
 
+import "./Uploading.scss";
+
 export default function Uploading() {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("Profile picture");
@@ -39,59 +41,63 @@ export default function Uploading() {
     };
 
     return (
-        <>
-            <h1>Profile Picture</h1>
+        <div className="uploading-container">
+            <h1 className="uploading-header">Profile Picture</h1>
 
-            <h4>If picture, see picture + EDIT + DELETE</h4>
+            <h4 className="uploading-instruction">
+                If picture, see picture + EDIT + DELETE
+            </h4>
+            <h4 className="uploading-instruction">No picture, see ADD</h4>
 
-            <h4>No picture, see ADD</h4>
-            <form className="picture-form" onSubmit={handleSubmit}>
-                <label htmlFor="name">Name:</label>
-                <input
-                    required
-                    placeholder="Write short name..."
-                    type="text"
-                    id="name"
-                    value={name}
-                    onChange={(event) => {
-                        setName(event.target.value);
-                    }}
-                />
-                <br />
+            <form className="uploading-form" onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <label htmlFor="name">Name:</label>
+                    <input
+                        required
+                        className="form-input"
+                        placeholder="Write short name..."
+                        type="text"
+                        id="name"
+                        value={name}
+                        onChange={(event) => setName(event.target.value)}
+                    />
+                </div>
 
-                <label htmlFor="description">Short Description:</label>
-                <input
-                    required
-                    type="text"
-                    id="description"
-                    value={description}
-                    onChange={(event) => {
-                        setDescription(event.target.value);
-                    }}
-                />
-                <br />
+                <div className="form-group">
+                    <label htmlFor="description">Short Description:</label>
+                    <input
+                        required
+                        className="form-input"
+                        type="text"
+                        id="description"
+                        value={description}
+                        onChange={(event) => setDescription(event.target.value)}
+                    />
+                </div>
 
-                <label htmlFor="file">Profile Picture</label>
-                <input
-                    required
-                    type="file"
-                    id="file"
-                    onChange={(event) => {
-                        setFile(event.target.files[0]);
-                    }}
-                />
-                <br />
+                <div className="form-group">
+                    <label htmlFor="file">Profile Picture</label>
+                    <input
+                        required
+                        className="form-input"
+                        type="file"
+                        id="file"
+                        onChange={(event) => setFile(event.target.files[0])}
+                    />
+                </div>
 
-                <button type="submit">Add Picture</button>
+                <button type="submit" className="upload-button">
+                    Add Picture
+                </button>
             </form>
 
             {isModalOpen && (
                 <Modal handleDismiss={toggleIsModalOpen}>
                     <h2 style={{ color: "green" }}>
-                        Your Profile picture has been succesfully updated!
+                        Your Profile picture has been successfully updated!
                     </h2>
                 </Modal>
             )}
-        </>
+        </div>
     );
 }
