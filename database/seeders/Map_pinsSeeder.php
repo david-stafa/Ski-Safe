@@ -15,221 +15,98 @@ class Map_pinsSeeder extends Seeder
     {
         $map_pins = [
             [
-                'longitude' => -117.29,
+                'longitude' => -140.404811,
                 // -117.23 with aberration 0.06
-                'latitude' => 52.33,
+                'latitude' => 60.568208,
                 // 52.16 with aberration 0.06
-                'title' => 'Location Three Retreat',
-                'severity_id' => 3,
-                // number 1, 2, or 3
-                'slug' => 'Mystic Grove Hideaway',
-                'description' => 'Discover the magic of an enchanted forest in this hidden retreat.',
-                'active' => true,
-            ],
-            [
-                'longitude' => -117.17,
-                // -117.23 with aberration 0.06
-                'latitude' => 52.22,
-                // 52.16 with aberration 0.06
-                'title' => 'Location Four Retreat',
+                'title' => 'Icy Surface',
                 'severity_id' => 1,
                 // number 1, 2, or 3
-                'slug' => 'Tranquil Waters',
-                'description' => 'Experience tranquility by the water in this picturesque sunset cove.',
+                'slug' => 'Caution when exiting the chairlift',
+                'description' => 'Please take care when exiting the chair lift; a recent thaw has created slick ice',
                 'active' => true,
+                'images' => 'https://cdn.pixabay.com/photo/2021/11/14/08/42/cable-car-6793989_1280.jpg'
             ],
             [
-                'longitude' => -117.23,
+                'longitude' => -140.389878,
                 // -117.23 with aberration 0.06
-                'latitude' => 52.16,
+                'latitude' => 60.560101,
                 // 52.16 with aberration 0.06
-                'title' => 'Location Five Retreat',
-                'severity_id' => 2,
-                // number 1, 2, or 3
-                'slug' => 'Nature\'s Haven',
-                'description' => 'Unwind in the beauty of nature at this rustic ridge retreat.',
-                'active' => true,
-            ],
-            [
-                'longitude' => -117.17,
-                // -117.23 with aberration 0.06
-                'latitude' => 52.22,
-                // 52.16 with aberration 0.06
-                'title' => 'Location Six Retreat',
+                'title' => 'Avalance Hazard',
                 'severity_id' => 3,
                 // number 1, 2, or 3
-                'slug' => 'Sylvan Haven',
-                'description' => 'Listen to the soothing whispers of the pines at this idyllic lodge.',
+                'slug' => 'Serious Avalanche Danger',
+                'description' => 'This slope has not released since the snowfall last wednesday, our Patrollers advise no off-piste skiing on this aspect',
                 'active' => true,
+                'images' => 'https://cdn.pixabay.com/photo/2012/06/07/23/52/ridge-49485_1280.jpg'
             ],
             [
-                'longitude' => -117.23,
+                'longitude' => -140.277760,
                 // -117.23 with aberration 0.06
-                'latitude' => 52.16,
+                'latitude' => 60.593593,
                 // 52.16 with aberration 0.06
-                'title' => 'Location Seven Retreat',
-                'severity_id' => 1,
-                // number 1, 2, or 3
-                'slug' => 'Springtime Paradise',
-                'description' => 'Immerse yourself in the eternal beauty of natural springs at this oasis.',
-                'active' => true,
-            ],
-            [
-                'longitude' => -117.9,
-                // -117.23 with aberration 0.06
-                'latitude' => 52.50,
-                // 52.16 with aberration 0.06
-                'title' => 'Location Eight Retreat',
-                'severity_id' => 2,
-                // number 1, 2, or 3
-                'slug' => 'Blue Horizon Retreat',
-                'description' => 'Escape to a haven beneath an azure sky with endless possibilities.',
-                'active' => true,
-            ],
-            [
-                'longitude' => -117.83,
-                // -117.23 with aberration 0.06
-                'latitude' => 52.3,
-                // 52.16 with aberration 0.06
-                'title' => 'Location Nine Retreat',
-                'severity_id' => 1,
-                // number 1, 2, or 3
-                'slug' => 'Peaceful Nook',
-                'description' => 'Discover harmony in a secluded hollow, a perfect peaceful nook.',
-                'active' => true,
-            ],
-            [
-                'longitude' => -118.00,
-                // -117.23 with aberration 0.06
-                'latitude' => 52.10,
-                // 52.16 with aberration 0.06
-                'title' => 'Location Ten Retreat',
-                'severity_id' => 2,
-                // number 1, 2, or 3
-                'slug' => 'Timberland Serenity',
-                'description' => 'Escape to tranquility in the heart of a peaceful and serene timberland.',
-                'active' => true,
-            ],
-            [
-                'longitude' => -116.9,
-                // -117.23 with aberration 0.06
-                'latitude' => 52.88,
-                // 52.16 with aberration 0.06
-                'title' => 'Location Eleven Retreat',
+                'title' => 'Large Moulin',
                 'severity_id' => 3,
                 // number 1, 2, or 3
-                'slug' => 'Eco-friendly Escape',
-                'description' => 'Embrace sustainability in an eco-friendly escape surrounded by nature.',
+                'slug' => 'Large Moulin',
+                'description' => 'A skiier recently fell into a large moulin at these coordinates. If you are going to ski in this area please be aware that snow bridges are weak. And be sure to carry all your glacier rescue equipment.',
                 'active' => true,
+                'images' => 'https://cdn.pixabay.com/photo/2017/11/06/16/15/glacier-2924065_1280.jpg'
+
             ],
             [
-                'longitude' => -117.43,
+                'longitude' => -140.364329,
                 // -117.23 with aberration 0.06
-                'latitude' => 53.16,
+                'latitude' => 60.619015,
                 // 52.16 with aberration 0.06
-                'title' => 'Location Twelve Retreat',
+                'title' => 'Ski School',
                 'severity_id' => 1,
                 // number 1, 2, or 3
-                'slug' => 'Majestic Meadows',
-                'description' => 'Revel in the majesty of open meadows in this serene retreat.',
+                'slug' => 'SLOW: Ski School in progress',
+                'description' => 'Caution, young an inexperienced skiiers are using this area',
                 'active' => true,
+                'images' => 'https://cdn.pixabay.com/photo/2012/02/26/10/58/active-17089_1280.jpg'
             ],
             [
-                'longitude' => -117.29,
+                'longitude' => -140.422923,
                 // -117.23 with aberration 0.06
-                'latitude' => 51.90,
+                'latitude' => 60.573097,
                 // 52.16 with aberration 0.06
-                'title' => 'Location Thirteen Retreat',
-                'severity_id' => 2,
-                // number 1, 2, or 3
-                'slug' => 'Tranquil Trails',
-                'description' => 'Embark on tranquil trails through nature\'s wonders in this retreat.',
-                'active' => true,
-            ],
-            [
-                'longitude' => -118.17,
-                // -117.23 with aberration 0.06
-                'latitude' => 53.22,
-                // 52.16 with aberration 0.06
-                'title' => 'Location Fourteen Retreat',
+                'title' => 'Cornice',
                 'severity_id' => 3,
                 // number 1, 2, or 3
-                'slug' => 'Golden Glades',
-                'description' => 'Bask in the beauty of golden glades in this serene and peaceful retreat.',
+                'slug' => 'Out of bounds: Large Cornice',
+                'description' => 'Please do not approach the edge, a large cornice is expected to fall soon. Skiing in this location will present serious risk to backcountry skiiers below.',
                 'active' => true,
+                'images' => 'https://cdn.pixabay.com/photo/2019/02/23/16/38/winter-4016000_1280.jpg'
             ],
             [
-                'longitude' => -117.63,
+                'longitude' => -140.404043,
                 // -117.23 with aberration 0.06
-                'latitude' => 53.86,
+                'latitude' => 60.599151,
                 // 52.16 with aberration 0.06
-                'title' => 'Location Fifteen Retreat',
-                'severity_id' => 1,
-                // number 1, 2, or 3
-                'slug' => 'Riverside Haven',
-                'description' => 'Find tranquility by the riverside in this nature lover\'s haven.',
-                'active' => true,
-            ],
-            [
-                'longitude' => -117.89,
-                // -117.23 with aberration 0.06
-                'latitude' => 54.00,
-                // 52.16 with aberration 0.06
-                'title' => 'Location Sixteen Retreat',
+                'title' => 'Accident',
                 'severity_id' => 2,
                 // number 1, 2, or 3
-                'slug' => 'Serene Sand Dunes',
-                'description' => 'Experience serenity amidst the peaceful sand dunes in this retreat.',
+                'slug' => 'SLOW: Accident',
+                'description' => 'Please slow down, are partollers are responding to an accident at this location',
                 'active' => true,
+                'images' => 'https://cdn.pixabay.com/photo/2010/12/13/10/10/ski-2410_1280.jpg'
             ],
             [
-                'longitude' => -117.71,
+                'longitude' => -140.318391,
                 // -117.23 with aberration 0.06
-                'latitude' => 51.22,
+                'latitude' => 60.581170,
                 // 52.16 with aberration 0.06
-                'title' => 'Location Seventeen Retreat',
-                'severity_id' => 3,
-                // number 1, 2, or 3
-                'slug' => 'Whispering Willows',
-                'description' => 'Listen to the whispers of the willows in this serene and secluded retreat.',
-                'active' => true,
-            ],
-            [
-                'longitude' => -117.00,
-                // -117.23 with aberration 0.06
-                'latitude' => 53.16,
-                // 52.16 with aberration 0.06
-                'title' => 'Location Eighteen Retreat',
-                'severity_id' => 1,
-                // number 1, 2, or 3
-                'slug' => 'Mystical Mountainside',
-                'description' => 'Uncover the mystical charm of a mountainside retreat in nature.',
-                'active' => true,
-            ],
-            [
-                'longitude' => -116.29,
-                // -117.23 with aberration 0.06
-                'latitude' => 54.10,
-                // 52.16 with aberration 0.06
-                'title' => 'Location Nineteen Retreat',
+                'title' => 'Avalanche Debris',
                 'severity_id' => 2,
                 // number 1, 2, or 3
-                'slug' => 'Sunlit Sanctuary',
-                'description' => 'Bask in the sunlit beauty of a serene sanctuary surrounded by nature.',
+                'slug' => 'Slow: Debis in the area',
+                'description' => 'An avalance last tuesday morning has left substantial debis, skiing is technical and dangerous. Experts only.',
                 'active' => true,
+                'images' => 'https://cdn.pixabay.com/photo/2017/07/19/10/33/avalanche-2518679_1280.jpg'
             ],
-            [
-                'longitude' => -116.17,
-                // -117.23 with aberration 0.06
-                'latitude' => 53.22,
-                // 52.16 with aberration 0.06
-                'title' => 'Location Twenty Retreat',
-                'severity_id' => 3,
-                // number 1, 2, or 3
-                'slug' => 'Tranquil Treetops',
-                'description' => 'Find tranquility high above in the tranquil treetops of this nature retreat.',
-                'active' => true,
-            ],
+
         ];
 
 
@@ -243,8 +120,6 @@ class Map_pinsSeeder extends Seeder
             $map_pin->description = $pin['description'];
             $map_pin->active = $pin['active'];
             $map_pin->save();
-
-
         }
     }
 }
