@@ -19,17 +19,22 @@ export default function ShowPopUp({ map }) {
         severity: "",
         description: "",
         id: "",
+        images: "",
     });
 
     const handleClick = useCallback(
         (e) => {
             const pinProperties = e.features[0].properties;
             const coordinates = e.features[0].geometry.coordinates.slice();
-            const id = pinProperties.id;
+            console.log(pinProperties);
 
             setDetails({
                 title: pinProperties.title,
                 slug: pinProperties.slug,
+                severity: pinProperties.severity,
+                description: pinProperties.description,
+                id: pinProperties.id,
+                images: pinProperties.images,
             });
 
             const placeHolder = document.createElement("div");
@@ -61,7 +66,7 @@ export default function ShowPopUp({ map }) {
 
     useEffect(() => {
         map.on("click", "points", handleClick);
-
+        console.log(details);
         return () => {
             map.off("click", "points", handleClick);
         };
@@ -81,53 +86,31 @@ export default function ShowPopUp({ map }) {
         <>
             {isModalOpen && (
                 <Modal handleDismiss={toggleIsModalOpen}>
-                    <h2>You have shown more </h2>
-                    {/* <div>
-                        <h3>Event: {title}</h3>
-                        <p className="pop-up__severity">Severity: {severity}</p>
+                    <div>
+                        <h3>Event: {details.title}</h3>
+                        <p className="pop-up__severity">
+                            Severity: {details.severity}
+                        </p>
                         <h4>Basic Description:</h4>
-                        <p>{slug}</p>
-                        <p>{description}</p>
+                        <p>{details.slug}</p>
+                        <p>{details.description}</p>
                         <img
                             className="image"
-                            src="/images/ModalPin/ModalPin.png"
+                            src={details.images}
                             alt="modalpin"
                         />
-                        {console.log(id)}
                         <button
-                            id="delete-pin"
-                            onClick={() => {
-                                deletePin(id);
-                            }}
+                        // id="delete-pin"
+                        // onClick={() => {
+                        //     deletePin(details.id);
+                        // }}
                         >
                             Delete
                         </button>
-                    </div> */}
+                        <button>Edit</button>
+                    </div>
                 </Modal>
             )}
         </>
     );
-}
-
-{
-    /* <h3>Event: {title}</h3>
-                        <p className="pop-up__severity">Severity: {severity}</p>
-                        <h4>Basic Description:</h4>
-                        <p>{slug}</p>
-                        <p>{description}</p>
-                        <img
-                            className="image"
-                            src="/images/ModalPin/ModalPin.png"
-                            alt="modalpin"
-                        />
-                        {console.log(id)}
-                        <button
-                            id="delete-pin"
-                            onClick={() => {
-                                deletePin(id);
-                            }}
-                        >
-                            Delete
-                        </button>
-                    </div> */
 }

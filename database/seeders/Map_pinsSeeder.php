@@ -119,6 +119,7 @@ class Map_pinsSeeder extends Seeder
             $map_pin->slug = $pin['slug'];
             $map_pin->description = $pin['description'];
             $map_pin->active = $pin['active'];
+            $map_pin->images = $pin['images'];
             $map_pin->save();
         }
     }

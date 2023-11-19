@@ -7,8 +7,6 @@ import { addPinLayer } from "./Pins/addPinLayer";
 import { pinOnMap } from "./Pins/addPinOnMap/addPinOnMap";
 import ShowPopUp from "./popUp/showPopUp";
 
-
-
 mapboxgl.accessToken = mapBoxToken;
 
 export default function Map() {
@@ -52,12 +50,9 @@ export default function Map() {
             //     },
             // });
             map.rotateTo(190, { duration: 5000 });
-
-            //REMOVED FOR FGET PINS TESTING
             addPinLayer(map);
             setMapState(map);
 
-            //DEVELOPMENTAL user can click and add a pin
             pinOnMap(map);
         });
     }, []);
