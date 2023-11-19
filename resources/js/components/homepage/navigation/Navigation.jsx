@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-
-import React, { useContext, useState } from "react";
-=======
 import React, { useContext, useEffect, useState } from "react";
->>>>>>> main
 import { Link } from "react-router-dom";
 import "./navigation.scss";
 import UserContext from "../../../context/UserContext";
