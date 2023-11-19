@@ -25,7 +25,10 @@ export default function EditUpload() {
         formData.append("_method", "PUT");
         formData.append("name", inputs.name);
         formData.append("description", inputs.description);
-        formData.append("image", file);
+
+        if (file) {
+            formData.append("image", file);
+        }
 
         try {
             const response = await axios.post(
@@ -102,7 +105,6 @@ export default function EditUpload() {
                         className="profile-image-preview"
                     />
                     <input
-                        required
                         type="file"
                         id="file"
                         onChange={(event) => setFile(event.target.files[0])}

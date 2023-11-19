@@ -42,12 +42,10 @@ export default function Uploading() {
 
     return (
         <div className="uploading-container">
-            <h1 className="uploading-header">Profile Picture</h1>
-
+            <h2 className="uploading-header">Profile Picture</h2>
             <h4 className="uploading-instruction">
-                If picture, see picture + EDIT + DELETE
+                Oooh, what a shame. You have no profile picture mate!
             </h4>
-            <h4 className="uploading-instruction">No picture, see ADD</h4>
 
             <form className="uploading-form" onSubmit={handleSubmit}>
                 <div className="form-group">

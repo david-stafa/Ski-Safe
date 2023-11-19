@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Upload;
 use App\Http\Requests\UploadStoreRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -15,10 +16,35 @@ class UploadController extends Controller
      */
     public function index()
     {
-        $uploads = Upload::all();
+        // $uploads = Upload::all();
+        $uploads = Upload::with('user')->get();
 
         return response()->json(['uploads' => $uploads], 200);
     }
+
+    public function getUserUploads() {
+        $uploads = Upload::where('user_id', Auth::id())->get();
+        return response()->json(['uploads' => $uploads], 200);
+    }
+
+    public function setAsProfilePicture($id)
+{
+    $user = Auth::user();
+    $upload = Upload::find($id);
+
+    if (!$upload || $upload->user_id !== $user->id) {
+        return response()->json(['message' => 'Upload not found or unauthorized'], 404);
+    }
+
+    
+    Upload::where('user_id', $user->id)->update(['is_profile_picture' => false]);
+
+ 
+    $upload->is_profile_picture = true;
+    $upload->save();
+
+    return response()->json(['message' => 'Profile picture updated successfully']);
+}
 
     /**
      * Show the form for creating a new resource.
@@ -37,11 +63,12 @@ class UploadController extends Controller
             $imageName = Str::random(32).".".$request->image->getClientOriginalExtension();
 
             // Create
-            Upload::create([
-                'name' => $request->name,
-                'image' => $imageName,
-                'description' => $request->description
-            ]);
+         Upload::create([
+            'name' => $request->name,
+            'image' => $imageName,
+            'description' => $request->description,
+            'user_id' => Auth::id(),
+        ]);
 
             // Save in floder
             Storage::disk('public')->put($imageName, file_get_contents($request->image));
@@ -145,5 +172,12 @@ class UploadController extends Controller
         return response()->json([
             'message' => "Image successfully deleted!"
         ], 200);
+    }
+
+
+    public function getUploadsWithUserEmail() 
+    {
+        $uploads = Upload::with('user')->get();
+        return response()->json($uploads);
     }
 }

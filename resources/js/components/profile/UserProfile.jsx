@@ -2,8 +2,10 @@ import React, { useState, useEffect, useContext } from "react";
 import UserContext from "../../context/UserContext";
 import axios from "axios";
 import Uploading from "../Uploading/Uploading";
+import EditUpload from "../Uploading/EditUpload";
 
 import "./UserProfile.scss";
+import UserPictures from "../Uploading/UserPictures";
 
 export default function UserProfile() {
     // We access user context to get user information and setUser function
@@ -46,9 +48,30 @@ export default function UserProfile() {
         }
     };
 
+    //pictures below
+    const [userUpload, setUserUpload] = useState(null);
+    useEffect(() => {
+        const loadUserUploads = async () => {
+            try {
+                const response = await axios.get("/api/uploads/user");
+                if (response.data.uploads && response.data.uploads.length > 0) {
+                    setUserUpload(response.data.uploads);
+                }
+            } catch (error) {
+                console.error("Error fetching user upload data:", error);
+            }
+        };
+
+        if (user) {
+            loadUserUploads();
+        }
+    }, [user]);
+
+    //pictures above
+
     return (
         <div className="user-profile">
-            <h1 className="profile-header">User Profile</h1>
+            <h1 className="profile-header">USER PROFILE</h1>
             {user ? (
                 isEditMode ? (
                     <div className="edit-form">
@@ -88,7 +111,14 @@ export default function UserProfile() {
                         >
                             Edit Details
                         </button>
-                        <Uploading />
+
+                        <div>
+                            {userUpload ? (
+                                <UserPictures userUpload={userUpload} />
+                            ) : (
+                                <Uploading />
+                            )}
+                        </div>
                     </div>
                 )
             ) : (

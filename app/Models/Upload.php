@@ -12,6 +12,24 @@ class Upload extends Model
     protected $fillable = [
         'name',
         'image',
-        'description'
+        'description',
+        'user_id',
+        'is_profile_picture'
     ];
+
+    public function user()
+    {
+        // return $this->belongsTo('App\Models\User', 'user_id');
+        return $this->belongsTo(User::class);
+    }
+
+    public function getUpload($id) {
+    $upload = Upload::with('user')->find($id);
+
+    if ($upload) {
+        return response()->json($upload);
+    } else {
+        return response()->json(['message' => 'Upload not found'], 404);
+    }
+}
 }

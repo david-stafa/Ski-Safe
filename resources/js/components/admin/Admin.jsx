@@ -46,7 +46,7 @@ export default function Admin() {
             user_id: user.id,
             role: e.target.value,
         };
-        console.log(data);
+        // console.log(data);
         try {
             const response = await axios.post("/api/user-roles/update", data);
             console.log(response.data);
@@ -89,7 +89,7 @@ export default function Admin() {
                         ))}
                     </ul>
 
-                    <Link to={"/profilepictures"}>Check Profiles</Link>
+                    <Link to={"/profilepictures"}>Check Pictures</Link>
                     <Link to={"/contactusmessages"}>Check Messages</Link>
                 </div>
             ) : (

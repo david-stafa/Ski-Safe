@@ -12,6 +12,7 @@ import { Route, Routes } from "react-router-dom";
 import EditUpload from "../Uploading/EditUpload";
 import ProfilePictures from "../admin/ProfilePictures";
 import CheckMessages from "../admin/CheckMessages";
+import Archive from "../admin/Archive";
 
 export default function Homepage() {
     return (
@@ -39,6 +40,7 @@ export default function Homepage() {
                     path="/editupload/:id/edit"
                     element={<EditUpload />}
                 ></Route>
+                <Route path={"/contact/archive"} element={<Archive />}></Route>
             </Routes>
 
             <Footer />

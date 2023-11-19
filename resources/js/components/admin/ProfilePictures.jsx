@@ -16,6 +16,7 @@ export default function ProfilePictures() {
                 .then((response) => {
                     // console.log(response.uploads);
                     setUpload(response.uploads);
+                    //console.log(response);
                 })
                 .catch((error) => {
                     console.log(error);
@@ -28,7 +29,7 @@ export default function ProfilePictures() {
         axios
             .delete(`http://www.skisafe.test/api/uploadsdelete/${id}`)
             .then((response) => {
-                console.log(response.data);
+                //  console.log(response.data);
                 alert("You have successfully deleted your picture!");
                 setTimeout(() => {
                     window.location.reload();
@@ -42,7 +43,7 @@ export default function ProfilePictures() {
             <table className="pictures-table">
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th>User</th>
                         <th>Name</th>
                         <th>Description</th>
                         <th>Image</th>
@@ -52,7 +53,7 @@ export default function ProfilePictures() {
                 <tbody>
                     {upload.map((image, index) => (
                         <tr key={index} className="picture-row">
-                            <td>{index + 1}</td>
+                            <td>{image.user.email}</td>
                             <td>{image.name}</td>
                             <td>{image.description}</td>
                             <td className="image-cell">
