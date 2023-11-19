@@ -35,14 +35,17 @@ export default function ShowPopUp({ map }) {
             const coordinates = e.features[0].geometry.coordinates.slice();
             console.log(pinProperties);
 
-            setDetails({
+            const newDetails = {
+                ...details,
                 title: pinProperties.title,
                 slug: pinProperties.slug,
                 severity: pinProperties.severity,
                 description: pinProperties.description,
                 id: pinProperties.id,
                 images: pinProperties.images,
-            });
+            };
+
+            setDetails(newDetails);
 
             const placeHolder = document.createElement("div");
             placeHolder.className = "pop-up";
@@ -51,7 +54,7 @@ export default function ShowPopUp({ map }) {
                 <PopUpContent
                     isModalOpen={isModalOpen}
                     toggleIsModalOpen={toggleIsModalOpen}
-                    details={details}
+                    details={newDetails}
                 />
             );
             const myPopUp = new mapboxgl.Popup({
