@@ -117,97 +117,69 @@ import "./pop-up.scss";
 import { getPins } from "../Pins/getPins";
 import { pinOnMap } from "../Pins/addPinOnMap/addPinOnMap";
 import { deletePin } from "../Pins/deletePin";
-
-// modal 1/4
-import React from "react";
-import ReactDOM from "react-dom";
-import { createRoot } from "react-dom/client";
+import React, { useEffect, useState, useCallback } from "react";
 import Modal from "../../components/Modal/Modal";
+import useToggle from "../../components/Modal/use-toggle";
+import PopUpContent from "./popUpContent";
+import { createRoot } from "react-dom/client";
 
-// modal 2/4
-const handleToggleModal = (content) => {
-    const modalRoot = document.createElement("div");
-    document.body.appendChild(modalRoot);
-
-    const root = createRoot(modalRoot);
-
-    const handleDismiss = () => {
-        root.unmount();
-        modalRoot.remove();
-    };
-
-    root.render(<Modal handleDismiss={handleDismiss}>{content}</Modal>);
-};
-
-export const ShowPopUp = async (map) => {
-    // const pinData = await getPins();
-
-    const myPopUp = new mapboxgl.Popup({
-        closeButton: false,
-        closeOnClick: true,
+export default function ShowPopUp({ map }) {
+    const [isModalOpen, toggleIsModalOpen] = useToggle(false);
+    const [details, setDetails] = useState({
+        longitude: null,
+        latitude: null,
+        title: "",
+        slug: "",
+        severity: "",
+        description: "",
+        id: "",
     });
 
-    map.on("click", "points", (e) => {
-        // when we click points, create a pop up at the coordinates and use the description included in the geoJson.
-        const pinProperties = e.features[0].properties; //making variable access DRY
-        const coordinates = e.features[0].geometry.coordinates.slice();
-        const id = pinProperties.id;
-        const title = pinProperties.title;
-        const slug = pinProperties.slug;
-        const severity = pinProperties.severity;
-        const description = pinProperties.description;
+    const handleClick = useCallback(
+        (e) => {
+            const pinProperties = e.features[0].properties;
+            const coordinates = e.features[0].geometry.coordinates.slice();
+            const id = pinProperties.id;
 
-        myPopUp
-            .setLngLat(coordinates)
-            .setHTML(
-                `
-                <div class="pop-up">
-                   <h3 class="pop-up__title">${title}</h3>
-                   <p class="pop-up__slug">${slug}</p>
-                   <p class="pop-up__severity">Severity: ${severity}</p>
-                   <button id="more-details-button">More Details</button>
-                </div>
-            `
-            )
-            .addTo(map);
-        // modal 3/4 up - more-details-button
+            setDetails({
+                title: pinProperties.title,
+                slug: pinProperties.slug,
+            });
 
-        // modal 4/4
-        setTimeout(() => {
-            document
-                .getElementById("more-details-button")
-                .addEventListener("click", () => {
-                    handleToggleModal(
-                        <div>
-                            <h2 style={{ color: "green" }}>
-                                You have successfully displayed more details!!!
-                            </h2>
-                            <h3>Event: {title}</h3>
-                            <p className="pop-up__severity">
-                                Severity: {severity}
-                            </p>
-                            <h4>Basic Description:</h4>
-                            <p>{slug}</p>
-                            <p>{description}</p>
-                            <img
-                                className="image"
-                                src="/images/ModalPin/ModalPin.png"
-                                alt="modalpin"
-                            />
-                            {console.log(id)}
-                            <button
-                                id="delete-pin"
-                                onClick={() => {
-                                    deletePin(id);
-                                }}
-                            >
-                                Delete
-                            </button>
-                        </div>
-                    );
-                });
-        }, 0);
-    });
+            const placeHolder = document.createElement("div");
+            placeHolder.className = "pop-up";
+            const popUpRoot = createRoot(placeHolder);
+            popUpRoot.render(
+                <PopUpContent
+                    isModalOpen={isModalOpen}
+                    toggleIsModalOpen={toggleIsModalOpen}
+                    details={details}
+                />
+            );
+            const myPopUp = new mapboxgl.Popup({
+                closeButton: false,
+                closeOnClick: true,
+            })
+                .setDOMContent(placeHolder)
+                .setLngLat(coordinates)
+                .addTo(map);
+
+            myPopUp.on("close", () => {
+                if (myPopUp.isOpen()) {
+                    myPopUp.remove();
+                }
+            });
+        },
+        [map, details]
+    );
+
+    useEffect(() => {
+        map.on("click", "points", handleClick);
+
+        return () => {
+            map.off("click", "points", handleClick);
+        };
+    }, [map, details, handleClick]);
 
     // syle the mouse as user enters points
     map.on("mouseenter", "points", () => {
@@ -218,4 +190,58 @@ export const ShowPopUp = async (map) => {
     map.on("mouseleave", "points", () => {
         map.getCanvas().style.cursor = "";
     });
-};
+
+    return (
+        <>
+            {isModalOpen && (
+                <Modal handleDismiss={toggleIsModalOpen}>
+                    <h2>You have shown more </h2>
+                    {/* <div>
+                        <h3>Event: {title}</h3>
+                        <p className="pop-up__severity">Severity: {severity}</p>
+                        <h4>Basic Description:</h4>
+                        <p>{slug}</p>
+                        <p>{description}</p>
+                        <img
+                            className="image"
+                            src="/images/ModalPin/ModalPin.png"
+                            alt="modalpin"
+                        />
+                        {console.log(id)}
+                        <button
+                            id="delete-pin"
+                            onClick={() => {
+                                deletePin(id);
+                            }}
+                        >
+                            Delete
+                        </button>
+                    </div> */}
+                </Modal>
+            )}
+        </>
+    );
+}
+
+{
+    /* <h3>Event: {title}</h3>
+                        <p className="pop-up__severity">Severity: {severity}</p>
+                        <h4>Basic Description:</h4>
+                        <p>{slug}</p>
+                        <p>{description}</p>
+                        <img
+                            className="image"
+                            src="/images/ModalPin/ModalPin.png"
+                            alt="modalpin"
+                        />
+                        {console.log(id)}
+                        <button
+                            id="delete-pin"
+                            onClick={() => {
+                                deletePin(id);
+                            }}
+                        >
+                            Delete
+                        </button>
+                    </div> */
+}
