@@ -24,15 +24,16 @@ class UserProfileController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'email' => 'required|email|unique:users,email,'.$user->id,
-          
+            'image' => 'url', 
         ]);
 
-    
+        // If an image URL is provided, update the 'image_url' column
+        if ($request->has('image')) {
+            $validatedData['image'] = $request->input('image');
+        }
+
         $user->update($validatedData);
 
         return response()->json(['message' => 'Profile updated successfully']);
     }
-
-
-
-
+}

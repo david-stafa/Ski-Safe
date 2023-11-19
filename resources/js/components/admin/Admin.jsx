@@ -11,6 +11,8 @@ export default function Admin() {
     // State to store user roles
     const [userRoles, setUserRoles] = useState([]);
 
+    const [userPins, setUserPins] = useState([]);
+
     // We fetch the user data
     const fetchUserData = async () => {
         try {
@@ -27,6 +29,29 @@ export default function Admin() {
             setUsers(userData);
         } catch (error) {
             console.error("Error fetching user data:", error);
+        }
+    };
+    const fetchPinsData = async () => {
+        try {
+            const response = await axios.get("/api/pins");
+            const data = response.data;
+
+            const pinsData = data.map((userPins) => ({
+                id: userPins.id,
+                longitude: userPins.longitude,
+                latitude: userPins.latitude,
+                title: userPins.title,
+                severity_id: userPins.severity_id,
+                slug: userPins.slug,
+                description: userPins.description,
+                active: userPins.active,
+                created_at: userPins.created_at,
+                updated_at: userPins.updated_at,
+            }));
+            // Update the users state with the fetched data
+            setUserPins(pinsData);
+        } catch (error) {
+            console.error("Error fetching pins data:", error);
         }
     };
 
@@ -55,6 +80,7 @@ export default function Admin() {
     useEffect(() => {
         fetchUserData();
         fetchRoles();
+        setUserPins();
     }, []);
 
     return (

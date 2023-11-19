@@ -1,0 +1,43 @@
+.user-profile {
+    max-width: 900px;
+
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.edit-mode,
+.non-edit-mode {
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: gray;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    border-radius: 50px;
+}
+
+button:hover {
+    background-color: #0e0f11;
+}
+
+img {
+    max-width: 10rem;
+    border-radius: 80px;
+}
