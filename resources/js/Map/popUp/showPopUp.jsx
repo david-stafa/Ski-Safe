@@ -2,12 +2,13 @@ import mapboxgl from "mapbox-gl";
 import "./pop-up.scss";
 import { getPins } from "../Pins/getPins";
 import { pinOnMap } from "../Pins/addPinOnMap/addPinOnMap";
-import { deletePin } from "../Pins/deletePin";
+import DeletePin from "../Pins/DeletePin";
 import React, { useEffect, useState, useCallback } from "react";
 import Modal from "../../components/Modal/Modal";
 import useToggle from "../../components/Modal/use-toggle";
 import PopUpContent from "./popUpContent";
 import { createRoot } from "react-dom/client";
+import { MyFormModalContent } from "../Pins/addPinOnMap/MyFormModalContent";
 
 export default function ShowPopUp({ map }) {
     const [isModalOpen, toggleIsModalOpen] = useToggle(false);
@@ -21,6 +22,12 @@ export default function ShowPopUp({ map }) {
         id: "",
         images: "",
     });
+
+    // const handleEditClick = () => {
+    //     handleToggleModal(<MyFormModalContent details={details} />);
+    // };
+
+    const handleDeleteClick = () => {};
 
     const handleClick = useCallback(
         (e) => {
@@ -99,14 +106,7 @@ export default function ShowPopUp({ map }) {
                             src={details.images}
                             alt="modalpin"
                         />
-                        <button
-                        // id="delete-pin"
-                        // onClick={() => {
-                        //     deletePin(details.id);
-                        // }}
-                        >
-                            Delete
-                        </button>
+                        <button onClick={handleDeleteClick}>Delete</button>
                         <button>Edit</button>
                     </div>
                 </Modal>
