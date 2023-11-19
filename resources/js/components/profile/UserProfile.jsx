@@ -1,7 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import UserContext from "../../context/UserContext";
 import axios from "axios";
-import "./userProfile.scss";
+import Uploading from "../Uploading/Uploading";
+import EditUpload from "../Uploading/EditUpload";
+
+import "./UserProfile.scss";
+import UserPictures from "../Uploading/UserPictures";
 
 export default function UserProfile() {
     // We access user context to get user information and setUser function
@@ -46,49 +50,77 @@ export default function UserProfile() {
         }
     };
 
+    //pictures below
+    const [userUpload, setUserUpload] = useState(null);
+    useEffect(() => {
+        const loadUserUploads = async () => {
+            try {
+                const response = await axios.get("/api/uploads/user");
+                if (response.data.uploads && response.data.uploads.length > 0) {
+                    setUserUpload(response.data.uploads);
+                }
+            } catch (error) {
+                console.error("Error fetching user upload data:", error);
+            }
+        };
+
+        if (user) {
+            loadUserUploads();
+        }
+    }, [user]);
+
+    //pictures above
+
     return (
         <div className="user-profile">
-            <h1>User Profile</h1>
+            <h1 className="profile-header">USER PROFILE</h1>
             {user ? (
                 isEditMode ? (
-                    <div className="edit-mode">
-                        <label>
-                            <p> Name:</p>
+                    <div className="edit-form">
+                        <div className="form-group">
+                            <label htmlFor="name">Name:</label>
                             <input
                                 type="text"
+                                id="name"
                                 name="name"
                                 value={userData.name}
                                 onChange={handleInputChange}
+                                className="form-input"
                             />
-                        </label>
-                        <label>
-                            <p> Email:</p>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="email">Email:</label>
                             <input
                                 type="email"
+                                id="email"
                                 name="email"
                                 value={userData.email}
                                 onChange={handleInputChange}
+                                className="form-input"
                             />
-                        </label>
-                        <label>
-                            <p> Image:</p>
-                            <input
-                                type="text"
-                                name="image_url"
-                                value={userData.image}
-                                onChange={handleInputChange}
-                            />
-                        </label>
-                        <button onClick={saveChanges}>Save Changes</button>
+                        </div>
+                        <button onClick={saveChanges} className="save-button">
+                            Save Changes
+                        </button>
                     </div>
                 ) : (
-                    <div className="non-edit-mode">
-                        <img src={userData.image} alt="User Image" />
+                    <div className="user-details">
                         <p>Name: {userData.name}</p>
                         <p>Email: {userData.email}</p>
-                        <button onClick={() => setIsEditMode(true)}>
+                        <button
+                            onClick={() => setIsEditMode(true)}
+                            className="edit-button"
+                        >
                             Edit Details
                         </button>
+
+                        <div>
+                            {userUpload ? (
+                                <UserPictures userUpload={userUpload} />
+                            ) : (
+                                <Uploading />
+                            )}
+                        </div>
                     </div>
                 )
             ) : (

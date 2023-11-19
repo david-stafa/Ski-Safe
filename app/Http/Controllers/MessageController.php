@@ -13,7 +13,8 @@ class MessageController extends Controller
      */
     public function index()
     {
-        $messages = Message::all();
+       // $messages = Message::all();
+       $messages = Message::with('user')->get();
         return ($messages);
     }
 
@@ -64,9 +65,13 @@ class MessageController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+  public function update(Request $request, $id)
     {
-        //
+        $message = Message::findOrFail($id);
+        $message->read = true;
+        $message->save();
+
+        return response()->json($message);
     }
 
     /**

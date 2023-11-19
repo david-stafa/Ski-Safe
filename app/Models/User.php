@@ -42,4 +42,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function uploads()
+    {
+        // return $this->hasMany('App\Models\Upload', 'user_id');
+        return $this->hasMany(Upload::class);
+    }
 }
