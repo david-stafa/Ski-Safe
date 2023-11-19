@@ -1,0 +1,78 @@
+$nav-text-color: #333;
+$edit-color: #28a745;
+$delete-color: #dc3545;
+
+.pictures-header {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+    text-align: center;
+    color: $nav-text-color;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.pictures-table {
+    width: 95%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+
+    th,
+    td {
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+        text-align: center;
+    }
+
+    th {
+        background-color: #f8f8f7;
+        color: $nav-text-color;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    .image-cell img {
+        border-radius: 5px;
+        max-width: 90px;
+    }
+
+    .action-cell {
+        .edit-link,
+        .delete-button {
+            display: inline-block;
+            margin: 5px;
+            padding: 5px 10px;
+            border: none;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center;
+            font-size: 1em;
+
+            &:hover {
+                opacity: 0.9;
+            }
+        }
+
+        .edit-link {
+            background-color: $edit-color;
+
+            &:hover {
+                background-color: darken($edit-color, 10%);
+            }
+        }
+
+        .delete-button {
+            background-color: $delete-color;
+
+            &:hover {
+                background-color: darken($delete-color, 10%);
+            }
+        }
+    }
+}

@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\Api\Admin\AdminController;
 use App\Http\Controllers\Api\Admin\RoleController;
+use App\Http\Controllers\UploadController;
+use App\Models\Upload;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -35,9 +37,22 @@ Route::post('/map-pins/edit/{id}', [Map_pinController::class, 'edit'])->name('ed
 Route::get('/map-pins/show/{id}', [Map_pinController::class, 'show'])->name('show');
 //message controller
 
+// Messages
 Route::get('/messages', [MessageController::class, 'index'])->name('messages');
 Route::post('/messages/store', [MessageController::class, 'store'])->name('message.store');
+Route::put('/messages/{id}', [MessageController::class, 'update']);
+
 Route::post("/profile", [UserProfileController::class, 'update'])->name("profile.update");
+
+
+// File Uploads
+Route::get('/uploads', [UploadController::class, 'index']);
+Route::get('/uploads/user', [UploadController::class, 'getUserUploads']);
+Route::post('/uploads/{id}/set-profile-picture', [UploadController::class, 'setAsProfilePicture']);
+Route::get('/uploads/{id}', [UploadController::class, 'show']);
+Route::post('/uploads', [UploadController::class, 'store']);
+Route::put('/uploadsupdate/{id}', [UploadController::class, 'update']);
+Route::delete('/uploadsdelete/{id}', [UploadController::class, 'destroy']);
 
 
 Route::middleware(['auth', 'can:admin'])->group(function () { // using can:: will save us from making any conditions in the AdminController
