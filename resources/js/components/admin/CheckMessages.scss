@@ -1,0 +1,73 @@
+$nav-text-color: #333;
+
+.message-container {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+    text-align: center;
+    color: $nav-text-color;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.message-header {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: $nav-text-color;
+}
+
+.message-table {
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+
+    th,
+    td {
+        padding: 10px;
+        border: 1px solid #ccc;
+    }
+
+    th {
+        background-color: lighten($nav-text-color, 40%);
+        color: #fff;
+    }
+
+    tr {
+        &:nth-child(odd) {
+            background-color: #f8f8f7;
+        }
+
+        &:nth-child(even) {
+            background-color: #fff;
+        }
+    }
+
+    .message-read {
+        background-color: lighten(#333, 50%);
+    }
+
+    .message-unread {
+        background-color: #f8f8f7;
+        td:nth-child(5) {
+            // 5th columng!!! Please adjust when we decide changes
+            font-weight: bold;
+        }
+    }
+}
+
+button {
+    padding: 5px 10px;
+    background-color: #28a745; // Green color
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+        background-color: darken(#28a745, 10%);
+    }
+}

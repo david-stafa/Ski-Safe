@@ -1,11 +1,14 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./navigation.scss";
 import UserContext from "../../../context/UserContext";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Navigation() {
     const { user, setUser } = useContext(UserContext);
+
+    const navigate = useNavigate();
 
     const handleLogout = async (ev) => {
         ev.preventDefault();
@@ -15,6 +18,7 @@ export default function Navigation() {
             const response_data = response.data;
 
             setUser(null);
+            navigate("/");
         } catch (error) {
             switch (error.response.status) {
                 case 422:
@@ -29,6 +33,29 @@ export default function Navigation() {
             }
         }
     };
+
+    // profile pic below
+    const [profilePicUrl, setProfilePicUrl] = useState(
+        "/images/ProfilePic/Default.png"
+    );
+    useEffect(() => {
+        if (user) {
+            axios
+                .get(`/api/uploads/user`)
+                .then((response) => {
+                    const profileUpload = response.data.uploads.find(
+                        (upload) => upload.is_profile_picture === 1
+                    );
+                    if (profileUpload) {
+                        setProfilePicUrl(`/storage/${profileUpload.image}`);
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error fetching uploads:", error);
+                });
+        }
+    }, [user]);
+    // profile pic above
 
     return (
         <>
@@ -45,6 +72,10 @@ export default function Navigation() {
                         <Link to={"/"}>Home</Link>
                         <Link to={"/about-us"}>About us</Link>
                         <Link to={"/contact-us"}>Contact us</Link>
+                        {user && <Link to={"/profile"}>Profile</Link>}
+                        {user && user.role === "admin" && (
+                            <Link to={"/admin"}>Admin</Link>
+                        )}
                     </div>
                     <div className="nav-actions">
                         {!user ? (
@@ -60,6 +91,11 @@ export default function Navigation() {
                                         {user.name}
                                     </span>
                                 </span>
+                                <img
+                                    src={profilePicUrl}
+                                    alt="Profile"
+                                    className="profile-picture"
+                                />
                                 <button onClick={handleLogout}>Log out</button>
                             </div>
                         )}

@@ -1,5 +1,7 @@
 import mapboxgl from "mapbox-gl";
 import "./pop-up.scss";
+import { getPins } from "../Pins/getPins";
+import { pinOnMap } from "../Pins/addPinOnMap/addPinOnMap";
 import { deletePin } from "../Pins/deletePin";
 import React, { useEffect, useState, useCallback } from "react";
 import Modal from "../../components/Modal/Modal";

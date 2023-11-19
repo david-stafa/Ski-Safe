@@ -47,7 +47,6 @@ export default function ContactUs() {
             <div className="contact-header">
                 <h1>CONTACT US</h1>
             </div>
-
             <form className="contact-form" onSubmit={handleSubmit}>
                 <FieldsetBox
                     type={type}
@@ -71,7 +70,6 @@ export default function ContactUs() {
                 <p>{maxLength - contactText.length} characters remaining</p>
                 <button>Submit</button>
             </form>
-
             {isModalOpen && (
                 <Modal handleDismiss={toggleIsModalOpen}>
                     <h2 style={{ color: "green" }}>
