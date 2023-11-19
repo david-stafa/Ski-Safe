@@ -5,8 +5,7 @@ import { mapBoxToken } from "./helpers/map-helper";
 import { addPinLayer } from "./Pins/addPinLayer";
 
 import { pinOnMap } from "./Pins/addPinOnMap/addPinOnMap";
-import { ShowPopUp } from "./popUp/showPopUp";
-
+import ShowPopUp from "./popUp/showPopUp";
 
 mapboxgl.accessToken = mapBoxToken;
 
@@ -42,7 +41,7 @@ export default function Map() {
             setMapState(map);
 
             //DEVELOPMENTAL user can click and add a pin
-            // pinOnMap(map);
+            pinOnMap(map);
         });
     }, []);
 
