@@ -1,9 +1,10 @@
 import mapboxgl from "mapbox-gl";
 import "./addPinOnMap.scss";
 import { MyFormModalContent } from "./MyFormModalContent";
+import React, { useContext, useEffect, useState } from "react";
 
 // modal 1/4
-import React from "react";
+// import React from "react";
 import { createRoot } from "react-dom/client";
 import Modal from "../../../components/Modal/Modal";
 

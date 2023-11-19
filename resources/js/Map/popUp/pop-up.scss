@@ -15,10 +15,12 @@
     button {
         appearance: none;
         background-color: transparent;
-        border: 2px solid #1a1a1a;
+        //border: 2px solid #1a1a1a;
+        border: 1px solid white;
         border-radius: 15px;
         box-sizing: border-box;
-        color: #3b3b3b;
+        //color: #3b3b3b;
+        color: white;
         cursor: pointer;
         display: inline-block;
         font-family: "Segoe UI";
@@ -29,7 +31,8 @@
         min-height: 40px;
         min-width: 0;
         outline: none;
-        padding: 16px 16px;
+        //padding: 16px 16px;
+        padding: 0.5rem;
         text-align: center;
         text-decoration: none;
         transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
@@ -37,8 +40,55 @@
         width: 100%;
         will-change: transform;
         &:hover {
-            background-color: #3b3b3b;
-            color: white;
+            background-color: white;
+            color: rgba(97, 176, 210, 0.9);
         }
     }
+}
+
+// popup
+.mapboxgl-popup {
+    max-width: 240px;
+}
+
+.mapboxgl-popup-tip {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid rgba(97, 176, 210, 0.6);
+}
+
+.mapboxgl-popup-content {
+    background-color: rgba(97, 176, 210, 0.8);
+    color: white;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    transition: background-color 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+}
+
+.mapboxgl-popup-content:hover {
+    background-color: darken(rgba(97, 176, 210, 0.8), 10%);
+}
+
+.pop-up h1 {
+    margin: 0 0 10px 0;
+}
+
+.more-details-button {
+    background-color: transparent;
+    color: white;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.more-details-button:hover {
+    background-color: #007bff;
+    color: #fff;
 }
