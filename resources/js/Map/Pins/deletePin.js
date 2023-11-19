@@ -20,4 +20,5 @@ export const deletePin = async (id) => {
     } else {
         console.log("deletion aborted");
     }
+    return;
 };

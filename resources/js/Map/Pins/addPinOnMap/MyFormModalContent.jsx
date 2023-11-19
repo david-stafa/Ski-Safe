@@ -5,14 +5,27 @@ import { addPinLayer } from "../addPinLayer";
 
 export let handleFetch = false;
 
-export const MyFormModalContent = ({ lng, lat, marker, markerOnMap, map }) => {
+export const MyFormModalContent = ({
+    lng,
+    lat,
+    marker,
+    markerOnMap,
+    map,
+    id,
+    title,
+    slug,
+    description,
+    existingLat,
+    existingLng,
+}) => {
     const [formData, setFormData] = useState({
-        title: "",
-        description: "",
-        latitude: lat,
-        longitude: lng,
+        id: id,
+        title: title,
+        description: description,
+        latitude: lat || existingLat,
+        longitude: lng || existingLng,
         severity_id: 1,
-        slug: "",
+        slug: slug,
         active: true,
     });
 
@@ -24,14 +37,21 @@ export const MyFormModalContent = ({ lng, lat, marker, markerOnMap, map }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log(formData);
         try {
-            const response = await axios.post("/api/pin/store", formData);
-            console.log("Your pin was successfully created", response.data);
-            setToggleContent(false);
-            markerOnMap = false;
-            handleFetch = true;
-            marker.remove();
-            addPinLayer(map);
+            if (!id) {
+                const response = await axios.post("/api/pin/store", formData);
+                console.log("Your pin was successfully created", response.data);
+                setToggleContent(false);
+                markerOnMap = false;
+                handleFetch = true;
+                marker.remove();
+                addPinLayer(map);
+            } else {
+                const response = await axios.post(`api/map-pins/edit/${id}`);
+                console.log("Your pin was successfully edited", response.data);
+                setToggleContent(false);
+            }
         } catch (error) {
             console.error("Error:", error);
         }
@@ -48,7 +68,11 @@ export const MyFormModalContent = ({ lng, lat, marker, markerOnMap, map }) => {
             {toggleContent ? (
                 <form action="" onSubmit={handleSubmit}>
                     <div className="register-header">
-                        <h2>Create a pin</h2>
+                        {id ? (
+                            <h2>Edit a pin number {id}</h2>
+                        ) : (
+                            <h2>Create a pin</h2>
+                        )}
                     </div>
                     <div className="input-group">
                         <label htmlFor="title">Title</label>
@@ -105,7 +129,11 @@ export const MyFormModalContent = ({ lng, lat, marker, markerOnMap, map }) => {
                 </form>
             ) : (
                 <div>
-                    <h1>You have succesfully submited new pin</h1>
+                    {id ? (
+                        <h1>You have succesfully updated this pin</h1>
+                    ) : (
+                        <h1>You have succesfully submited new pin</h1>
+                    )}
                 </div>
             )}
         </div>

@@ -4,7 +4,6 @@ export const getPins = async () => {
     try {
         const response = await axios.get("/api/map-pins");
         const data = response.data;
-        console.log(data);
 
         const pins = data.map((item) => ({
             type: "Feature",
@@ -22,11 +21,11 @@ export const getPins = async () => {
                 type_id: item.type_id,
                 creator_id: item.creator_id,
                 video: item.video,
-                image: item.images,
+                images: item.images,
                 active: item.active,
             },
         }));
-        console.log(pins);
+
         return pins;
     } catch (error) {
         console.error("Error fetching pins:", error);
