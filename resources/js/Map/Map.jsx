@@ -21,8 +21,8 @@ export default function Map() {
         const map = new mapboxgl.Map({
             container: mapContainer.current,
             style: "mapbox://styles/themainkane/clou0eblx00un01o46rwmb8f4",
-            center: [-141.705393, 61.024606],
-            zoom: 10,
+            center: [-140.404811, 60.568208],
+            zoom: 11,
             pitch: 66,
         });
 
@@ -43,16 +43,16 @@ export default function Map() {
             //     { animation: true },
             //     { duration: 5000 }
             // );
-            map.flyTo({
-                center: [-140.404811, 60.568208],
-                zoom: 11.5,
-                speed: 0.7,
-                curve: 1,
-                easing(t) {
-                    return t;
-                },
-            });
-            // map.rotateTo(190, { duration: 3000 });
+            // map.flyTo({
+            //     center: [-140.404811, 60.568208],
+            //     zoom: 11.5,
+            //     speed: 0.7,
+            //     curve: 1,
+            //     easing(t) {
+            //         return t;
+            //     },
+            // });
+            map.rotateTo(190, { duration: 5000 });
 
             //REMOVED FOR FGET PINS TESTING
             addPinLayer(map);
