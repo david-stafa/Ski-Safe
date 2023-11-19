@@ -11,21 +11,16 @@ export const MyFormModalContent = ({
     marker,
     markerOnMap,
     map,
-    id,
-    title,
-    slug,
-    description,
-    existingLat,
-    existingLng,
+    details,
 }) => {
     const [formData, setFormData] = useState({
-        id: id,
-        title: title,
-        description: description,
-        latitude: lat || existingLat,
-        longitude: lng || existingLng,
-        severity_id: 1,
-        slug: slug,
+        title: "" || details.title,
+        description: "" || details.description,
+        latitude: lat || details.latitude,
+        longitude: lng || details.longitude,
+        severity_id: 0 || details.severity_id,
+        severity: "" || details.severity,
+        slug: "" || details.slug,
         active: true,
     });
 
@@ -39,7 +34,7 @@ export const MyFormModalContent = ({
         e.preventDefault();
         console.log(formData);
         try {
-            if (!id) {
+            if (!details.id) {
                 const response = await axios.post("/api/pin/store", formData);
                 console.log("Your pin was successfully created", response.data);
                 setToggleContent(false);
@@ -48,7 +43,10 @@ export const MyFormModalContent = ({
                 marker.remove();
                 addPinLayer(map);
             } else {
-                const response = await axios.post(`api/map-pins/edit/${id}`);
+                const response = await axios.post(
+                    `api/map-pins/edit/${details.id}`,
+                    formData
+                );
                 console.log("Your pin was successfully edited", response.data);
                 setToggleContent(false);
             }
@@ -68,8 +66,8 @@ export const MyFormModalContent = ({
             {toggleContent ? (
                 <form action="" onSubmit={handleSubmit}>
                     <div className="register-header">
-                        {id ? (
-                            <h2>Edit a pin number {id}</h2>
+                        {details.id ? (
+                            <h2>Edit a pin number {details.id}</h2>
                         ) : (
                             <h2>Create a pin</h2>
                         )}
@@ -129,7 +127,7 @@ export const MyFormModalContent = ({
                 </form>
             ) : (
                 <div>
-                    {id ? (
+                    {details.id ? (
                         <h1>You have succesfully updated this pin</h1>
                     ) : (
                         <h1>You have succesfully submited new pin</h1>

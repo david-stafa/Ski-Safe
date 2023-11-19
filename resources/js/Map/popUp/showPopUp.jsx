@@ -26,6 +26,10 @@ export default function ShowPopUp({ map }) {
     const handleDeleteClick = () => {
         DeletePin(details.id);
     };
+    const handleEditClick = () => {
+        toggleIsModalOpen();
+        toggleIsMyFormModalOpen();
+    };
     const handleClick = useCallback(
         (e) => {
             const pinProperties = e.features[0].properties;
@@ -34,9 +38,12 @@ export default function ShowPopUp({ map }) {
 
             const newDetails = {
                 ...details,
+                longitude: coordinates[0],
+                latitude: coordinates[1],
                 title: pinProperties.title,
                 slug: pinProperties.slug,
                 severity: pinProperties.severity,
+                severity_id: pinProperties.severity_id,
                 description: pinProperties.description,
                 id: pinProperties.id,
                 images: pinProperties.images,
@@ -106,10 +113,8 @@ export default function ShowPopUp({ map }) {
                             src={details.images}
                             alt="modalpin"
                         />
-                        <button onclick={handleDeleteClick}>Delete</button>
-                        <button onclick={toggleIsMyFormModalOpen()}>
-                            Edit
-                        </button>
+                        <button onClick={handleDeleteClick}>Delete</button>
+                        <button onClick={handleEditClick}>Edit</button>
                     </div>
                 </Modal>
             )}

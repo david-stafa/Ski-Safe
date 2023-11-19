@@ -16,6 +16,11 @@ class SeveritySeeder extends Seeder
         $severties =
             [
                 [
+                    'id' => 0,
+                    'name' => 'Not Applicable',
+                    'description' => 'A pin with a type other than "hazard"'
+                ],
+                [
                     'id' => 1,
                     'name' => 'Low',
                     'description' => 'A hazard with either a low consequence of very low likelyhood'

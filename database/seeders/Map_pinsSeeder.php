@@ -15,12 +15,83 @@ class Map_pinsSeeder extends Seeder
     {
         $map_pins = [
             [
+                'longitude' => -140.366182,
+                // -117.23 with aberration 0.06
+                'latitude' => 60.635321,
+                // 52.16 with aberration 0.06
+                'title' => 'Gondola Gully',
+                'severity_id' => 0,
+                "type_id" => 2,
+                // number 1, 2, or 3
+                'slug' => 'Gondola Gully',
+                'description' => 'Lift waiting times',
+                'active' => true,
+                'images' => 'https://cdn.pixabay.com/photo/2013/04/01/21/33/ski-lift-99315_1280.png'
+            ],
+            [
+                'longitude' => -140.226386,
+                // -117.23 with aberration 0.06
+                'latitude' => 60.581963,
+                // 52.16 with aberration 0.06
+                'title' => 'Crevasse Chair',
+                'severity_id' => 0,
+                "type_id" => 2,
+                // number 1, 2, or 3
+                'slug' => 'Crevasse Chair',
+                'description' => 'Lift waiting times',
+                'active' => true,
+                'images' => 'https://cdn.pixabay.com/photo/2013/04/01/21/33/ski-lift-99315_1280.png'
+            ],
+            [
+                'longitude' => -140.316840,
+                // -117.23 with aberration 0.06
+                'latitude' => 60.631233,
+                // 52.16 with aberration 0.06
+                'title' => 'Logans Lift',
+                'severity_id' => 0,
+                "type_id" => 2,
+                // number 1, 2, or 3
+                'slug' => 'Logans Lift',
+                'description' => 'Lift waiting times',
+                'active' => true,
+                'images' => 'https://cdn.pixabay.com/photo/2013/04/01/21/33/ski-lift-99315_1280.png'
+            ],
+            [
+                'longitude' => -140.316840,
+                // -117.23 with aberration 0.06
+                'latitude' => 60.631233,
+                // 52.16 with aberration 0.06
+                'title' => 'Relaxing Ridge',
+                'severity_id' => 0,
+                "type_id" => 2,
+                // number 1, 2, or 3
+                'slug' => 'Relaxing Ridge',
+                'description' => 'Lift waiting times',
+                'active' => true,
+                'images' => 'https://cdn.pixabay.com/photo/2013/04/01/21/33/ski-lift-99315_1280.png'
+            ],
+            [
+                'longitude' => -140.236054,
+                // -117.23 with aberration 0.06
+                'latitude' => 60.637602,
+                // 52.16 with aberration 0.06
+                'title' => 'Turbulent T-Bars',
+                'severity_id' => 0,
+                "type_id" => 2,
+                // number 1, 2, or 3
+                'slug' => 'Turbulent T-Bars',
+                'description' => 'Lift waiting times',
+                'active' => true,
+                'images' => 'https://cdn.pixabay.com/photo/2013/04/01/21/33/ski-lift-99315_1280.png'
+            ],
+            [
                 'longitude' => -140.404811,
                 // -117.23 with aberration 0.06
                 'latitude' => 60.568208,
                 // 52.16 with aberration 0.06
                 'title' => 'Icy Surface',
                 'severity_id' => 1,
+                "type_id" => 1,
                 // number 1, 2, or 3
                 'slug' => 'Caution when exiting the chairlift',
                 'description' => 'Please take care when exiting the chair lift; a recent thaw has created slick ice',
@@ -34,6 +105,7 @@ class Map_pinsSeeder extends Seeder
                 // 52.16 with aberration 0.06
                 'title' => 'Avalance Hazard',
                 'severity_id' => 3,
+                "type_id" => 1,
                 // number 1, 2, or 3
                 'slug' => 'Serious Avalanche Danger',
                 'description' => 'This slope has not released since the snowfall last wednesday, our Patrollers advise no off-piste skiing on this aspect',
@@ -47,6 +119,7 @@ class Map_pinsSeeder extends Seeder
                 // 52.16 with aberration 0.06
                 'title' => 'Large Moulin',
                 'severity_id' => 3,
+                "type_id" => 1,
                 // number 1, 2, or 3
                 'slug' => 'Large Moulin',
                 'description' => 'A skiier recently fell into a large moulin at these coordinates. If you are going to ski in this area please be aware that snow bridges are weak. And be sure to carry all your glacier rescue equipment.',
@@ -61,6 +134,7 @@ class Map_pinsSeeder extends Seeder
                 // 52.16 with aberration 0.06
                 'title' => 'Ski School',
                 'severity_id' => 1,
+                "type_id" => 1,
                 // number 1, 2, or 3
                 'slug' => 'SLOW: Ski School in progress',
                 'description' => 'Caution, young an inexperienced skiiers are using this area',
@@ -74,6 +148,7 @@ class Map_pinsSeeder extends Seeder
                 // 52.16 with aberration 0.06
                 'title' => 'Cornice',
                 'severity_id' => 3,
+                "type_id" => 1,
                 // number 1, 2, or 3
                 'slug' => 'Out of bounds: Large Cornice',
                 'description' => 'Please do not approach the edge, a large cornice is expected to fall soon. Skiing in this location will present serious risk to backcountry skiiers below.',
@@ -86,6 +161,7 @@ class Map_pinsSeeder extends Seeder
                 'latitude' => 60.599151,
                 // 52.16 with aberration 0.06
                 'title' => 'Accident',
+                "type_id" => 1,
                 'severity_id' => 2,
                 // number 1, 2, or 3
                 'slug' => 'SLOW: Accident',
@@ -99,7 +175,9 @@ class Map_pinsSeeder extends Seeder
                 'latitude' => 60.581170,
                 // 52.16 with aberration 0.06
                 'title' => 'Avalanche Debris',
+
                 'severity_id' => 2,
+                "type_id" => 1,
                 // number 1, 2, or 3
                 'slug' => 'Slow: Debis in the area',
                 'description' => 'An avalance last tuesday morning has left substantial debis, skiing is technical and dangerous. Experts only.',
@@ -115,6 +193,7 @@ class Map_pinsSeeder extends Seeder
             $map_pin->longitude = $pin['longitude'];
             $map_pin->latitude = $pin['latitude'];
             $map_pin->title = $pin['title'];
+            $map_pin->type_id = $pin['type_id'];
             $map_pin->severity_id = $pin['severity_id'];
             $map_pin->slug = $pin['slug'];
             $map_pin->description = $pin['description'];
