@@ -7,6 +7,8 @@ import { addPinLayer } from "./Pins/addPinLayer";
 import { pinOnMap } from "./Pins/addPinOnMap/addPinOnMap";
 import ShowPopUp from "./popUp/showPopUp";
 
+
+
 mapboxgl.accessToken = mapBoxToken;
 
 export default function Map() {
@@ -18,9 +20,9 @@ export default function Map() {
         const map = new mapboxgl.Map({
             container: mapContainer.current,
             style: "mapbox://styles/themainkane/clou0eblx00un01o46rwmb8f4",
-            center: [-117.2532, 52.1878],
-            zoom: 14,
-            pitch: 70,
+            center: [-140.404811, 60.568208],
+            zoom: 11,
+            pitch: 66,
         });
 
         map.on("load", () => {
@@ -34,13 +36,28 @@ export default function Map() {
                 },
             });
             map.doubleClickZoom.disable();
-            map.rotateTo(190, { duration: 3000 });
+            // map.rotateTo(190, { duration: 3000 });
+            // map.panTo(
+            //     [-140.404811, 60.568208],
+            //     { animation: true },
+            //     { duration: 5000 }
+            // );
+            // map.flyTo({
+            //     center: [-140.404811, 60.568208],
+            //     zoom: 11.5,
+            //     speed: 0.7,
+            //     curve: 1,
+            //     easing(t) {
+            //         return t;
+            //     },
+            // });
+            map.rotateTo(190, { duration: 5000 });
 
             //REMOVED FOR FGET PINS TESTING
             addPinLayer(map);
             setMapState(map);
 
-            // DEVELOPMENTAL user can click and add a pin
+            //DEVELOPMENTAL user can click and add a pin
             pinOnMap(map);
         });
     }, []);
