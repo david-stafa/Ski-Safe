@@ -1,136 +1,111 @@
 .custom-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: url("https://v.ftcdn.net/01/76/78/49/700_F_176784935_0AUwdfhNU4w4cneBZbLKuPEHAVPHVdbL.mp4")
+        no-repeat center center;
+    background-size: cover;
+    color: #fff;
+    position: relative;
+    width: 400px;
+    height: 400px;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 999;
+    border-radius: 50%;
+}
+
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    border-radius: 50%;
+}
+
+.modal {
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.text-content {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(1); /* Combine both transformations */
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    width: 100%;
+    transform: translate(-50%, -50%);
     text-align: center;
+    z-index: 1;
+    color: #fff;
+}
 
-    transform: scale(1);
-    .custom-overlay {
-        background: rgba(0, 0, 0, 0);
-        animation: fadeIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-        .modal {
-            height: 75px;
-            width: 75px;
-            border-radius: 75px;
-            overflow: hidden;
-            animation: bondJamesBond 1.5s cubic-bezier(0.165, 0.84, 0.44, 1)
-                forwards;
-            h2,
-            p {
-                opacity: 0;
-                position: relative;
-                animation: modalContentFadeIn 0.5s 1.4s linear forwards;
-            }
-        }
-    }
-    &.out {
-        animation: fadeOut 0.5s 1.5s linear forwards; /* Change slowFade to fadeOut */
-        .modal-background {
-            background-color: rgba(0, 0, 0, 0.7);
-            animation: fadeToRed 2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-            .modal {
-                border-radius: 3px;
-                height: 162px;
-                width: 227px;
-                animation: killShot 1s cubic-bezier(0.165, 0.84, 0.44, 1)
-                    forwards;
-                h2,
-                p {
-                    animation: modalContentFadeOut 0.5s 0.5s
-                        cubic-bezier(0.165, 0.84, 0.44, 1) forwards; /* Add 's' to the delay value */
-                }
-            }
-        }
+.g-snows {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.g-snows li {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: white;
+    opacity: 0.7;
+    border-radius: 50%;
+    animation: snowfall linear infinite;
+}
+
+@keyframes snowfall {
+    to {
+        transform: translateY(500px) rotate(360deg);
+        opacity: 0;
     }
 }
 
-.custom-overlay {
+@for $i from 1 through 6 {
+    $rotation: 60deg * $i;
+    .g-snows li:nth-child(#{$i}) {
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%) rotate($rotation);
+        animation-duration: 5s + random(10) * 1s;
+        animation-delay: random(20) * -1s;
+    }
+}
+
+.text-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 1;
+    color: #fff;
+}
+.overlay {
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+    z-index: 998; /* Below the modal but above other content */
+    display: block; /* Show the overlay by default */
 }
 
 .welcome-message {
-    font-size: 2em;
-    color: #333;
-    margin-bottom: 20px;
+    font-size: 24px;
+    margin-bottom: 10px;
 }
 
 .modal-message {
-    font-size: 1.2em;
-    color: #666;
-}
-@keyframes fadeIn {
-    0% {
-        background: rgba(0, 0, 0, 0);
-    }
-    100% {
-        background: rgba(0, 0, 0, 0.7);
-    }
-}
-
-@keyframes fadeOut {
-    0% {
-        background: rgba(0, 0, 0, 0.7);
-    }
-    100% {
-        background: rgba(0, 0, 0, 0);
-    }
-}
-
-@keyframes bondJamesBond {
-    0% {
-        transform: translateX(1000px);
-    }
-    80% {
-        transform: translateX(0px);
-        border-radius: 75px;
-        height: 75px;
-        width: 75px;
-    }
-    90% {
-        border-radius: 3px;
-        height: 182px;
-        width: 247px;
-    }
-    100% {
-        border-radius: 3px;
-        height: 162px;
-        width: 227px;
-    }
-}
-
-@keyframes modalContentFadeIn {
-    0% {
-        opacity: 0;
-        top: -20px;
-    }
-    100% {
-        opacity: 1;
-        top: 0;
-    }
-}
-
-@keyframes modalContentFadeOut {
-    0% {
-        opacity: 1;
-        top: 0px;
-    }
-    100% {
-        opacity: 0;
-        top: -20px;
-    }
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
 }
