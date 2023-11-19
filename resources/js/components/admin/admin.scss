@@ -1,4 +1,5 @@
-// Admin.scss
+$admin-button-color: #007bff;
+$admin-button-hover: darken($admin-button-color, 10%);
 
 .admin-container {
     padding: 20px;
@@ -30,4 +31,20 @@
     margin-right: 50rem;
     border-radius: 5px;
     border: 1px solid #ccc;
+}
+
+.admin-button {
+    padding: 10px 20px;
+    background-color: $admin-button-color;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+    text-decoration: none; // Remove underline from link
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+        background-color: $admin-button-hover;
+    }
 }

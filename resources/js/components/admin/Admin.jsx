@@ -89,8 +89,12 @@ export default function Admin() {
                         ))}
                     </ul>
 
-                    <Link to={"/profilepictures"}>Check Pictures</Link>
-                    <Link to={"/contactusmessages"}>Check Messages</Link>
+                    <Link to={"/profilepictures"} className="admin-button">
+                        Check Pictures
+                    </Link>
+                    <Link to={"/contactusmessages"} className="admin-button">
+                        Check Messages
+                    </Link>
                 </div>
             ) : (
                 <h1>Access denied</h1>
