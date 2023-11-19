@@ -42,7 +42,7 @@ export default function CheckMessages() {
 
     return (
         <div className="message-container">
-            <h1 className="message-header">Check messages from contact list</h1>
+            <h1 className="message-header">RECEIVED MESSAGES</h1>
             <table className="message-table">
                 <thead className="table-header">
                     <tr>
