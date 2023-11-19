@@ -16,7 +16,7 @@ import Archive from "../admin/Archive";
 
 export default function Homepage() {
     return (
-        <>
+        <div className="homepage">
             <Navigation />
 
             <Routes>
@@ -44,6 +44,6 @@ export default function Homepage() {
             </Routes>
 
             <Footer />
-        </>
+        </div>
     );
 }

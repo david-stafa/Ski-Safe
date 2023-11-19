@@ -2,6 +2,7 @@ import Map from "../../../Map/Map";
 import SideNavigation from "../navigation-side/SideNavigation";
 import { useState } from "react";
 import AdjacentRectangle from "../navigation-side/AdjacentRectangle";
+import Weather from "../weather/Weather";
 
 export default function MainContent() {
 
@@ -32,6 +33,7 @@ export default function MainContent() {
                         navExpanded={navExpanded}
                     />
                 )}
+                {/* <Weather /> */}
             </div>
         </>
     );
