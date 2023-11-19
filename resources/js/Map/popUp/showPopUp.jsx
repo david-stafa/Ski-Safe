@@ -79,11 +79,28 @@ export default function ShowPopUp({ map }) {
         <>
             {isModalOpen && (
                 <Modal handleDismiss={toggleIsModalOpen}>
-                    <div>
-                        <h2 style={{ color: "green" }}>
-                            You have successfully displayed more details!!!
-                        </h2>
-                    </div>
+                    <h2>You have shown more </h2>
+                    {/* <div>
+                        <h3>Event: {title}</h3>
+                        <p className="pop-up__severity">Severity: {severity}</p>
+                        <h4>Basic Description:</h4>
+                        <p>{slug}</p>
+                        <p>{description}</p>
+                        <img
+                            className="image"
+                            src="/images/ModalPin/ModalPin.png"
+                            alt="modalpin"
+                        />
+                        {console.log(id)}
+                        <button
+                            id="delete-pin"
+                            onClick={() => {
+                                deletePin(id);
+                            }}
+                        >
+                            Delete
+                        </button>
+                    </div> */}
                 </Modal>
             )}
         </>
