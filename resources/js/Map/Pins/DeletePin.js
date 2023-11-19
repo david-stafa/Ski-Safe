@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const deletePin = async (id) => {
+export const DeletePin = async (id) => {
     const userConfirmed = window.confirm(
         "Are you sure you want to delete this pin?"
     );
@@ -20,5 +20,4 @@ export const deletePin = async (id) => {
     } else {
         console.log("deletion aborted");
     }
-    return;
 };
