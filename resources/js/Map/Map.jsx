@@ -5,7 +5,9 @@ import { mapBoxToken } from "./helpers/map-helper";
 import { addPinLayer } from "./Pins/addPinLayer";
 
 import { pinOnMap } from "./Pins/addPinOnMap/addPinOnMap";
-import ShowPopUp from "./popUp/ShowPopUp";
+import ShowPopUp from "./popUp/showPopUp";
+
+
 
 mapboxgl.accessToken = mapBoxToken;
 
