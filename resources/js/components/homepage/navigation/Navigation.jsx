@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./navigation.scss";
 import UserContext from "../../../context/UserContext";
@@ -34,6 +34,29 @@ export default function Navigation() {
         }
     };
 
+    // profile pic below
+    const [profilePicUrl, setProfilePicUrl] = useState(
+        "/images/ProfilePic/Default.png"
+    );
+    useEffect(() => {
+        if (user) {
+            axios
+                .get(`/api/uploads/user`)
+                .then((response) => {
+                    const profileUpload = response.data.uploads.find(
+                        (upload) => upload.is_profile_picture === 1
+                    );
+                    if (profileUpload) {
+                        setProfilePicUrl(`/storage/${profileUpload.image}`);
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error fetching uploads:", error);
+                });
+        }
+    }, [user]);
+    // profile pic above
+
     return (
         <>
             <div className="left-panel-container">
@@ -68,6 +91,11 @@ export default function Navigation() {
                                         {user.name}
                                     </span>
                                 </span>
+                                <img
+                                    src={profilePicUrl}
+                                    alt="Profile"
+                                    className="profile-picture"
+                                />
                                 <button onClick={handleLogout}>Log out</button>
                             </div>
                         )}

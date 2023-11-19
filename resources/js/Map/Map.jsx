@@ -3,18 +3,15 @@ import mapboxgl from "mapbox-gl";
 import "./map.scss";
 import { mapBoxToken } from "./helpers/map-helper";
 import { addPinLayer } from "./Pins/addPinLayer";
+
 import { pinOnMap } from "./Pins/addPinOnMap/addPinOnMap";
-import { ShowPopUp } from "./popUp/showPopUp";
+import ShowPopUp from "./popUp/ShowPopUp";
 
 mapboxgl.accessToken = mapBoxToken;
 
 export default function Map() {
-    // const [coordinates, setCoordinates]=useState({
-    //     longitude: null,
-    //     latitude: null
-    // })
+    const [mapState, setMapState] = useState(null);
     const mapContainer = useRef();
-    // const [mapState, setMapState] = useState(null);
 
     useEffect(() => {
         // as the page mounts this renders our personalised map style (2D)
@@ -56,17 +53,17 @@ export default function Map() {
 
             //REMOVED FOR FGET PINS TESTING
             addPinLayer(map);
-            ShowPopUp(map);
+            setMapState(map);
 
             //DEVELOPMENTAL user can click and add a pin
             pinOnMap(map);
         });
-        // setMapState(map);
     }, []);
 
     return (
         <>
             <div className="map" id="map" ref={mapContainer}></div>
+            {mapState && <ShowPopUp map={mapState} />}
         </>
     );
 }

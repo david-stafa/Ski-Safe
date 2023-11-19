@@ -2,6 +2,8 @@ import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import UserContext from "../../context/UserContext";
 import "./Admin.scss";
+import ProfilePictures from "./ProfilePictures";
+import { Link } from "react-router-dom";
 
 export default function Admin() {
     // State to store user data
@@ -44,7 +46,7 @@ export default function Admin() {
             user_id: user.id,
             role: e.target.value,
         };
-        console.log(data);
+        // console.log(data);
         try {
             const response = await axios.post("/api/user-roles/update", data);
             console.log(response.data);
@@ -86,6 +88,9 @@ export default function Admin() {
                             </li>
                         ))}
                     </ul>
+
+                    <Link to={"/profilepictures"}>Check Pictures</Link>
+                    <Link to={"/contactusmessages"}>Check Messages</Link>
                 </div>
             ) : (
                 <h1>Access denied</h1>
