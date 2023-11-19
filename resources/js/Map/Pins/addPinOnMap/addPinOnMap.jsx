@@ -1,13 +1,16 @@
 import mapboxgl from "mapbox-gl";
 import "./addPinOnMap.scss";
 import { MyFormModalContent } from "./MyFormModalContent";
+import UserContext from "../../../context/UserContext";
+import React, { useContext, useEffect, useState } from "react";
 
 // modal 1/4
-import React from "react";
+// import React from "react";
 import { createRoot } from "react-dom/client";
 import Modal from "../../../components/Modal/Modal";
 
 export const pinOnMap = (map) => {
+    const { user, setUser } = useContext(UserContext);
     // modal 2/4
     const handleToggleModal = (content) => {
         const modalRoot = document.createElement("div");
@@ -34,9 +37,10 @@ export const pinOnMap = (map) => {
     });
 
     //on click function
-    map.on("dblclick", (event) => {
-        const popup = new mapboxgl.Popup().setHTML(
-            `
+    map.on("dblclick", (event) => { 
+        if (user && user.role === "admin") {
+            const popup = new mapboxgl.Popup().setHTML(
+                `
                 <div class="pop-up">
                     <h3>[${event.lngLat.lng.toFixed(
                         6
@@ -44,7 +48,8 @@ export const pinOnMap = (map) => {
                     <button id="create-form-button">Create a pin</button>
                 </div>
             `
-        );
+            );
+        }
 
         // modal 4/4
         setTimeout(() => {

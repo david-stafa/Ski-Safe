@@ -18,6 +18,7 @@ export default function UserProfile() {
     const [userData, setUserData] = useState({
         name: "",
         email: "",
+        image: "", // Added 'image' to the state
     });
 
     // We populate the userData state when the user context changes
@@ -26,6 +27,7 @@ export default function UserProfile() {
             setUserData({
                 name: user.name,
                 email: user.email,
+                image: user.image || "", // Initialize with the user's image URL if available
             });
         }
     }, [user]);
@@ -40,7 +42,7 @@ export default function UserProfile() {
         try {
             // We send a POST request to update user profile data
             await axios.post("/api/profile", userData);
-            // We  exit edit mode and update the user context with the new data
+            // We exit edit mode and update the user context with the new data
             setIsEditMode(false);
             setUser({ ...user, ...userData });
         } catch (error) {
