@@ -7,6 +7,7 @@ import { addHazardLayer } from "./Pins/addHazardLayer";
 import { pinOnMap } from "./Pins/addPinOnMap/addPinOnMap";
 import ShowPopUp from "./popUp/showPopUp";
 import Weather from "../components/homepage/weather/Weather";
+import { addLiftLayer } from "./Pins/addLiftLayer";
 
 mapboxgl.accessToken = mapBoxToken;
 
@@ -52,6 +53,10 @@ export default function Map() {
             // });
             map.rotateTo(190, { duration: 5000 });
             addHazardLayer(map);
+            addLiftLayer(map);
+
+            // map.setLayoutProperty("lifts", "visibility", "visible");
+            // map.setLayoutProperty("points", "visibility", "visible");
             setMapState(map);
 
             pinOnMap(map);

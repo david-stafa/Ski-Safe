@@ -28,7 +28,7 @@ class Map_pinController extends Controller
 
     public function getLifts()
     {
-        $map_pins = Map_pin::with('severity')->where('type_id', 2)->get();
+        $map_pins = Map_pin::where('type_id', 2)->get();
 
         return $map_pins;
     }
