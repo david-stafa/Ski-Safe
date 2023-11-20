@@ -2,7 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "./map.scss";
 import { mapBoxToken } from "./helpers/map-helper";
-import { addPinLayer } from "./Pins/addPinLayer";
+import { addHazardLayer } from "./Pins/addHazardLayer";
 
 import { pinOnMap } from "./Pins/addPinOnMap/addPinOnMap";
 import ShowPopUp from "./popUp/showPopUp";
@@ -51,7 +51,7 @@ export default function Map() {
             //     },
             // });
             map.rotateTo(190, { duration: 5000 });
-            addPinLayer(map);
+            addHazardLayer(map);
             setMapState(map);
 
             pinOnMap(map);

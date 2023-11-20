@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const getPins = async () => {
+export const getHazards = async () => {
     try {
         const response = await axios.get("/api/hazard-pins");
         const data = response.data;

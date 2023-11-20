@@ -1,8 +1,8 @@
-import { getPins } from "./getPins";
+import { getHazards } from "./getHazards";
 
-export const addPinLayer = async (map) => {
+export const addHazardLayer = async (map) => {
     try {
-        const pinsData = await getPins();
+        const pinsData = await getHazards();
         const geojson = {
             type: "FeatureCollection",
             features: pinsData,
@@ -31,6 +31,6 @@ export const addPinLayer = async (map) => {
             },
         });
     } catch (error) {
-        console.error("Error fetching pins", error);
+        console.error("Error fetching Hazards", error);
     }
 };

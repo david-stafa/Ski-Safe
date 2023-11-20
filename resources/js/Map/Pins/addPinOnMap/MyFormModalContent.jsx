@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import mapboxgl, { Map } from "mapbox-gl";
-import { addPinLayer } from "../addPinLayer";
+import { addHazardLayer } from "../addHazardLayer";
 
 export let handleFetch = false;
 
@@ -55,7 +55,7 @@ export const MyFormModalContent = ({
                 markerOnMap = false;
                 handleFetch = true;
                 marker.remove();
-                addPinLayer(map);
+                addHazardLayer(map);
             } else {
                 const response = await axios.post(
                     `api/map-pins/edit/${details.id}`,
