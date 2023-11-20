@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const getPins = async () => {
     try {
-        const response = await axios.get("/api/map-pins");
+        const response = await axios.get("/api/hazard-pins");
         const data = response.data;
 
         const pins = data.map((item) => ({
