@@ -6,13 +6,7 @@ import "./myFormModalContent.scss";
 
 export let handleFetch = false;
 
-export const MyFormModalContent = ({
-    coordinates,
-    marker,
-    markerOnMap,
-    map,
-    details,
-}) => {
+export const MyFormModalContent = ({ coordinates, marker, map, details }) => {
     const [formData, setFormData] = useState({
         id: details?.id || null,
         title: details?.title || "",
@@ -21,6 +15,7 @@ export const MyFormModalContent = ({
         longitude: details?.longitude || coordinates[0],
         severity_id: details?.severity_id || 1,
         severity: details?.severtiy || 1,
+        type_id: details?.type_id || 1,
         slug: details?.slug || "",
         active: true,
     });
@@ -109,7 +104,7 @@ export const MyFormModalContent = ({
                     </div>
 
                     <div className="input-group">
-                        <label htmlFor="severity_id">Severity state</label>
+                        <label htmlFor="severity_id">Severity</label>
                         <select
                             name="severity_id"
                             id="severity_id"
@@ -117,9 +112,25 @@ export const MyFormModalContent = ({
                             onChange={handleChange}
                             className="input-field"
                         >
+                            <option value="1">Not Applicable</option>
                             <option value="2">Low</option>
                             <option value="3">Moderate</option>
                             <option value="4">High</option>
+                        </select>
+                    </div>
+
+                    <div className="input-group">
+                        <label htmlFor="type_id">Type</label>
+                        <select
+                            name="type_id"
+                            id="type_id"
+                            value={formData.type_id}
+                            onChange={handleChange}
+                            className="input-field"
+                        >
+                            <option value="1">Hazard</option>
+                            <option value="3">Lift</option>
+                            <option value="4">Powder Of Intrest</option>
                         </select>
                     </div>
 

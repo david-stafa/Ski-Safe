@@ -19,6 +19,7 @@ export default function ShowPopUp({ map }) {
         title: "",
         slug: "",
         severity: "",
+        type_id: null,
         description: "",
         id: "",
         images: "",
