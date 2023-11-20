@@ -81,6 +81,9 @@ export default function ProfilePictures() {
                     ))}
                 </tbody>
             </table>
+            <Link to={"/admin"} className="back-button">
+                Go Back
+            </Link>
         </>
     );
 }

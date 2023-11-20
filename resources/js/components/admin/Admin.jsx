@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import UserContext from "../../context/UserContext";
-import "./Admin.scss";
+import "./admin.scss";
 import ProfilePictures from "./ProfilePictures";
 import { Link } from "react-router-dom";
 
