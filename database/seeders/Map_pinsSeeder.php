@@ -20,7 +20,7 @@ class Map_pinsSeeder extends Seeder
                 'latitude' => 60.635321,
                 // 52.16 with aberration 0.06
                 'title' => 'Gondola Gully',
-                'severity_id' => 0,
+                'severity_id' => 1,
                 "type_id" => 2,
                 // number 1, 2, or 3
                 'slug' => 'Gondola Gully',
@@ -34,7 +34,7 @@ class Map_pinsSeeder extends Seeder
                 'latitude' => 60.581963,
                 // 52.16 with aberration 0.06
                 'title' => 'Crevasse Chair',
-                'severity_id' => 0,
+                'severity_id' => 1,
                 "type_id" => 2,
                 // number 1, 2, or 3
                 'slug' => 'Crevasse Chair',
@@ -48,7 +48,7 @@ class Map_pinsSeeder extends Seeder
                 'latitude' => 60.631233,
                 // 52.16 with aberration 0.06
                 'title' => 'Logans Lift',
-                'severity_id' => 0,
+                'severity_id' => 1,
                 "type_id" => 2,
                 // number 1, 2, or 3
                 'slug' => 'Logans Lift',
@@ -62,7 +62,7 @@ class Map_pinsSeeder extends Seeder
                 'latitude' => 60.631233,
                 // 52.16 with aberration 0.06
                 'title' => 'Relaxing Ridge',
-                'severity_id' => 0,
+                'severity_id' => 1,
                 "type_id" => 2,
                 // number 1, 2, or 3
                 'slug' => 'Relaxing Ridge',
@@ -76,7 +76,7 @@ class Map_pinsSeeder extends Seeder
                 'latitude' => 60.637602,
                 // 52.16 with aberration 0.06
                 'title' => 'Turbulent T-Bars',
-                'severity_id' => 0,
+                'severity_id' => 1,
                 "type_id" => 2,
                 // number 1, 2, or 3
                 'slug' => 'Turbulent T-Bars',
@@ -90,7 +90,7 @@ class Map_pinsSeeder extends Seeder
                 'latitude' => 60.568208,
                 // 52.16 with aberration 0.06
                 'title' => 'Icy Surface',
-                'severity_id' => 1,
+                'severity_id' => 2,
                 "type_id" => 1,
                 // number 1, 2, or 3
                 'slug' => 'Caution when exiting the chairlift',
@@ -104,7 +104,7 @@ class Map_pinsSeeder extends Seeder
                 'latitude' => 60.560101,
                 // 52.16 with aberration 0.06
                 'title' => 'Avalance Hazard',
-                'severity_id' => 3,
+                'severity_id' => 4,
                 "type_id" => 1,
                 // number 1, 2, or 3
                 'slug' => 'Serious Avalanche Danger',
@@ -118,7 +118,7 @@ class Map_pinsSeeder extends Seeder
                 'latitude' => 60.593593,
                 // 52.16 with aberration 0.06
                 'title' => 'Large Moulin',
-                'severity_id' => 3,
+                'severity_id' => 4,
                 "type_id" => 1,
                 // number 1, 2, or 3
                 'slug' => 'Large Moulin',
@@ -133,7 +133,7 @@ class Map_pinsSeeder extends Seeder
                 'latitude' => 60.619015,
                 // 52.16 with aberration 0.06
                 'title' => 'Ski School',
-                'severity_id' => 1,
+                'severity_id' => 2,
                 "type_id" => 1,
                 // number 1, 2, or 3
                 'slug' => 'SLOW: Ski School in progress',
@@ -147,7 +147,7 @@ class Map_pinsSeeder extends Seeder
                 'latitude' => 60.573097,
                 // 52.16 with aberration 0.06
                 'title' => 'Cornice',
-                'severity_id' => 3,
+                'severity_id' => 4,
                 "type_id" => 1,
                 // number 1, 2, or 3
                 'slug' => 'Out of bounds: Large Cornice',
@@ -162,7 +162,7 @@ class Map_pinsSeeder extends Seeder
                 // 52.16 with aberration 0.06
                 'title' => 'Accident',
                 "type_id" => 1,
-                'severity_id' => 2,
+                'severity_id' => 3,
                 // number 1, 2, or 3
                 'slug' => 'SLOW: Accident',
                 'description' => 'Please slow down, are partollers are responding to an accident at this location',
@@ -176,7 +176,7 @@ class Map_pinsSeeder extends Seeder
                 // 52.16 with aberration 0.06
                 'title' => 'Avalanche Debris',
 
-                'severity_id' => 2,
+                'severity_id' => 3,
                 "type_id" => 1,
                 // number 1, 2, or 3
                 'slug' => 'Slow: Debis in the area',

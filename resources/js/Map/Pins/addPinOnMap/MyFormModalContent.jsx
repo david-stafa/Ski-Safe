@@ -14,15 +14,29 @@ export const MyFormModalContent = ({
     details,
 }) => {
     const [formData, setFormData] = useState({
-        title: "" || details.title,
-        description: "" || details.description,
-        latitude: lat || details.latitude,
-        longitude: lng || details.longitude,
-        severity_id: 0 || details.severity_id,
-        severity: "" || details.severity,
-        slug: "" || details.slug,
+        id: details?.id || null,
+        title: details?.title || "",
+        description: details?.description || "",
+        latitude: details?.latitude || lat,
+        longitude: details?.longitude || lng,
+        severity_id: details?.severity_id || 1,
+        severity: details?.severtiy || 1,
+        slug: details?.slug || "",
         active: true,
     });
+
+    // details &&
+    //     setFormData({
+    //         id: details.id,
+    //         title: details.title,
+    //         description: details.description,
+    //         latitude: details.latitude,
+    //         longitude: details.longitude,
+    //         severity_id: details.severity_id,
+    //         severity: details.severity,
+    //         slug: details.slug,
+    //         active: true,
+    //     });
 
     const [toggleContent, setToggleContent] = useState(true);
 
@@ -32,9 +46,9 @@ export const MyFormModalContent = ({
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData);
+        console.log(details);
         try {
-            if (!details.id) {
+            if (!details) {
                 const response = await axios.post("/api/pin/store", formData);
                 console.log("Your pin was successfully created", response.data);
                 setToggleContent(false);
@@ -66,7 +80,7 @@ export const MyFormModalContent = ({
             {toggleContent ? (
                 <form action="" onSubmit={handleSubmit}>
                     <div className="register-header">
-                        {details.id ? (
+                        {details?.id ? (
                             <h2>Edit a pin number {details.id}</h2>
                         ) : (
                             <h2>Create a pin</h2>
@@ -115,9 +129,9 @@ export const MyFormModalContent = ({
                             onChange={handleChange}
                             className="input-field"
                         >
-                            <option value="1">Low</option>
-                            <option value="2">Moderate</option>
-                            <option value="3">High</option>
+                            <option value="2">Low</option>
+                            <option value="3">Moderate</option>
+                            <option value="4">High</option>
                         </select>
                     </div>
 
@@ -127,7 +141,7 @@ export const MyFormModalContent = ({
                 </form>
             ) : (
                 <div>
-                    {details.id ? (
+                    {details?.id ? (
                         <h1>You have succesfully updated this pin</h1>
                     ) : (
                         <h1>You have succesfully submited new pin</h1>
