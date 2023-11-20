@@ -3,10 +3,13 @@ import { X as Close } from "react-feather";
 
 import "./Filters.scss";
 
-export default function Filters({ onClose }) {
-    const [filterOne, setFilterOne] = useState(false);
-    const [filterTwo, setFilterTwo] = useState(false);
-
+export default function Filters({
+    onClose,
+    filterHazards,
+    setFilterHazards,
+    filterLifts,
+    setFilterLifts,
+}) {
     return (
         <div className="filters-container">
             <div className="filters-header">
@@ -20,20 +23,20 @@ export default function Filters({ onClose }) {
                 <label>
                     <input
                         type="checkbox"
-                        checked={filterOne}
-                        onChange={() => setFilterOne(!filterOne)}
+                        checked={filterHazards}
+                        onChange={() => setFilterHazards(!filterHazards)}
                     />
                     <span className="slider"></span>
                 </label>
-                <p>Change Joe</p>
+                <p>Hazards</p>
             </div>
 
             <div className="filter-option">
                 <label>
                     <input
                         type="checkbox"
-                        checked={filterTwo}
-                        onChange={() => setFilterTwo(!filterTwo)}
+                        checked={filterLifts}
+                        onChange={() => setFilterLifts(!filterLifts)}
                     />
                     <span className="slider"></span>
                 </label>

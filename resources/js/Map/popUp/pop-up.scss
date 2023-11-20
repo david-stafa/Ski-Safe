@@ -1,6 +1,6 @@
 .pop-up {
     &__title {
-        color: #333;
+        color: #f9f8f8;
         font-size: 16px;
     }
     &__slug {
@@ -9,7 +9,7 @@
     }
     &__severity {
         color: #f00;
-        font-size: 14px;
+        font-size: 20px;
     }
 
     button {
@@ -91,4 +91,79 @@
 .more-details-button:hover {
     background-color: #007bff;
     color: #fff;
+}
+.register-header {
+    color: white;
+}
+.input-group {
+    color: white;
+}
+.mainBox {
+    background-color: rgba(97, 176, 210, 0.443);
+    padding: 20%;
+    text-align: center; /* Center the content */
+    width: auto;
+    color: white;
+}
+
+.mainBox-h3 {
+    font-size: 24px;
+    text-align: center;
+    color: white;
+    border-bottom: 2px solid rgb(246, 241, 241);
+    padding-bottom: 5px;
+}
+
+.severity-tite {
+    /* Fix typo in class name */
+    color: rgb(243, 243, 243);
+    font-weight: bold;
+}
+
+.image {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px; /* Add margin to separate image from text */
+}
+
+.delete-button,
+.button-edit {
+    background-color: #f00; /* Red for delete button */
+    color: white;
+    font-family: "Segoe UI";
+    border-radius: 15px;
+    width: 120px; /* Adjust width to your preference */
+    padding: 10px; /* Adjust padding to your preference */
+    margin: 0 10px; /* Add margin between buttons */
+}
+
+.button-edit {
+    background-color: rgba(0, 0, 255, 0.652); /* Blue for edit button */
+}
+
+.buttons-delete-edit {
+    margin-top: 20px; /* Add margin at the top */
+}
+
+/* Additional styling for better appearance */
+.buttons-delete-edit button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.buttons-delete-edit button:hover {
+    opacity: 0.8; /* Add a slight opacity on hover */
+}
+.dialog {
+    background-color: darken(rgba(97, 176, 210, 0.563), 10%);
+    width: 100%;
+}
+.success-message {
+    h1 {
+        color: rgba(253, 252, 252, 0.843);
+    }
+}
+.input-field {
+    color: blue;
 }

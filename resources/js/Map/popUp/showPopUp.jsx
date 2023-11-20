@@ -1,14 +1,16 @@
 import mapboxgl from "mapbox-gl";
 import "./pop-up.scss";
 import { DeletePin } from "../Pins/DeletePin";
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useContext } from "react";
 import Modal from "../../components/Modal/Modal";
 import useToggle from "../../components/Modal/use-toggle";
 import PopUpContent from "./popUpContent";
 import { createRoot } from "react-dom/client";
 import { MyFormModalContent } from "../Pins/addPinOnMap/MyFormModalContent";
+import UserContext from "../../context/UserContext";
 
 export default function ShowPopUp({ map }) {
+    const { user, setUser } = useContext(UserContext);
     const [isModalOpen, toggleIsModalOpen] = useToggle(false);
     const [isMyFormModalOpen, toggleIsMyFormModalOpen] = useToggle(false);
     const [details, setDetails] = useState({
@@ -117,10 +119,12 @@ export default function ShowPopUp({ map }) {
         <>
             {isModalOpen && (
                 <Modal handleDismiss={toggleIsModalOpen}>
-                    <div>
-                        <h3>Event: {details.title}</h3>
+                    <div className="mainBox">
+                        <h3 className="mainBox-h3">Event: {details.title}</h3>
+
                         <p className="pop-up__severity">
-                            Severity: {details.severity}
+                            <span className="severity-tite">Severity:</span>{" "}
+                            <span>{details.severity}</span>
                         </p>
                         <h4>Basic Description:</h4>
                         <p>{details.slug}</p>

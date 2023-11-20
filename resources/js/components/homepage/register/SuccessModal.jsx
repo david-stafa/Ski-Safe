@@ -1,6 +1,7 @@
 import React from "react";
 import Modal from "react-modal";
 import "./successModal.scss";
+import { VideoOff } from "react-feather";
 
 const SuccessModal = ({ isOpen, onRequestClose }) => {
     return (
@@ -20,7 +21,7 @@ const SuccessModal = ({ isOpen, onRequestClose }) => {
                 </div>
                 <video autoPlay loop muted className="video-background">
                     <source
-                        src="https://v.ftcdn.net/01/76/78/49/700_F_176784935_0AUwdfhNU4w4cneBZbLKuPEHAVPHVdbL.mp4"
+                        src="https://static.videezy.com/system/resources/previews/000/004/927/original/Snowflakes_Falling_Motion_Background_4K.mp4"
                         type="video/mp4"
                     />
                 </video>

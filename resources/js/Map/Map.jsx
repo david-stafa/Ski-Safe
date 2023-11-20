@@ -12,7 +12,7 @@ import AddPinOnMap from "./Pins/addPinOnMap/addPinOnMap";
 
 mapboxgl.accessToken = mapBoxToken;
 
-export default function Map() {
+export default function Map({ filterHazards, filterLifts }) {
     const [mapState, setMapState] = useState(null);
     const mapContainer = useRef();
     const { user, setUser } = useContext(UserContext);
@@ -46,8 +46,34 @@ export default function Map() {
             // map.setLayoutProperty("lifts", "visibility", "visible");
             // map.setLayoutProperty("points", "visibility", "visible");
             setMapState(map);
+
         });
     }, [user]);
+
+    // filters below
+    const updateLayerVisibility = () => {
+        if (mapState) {
+            if (mapState.getLayer("points")) {
+                mapState.setLayoutProperty(
+                    "points",
+                    "visibility",
+                    filterHazards ? "visible" : "none"
+                );
+            }
+            if (mapState.getLayer("lifts")) {
+                mapState.setLayoutProperty(
+                    "lifts",
+                    "visibility",
+                    filterLifts ? "visible" : "none"
+                );
+            }
+        }
+    };
+
+    useEffect(() => {
+        updateLayerVisibility();
+    }, [filterHazards, filterLifts, mapState]);
+    // filters above
 
     return (
         <>
