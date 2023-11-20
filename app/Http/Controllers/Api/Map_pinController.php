@@ -19,6 +19,13 @@ class Map_pinController extends Controller
         return $map_pins;
     }
 
+    public function getHazards()
+    {
+        $map_pins = Map_pin::with('severity')->where('type_id', 1)->get();
+
+        return $map_pins;
+    }
+
     public function edit(Request $request, $id)
     {
 
