@@ -38,21 +38,7 @@ export default function Map() {
                 },
             });
             map.doubleClickZoom.disable();
-            // map.rotateTo(190, { duration: 3000 });
-            // map.panTo(
-            //     [-140.404811, 60.568208],
-            //     { animation: true },
-            //     { duration: 5000 }
-            // );
-            // map.flyTo({
-            //     center: [-140.404811, 60.568208],
-            //     zoom: 11.5,
-            //     speed: 0.7,
-            //     curve: 1,
-            //     easing(t) {
-            //         return t;
-            //     },
-            // });
+
             map.rotateTo(190, { duration: 5000 });
             addHazardLayer(map);
             addLiftLayer(map);
@@ -60,10 +46,6 @@ export default function Map() {
             // map.setLayoutProperty("lifts", "visibility", "visible");
             // map.setLayoutProperty("points", "visibility", "visible");
             setMapState(map);
-
-            // if (user?.role === "admin") {
-            //     pinOnMap(map);
-            // }
         });
     }, [user]);
 
