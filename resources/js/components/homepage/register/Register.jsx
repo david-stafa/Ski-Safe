@@ -74,7 +74,7 @@ export default function Register(props) {
                 onSubmit={handleSubmit}
                 className="register-form"
             >
-                <div className="input-group">
+                <div className="input-group-register">
                     <label htmlFor="name">Username:</label>
                     <br />
                     <input
@@ -83,11 +83,11 @@ export default function Register(props) {
                         name="name"
                         value={values.name}
                         onChange={handleChange}
-                        className="input-field"
+                        className="input-field-register"
                     />
                 </div>
 
-                <div className="input-group">
+                <div className="input-group-register">
                     <label htmlFor="email">Email:</label>
                     <br />
                     <input
@@ -96,7 +96,7 @@ export default function Register(props) {
                         name="email"
                         value={values.email}
                         onChange={handleChange}
-                        className="input-field"
+                        className="input-field-register"
                     />
                     <br />
                     {errors.email ? (
@@ -112,7 +112,7 @@ export default function Register(props) {
                     )}
                 </div>
 
-                <div className="input-group">
+                <div className="input-group-register">
                     <label htmlFor="password">Password:</label>
                     <br />
                     <input
@@ -121,7 +121,7 @@ export default function Register(props) {
                         name="password"
                         value={values.password}
                         onChange={handleChange}
-                        className="input-field"
+                        className="input-field-register"
                     />
                     <br />
                     {errors.password ? (
@@ -137,7 +137,7 @@ export default function Register(props) {
                     )}
                 </div>
 
-                <div className="input-group">
+                <div className="input-group-register">
                     <label htmlFor="confirmpassword">Confirm Password:</label>
                     <br />
                     <input
@@ -146,7 +146,7 @@ export default function Register(props) {
                         name="password_confirmation"
                         value={values.password_confirmation}
                         onChange={handleChange}
-                        className="input-field"
+                        className="input-field-register"
                     />
 
                     <br />

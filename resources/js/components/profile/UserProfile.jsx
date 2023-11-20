@@ -105,7 +105,7 @@ export default function UserProfile() {
                     <div className="user-details">
                         <p>Name: {userData.name}</p>
                         <p>Email: {userData.email}</p>
-                        <button
+                        <button 
                             onClick={() => setIsEditMode(true)}
                             className="edit-button"
                         >
