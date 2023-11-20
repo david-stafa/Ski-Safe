@@ -1,0 +1,69 @@
+$nav-text-color: #333;
+$edit-color: #28a745;
+$save-color: #007bff;
+
+.user-profile {
+    .profile-header {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+            "Helvetica Neue", Arial, sans-serif;
+        text-align: center;
+        color: $nav-text-color;
+        margin-bottom: 20px;
+    }
+
+    .edit-form,
+    .user-details {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+
+            label {
+                font-weight: bold;
+                color: $nav-text-color;
+            }
+
+            .form-input {
+                padding: 5px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+        }
+
+        .save-button,
+        .edit-button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+
+            &:hover {
+                opacity: 0.9;
+            }
+        }
+
+        .save-button {
+            background-color: $save-color;
+
+            &:hover {
+                background-color: darken($save-color, 10%);
+            }
+        }
+
+        .edit-button {
+            background-color: $edit-color;
+
+            &:hover {
+                background-color: darken($edit-color, 10%);
+            }
+        }
+    }
+}
