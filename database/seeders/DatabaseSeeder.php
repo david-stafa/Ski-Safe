@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(SeveritySeeder::class);
         $this->call(Map_pinsSeeder::class);
+        $this->call(TypeSeeder::class);
     }
 
 }

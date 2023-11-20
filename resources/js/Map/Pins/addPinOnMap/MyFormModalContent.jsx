@@ -11,23 +11,32 @@ export const MyFormModalContent = ({
     marker,
     markerOnMap,
     map,
-    id,
-    title,
-    slug,
-    description,
-    existingLat,
-    existingLng,
+    details,
 }) => {
     const [formData, setFormData] = useState({
-        id: id,
-        title: title,
-        description: description,
-        latitude: lat || existingLat,
-        longitude: lng || existingLng,
-        severity_id: 1,
-        slug: slug,
+        id: details?.id || null,
+        title: details?.title || "",
+        description: details?.description || "",
+        latitude: details?.latitude || lat,
+        longitude: details?.longitude || lng,
+        severity_id: details?.severity_id || 1,
+        severity: details?.severtiy || 1,
+        slug: details?.slug || "",
         active: true,
     });
+
+    // details &&
+    //     setFormData({
+    //         id: details.id,
+    //         title: details.title,
+    //         description: details.description,
+    //         latitude: details.latitude,
+    //         longitude: details.longitude,
+    //         severity_id: details.severity_id,
+    //         severity: details.severity,
+    //         slug: details.slug,
+    //         active: true,
+    //     });
 
     const [toggleContent, setToggleContent] = useState(true);
 
@@ -37,9 +46,9 @@ export const MyFormModalContent = ({
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData);
+        console.log(details);
         try {
-            if (!id) {
+            if (!details) {
                 const response = await axios.post("/api/pin/store", formData);
                 console.log("Your pin was successfully created", response.data);
                 setToggleContent(false);
@@ -48,7 +57,10 @@ export const MyFormModalContent = ({
                 marker.remove();
                 addPinLayer(map);
             } else {
-                const response = await axios.post(`api/map-pins/edit/${id}`);
+                const response = await axios.post(
+                    `api/map-pins/edit/${details.id}`,
+                    formData
+                );
                 console.log("Your pin was successfully edited", response.data);
                 setToggleContent(false);
             }
@@ -68,8 +80,8 @@ export const MyFormModalContent = ({
             {toggleContent ? (
                 <form action="" onSubmit={handleSubmit}>
                     <div className="register-header">
-                        {id ? (
-                            <h2>Edit a pin number {id}</h2>
+                        {details?.id ? (
+                            <h2>Edit a pin number {details.id}</h2>
                         ) : (
                             <h2>Create a pin</h2>
                         )}
@@ -117,9 +129,9 @@ export const MyFormModalContent = ({
                             onChange={handleChange}
                             className="input-field"
                         >
-                            <option value="1">Low</option>
-                            <option value="2">Moderate</option>
-                            <option value="3">High</option>
+                            <option value="2">Low</option>
+                            <option value="3">Moderate</option>
+                            <option value="4">High</option>
                         </select>
                     </div>
 
@@ -129,7 +141,7 @@ export const MyFormModalContent = ({
                 </form>
             ) : (
                 <div>
-                    {id ? (
+                    {details?.id ? (
                         <h1>You have succesfully updated this pin</h1>
                     ) : (
                         <h1>You have succesfully submited new pin</h1>

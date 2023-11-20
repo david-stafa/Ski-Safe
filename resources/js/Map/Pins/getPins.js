@@ -16,6 +16,7 @@ export const getPins = async () => {
                 id: item.id,
                 title: item.title,
                 severity: item.severity.name,
+                severity_id: item.severity_id,
                 slug: item.slug,
                 description: item.description,
                 type_id: item.type_id,
@@ -25,10 +26,11 @@ export const getPins = async () => {
                 active: item.active,
             },
         }));
-
+        console.log(pins);
         return pins;
     } catch (error) {
         console.error("Error fetching pins:", error);
+        console.log(pins);
         return [];
     }
 };

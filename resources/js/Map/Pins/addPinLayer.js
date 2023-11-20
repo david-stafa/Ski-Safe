@@ -15,10 +15,10 @@ export const addPinLayer = async (map) => {
                   type: "geojson",
                   data: geojson,
               });
-        
+
         // It deletes the current layer before refresh - to prevend having duplicate layers
-        if (map.getLayer('points')) {
-            map.removeLayer('points')
+        if (map.getLayer("points")) {
+            map.removeLayer("points");
         }
 
         map.addLayer({
