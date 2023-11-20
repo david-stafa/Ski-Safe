@@ -13,12 +13,10 @@ import UserContext from "../context/UserContext";
 
 mapboxgl.accessToken = mapBoxToken;
 
-export default function Map() {
+export default function Map({ filterHazards, filterLifts }) {
     const [mapState, setMapState] = useState(null);
     const mapContainer = useRef();
     const { user, setUser } = useContext(UserContext);
-
-
 
     useEffect(() => {
         // as the page mounts this renders our personalised map style (2D)
@@ -67,9 +65,33 @@ export default function Map() {
             if (user?.role === "admin") {
                 pinOnMap(map);
             }
-            });
-
+        });
     }, [user]);
+
+    // filters below
+    const updateLayerVisibility = () => {
+        if (mapState) {
+            if (mapState.getLayer("points")) {
+                mapState.setLayoutProperty(
+                    "points",
+                    "visibility",
+                    filterHazards ? "visible" : "none"
+                );
+            }
+            if (mapState.getLayer("lifts")) {
+                mapState.setLayoutProperty(
+                    "lifts",
+                    "visibility",
+                    filterLifts ? "visible" : "none"
+                );
+            }
+        }
+    };
+
+    useEffect(() => {
+        updateLayerVisibility();
+    }, [filterHazards, filterLifts, mapState]);
+    // filters above
 
     return (
         <>
