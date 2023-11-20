@@ -44,29 +44,29 @@ export default function AddPinOnMap({ map }) {
                 .setLngLat([e.lngLat.lng.toFixed(6), e.lngLat.lat.toFixed(6)])
                 .addTo(map);
 
-            console.log(popup);
+            setTimeout(() => {
+                if (!markerOnMap) {
+                    popup.addTo(map);
+                }
+            }, 500);
 
             // Enables to put pin one one click, on second click deletes it
-            if (markerOnMap) {
-                marker.remove();
-                markerOnMap = false;
-            } else {
-                marker
-                    .setLngLat([e.lngLat.lng, e.lngLat.lat])
-                    .setPopup(popup)
-                    .addTo(map)
-                    .togglePopup();
-                markerOnMap = true;
-            }
+            // if (markerOnMap) {
+            //     marker.remove();
+            //     markerOnMap = false;
         },
         [map, coordinates]
     );
 
     useEffect(() => {
+        map.on("click");
+    });
+
+    useEffect(() => {
         map.on("dblclick", handleDblClick);
         console.log(coordinates);
         return () => {
-            map.off("click", handleDblClick);
+            map.off("dblclick", handleDblClick);
         };
     }, [map, coordinates, handleDblClick]);
 
