@@ -16,10 +16,15 @@ export default function MainContent() {
         setActiveItem(null);
     };
 
+    // Filters below
+    const [filterHazards, setFilterHazards] = useState(true);
+    const [filterLifts, setFilterLifts] = useState(true);
+    // Filters above
+
     return (
         <>
             <div className="main-content">
-                <Map />
+                <Map filterHazards={filterHazards} filterLifts={filterLifts} />
                 <SideNavigation
                     onItemSelect={handleItemSelect}
                     setNavExpanded={setNavExpanded}
@@ -30,6 +35,10 @@ export default function MainContent() {
                         activeItem={activeItem}
                         onClose={handleClose}
                         navExpanded={navExpanded}
+                        filterHazards={filterHazards}
+                        setFilterHazards={setFilterHazards}
+                        filterLifts={filterLifts}
+                        setFilterLifts={setFilterLifts}
                     />
                 )}
                 {/* <Weather /> */}
