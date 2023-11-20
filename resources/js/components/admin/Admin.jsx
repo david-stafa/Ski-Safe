@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import UserContext from "../../context/UserContext";
-import "./Admin.scss";
+import "./admin.scss";
 import ProfilePictures from "./ProfilePictures";
 import { Link } from "react-router-dom";
 
@@ -115,8 +115,12 @@ export default function Admin() {
                         ))}
                     </ul>
 
-                    <Link to={"/profilepictures"}>Check Pictures</Link>
-                    <Link to={"/contactusmessages"}>Check Messages</Link>
+                    <Link to={"/profilepictures"} className="admin-button">
+                        Check Pictures
+                    </Link>
+                    <Link to={"/contactusmessages"} className="admin-button">
+                        Check Messages
+                    </Link>
                 </div>
             ) : (
                 <h1>Access denied</h1>

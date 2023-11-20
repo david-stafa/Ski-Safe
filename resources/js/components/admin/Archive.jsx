@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { types } from "../homepage/contactUs/types";
+import { Link } from "react-router-dom";
 
 export default function Archive() {
     const [messages, setMessages] = useState([]);
@@ -17,7 +18,7 @@ export default function Archive() {
     }, []);
     return (
         <div className="message-container">
-            <h1 className="message-header">Check messages from contact list</h1>
+            <h1 className="message-header">ARCHIVE OF MESSAGES</h1>
             <table className="message-table">
                 <thead className="table-header">
                     <tr>
@@ -47,6 +48,10 @@ export default function Archive() {
                     ))}
                 </tbody>
             </table>
+
+            <Link to={"/contactusmessages"} className="back-button">
+                Go Back
+            </Link>
         </div>
     );
 }

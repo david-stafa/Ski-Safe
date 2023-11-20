@@ -16,34 +16,38 @@ import Archive from "../admin/Archive";
 
 export default function Homepage() {
     return (
-        <>
+        <div className="homepage">
             <Navigation />
+            <main style={{ paddingTop: "60px" }}>
+                <Routes>
+                    <Route path="/" element={<MainContent />}></Route>
+                    <Route path="/about-us" element={<AboutUs />}></Route>
+                    <Route path="/contact-us" element={<ContactUs />}></Route>
+                    <Route path="/register" element={<Register />}></Route>
+                    <Route path="/log-in" element={<Login />}></Route>
+                    <Route path="/profile" element={<UserProfile />}></Route>
+                    <Route path="/admin" element={<Admin />}></Route>
+                    <Route
+                        path="/profilepictures"
+                        element={<ProfilePictures />}
+                    ></Route>
+                    <Route
+                        path={"/contactusmessages"}
+                        element={<CheckMessages />}
+                    ></Route>
 
-            <Routes>
-                <Route path="/" element={<MainContent />}></Route>
-                <Route path="/about-us" element={<AboutUs />}></Route>
-                <Route path="/contact-us" element={<ContactUs />}></Route>
-                <Route path="/register" element={<Register />}></Route>
-                <Route path="/log-in" element={<Login />}></Route>
-                <Route path="/profile" element={<UserProfile />}></Route>
-                <Route path="/admin" element={<Admin />}></Route>
-                <Route
-                    path="/profilepictures"
-                    element={<ProfilePictures />}
-                ></Route>
-                <Route
-                    path={"/contactusmessages"}
-                    element={<CheckMessages />}
-                ></Route>
-
-                <Route
-                    path="/editupload/:id/edit"
-                    element={<EditUpload />}
-                ></Route>
-                <Route path={"/contact/archive"} element={<Archive />}></Route>
-            </Routes>
+                    <Route
+                        path="/editupload/:id/edit"
+                        element={<EditUpload />}
+                    ></Route>
+                    <Route
+                        path={"/contact/archive"}
+                        element={<Archive />}
+                    ></Route>
+                </Routes>
+            </main>
 
             <Footer />
-        </>
+        </div>
     );
 }

@@ -1,36 +1,36 @@
-import { getPins } from "./getPins";
+import { getLifts } from "./getLifts";
 
-export const addPinLayer = async (map) => {
+export const addLiftLayer = async (map) => {
     try {
-        const pinsData = await getPins();
+        const pinsData = await getLifts();
         const geojson = {
             type: "FeatureCollection",
             features: pinsData,
         };
 
         // check if there is a source points, if there is update the data, otherwise set the source to points (first load)
-        map.getSource("points")
-            ? map.getSource("points").setData(geojson)
-            : map.addSource("points", {
+        map.getSource("lifts")
+            ? map.getSource("lifts").setData(geojson)
+            : map.addSource("lifts", {
                   type: "geojson",
                   data: geojson,
               });
-        
+
         // It deletes the current layer before refresh - to prevend having duplicate layers
-        if (map.getLayer('points')) {
-            map.removeLayer('points')
+        if (map.getLayer("lifts")) {
+            map.removeLayer("lifts");
         }
 
         map.addLayer({
-            id: "points",
+            id: "lifts",
             type: "symbol",
-            source: "points",
+            source: "lifts",
             layout: {
-                "icon-image": "exclamation",
-                "icon-size": 0.3,
+                "icon-image": "lift",
+                "icon-size": 0.15,
             },
         });
     } catch (error) {
-        console.error("Error fetching pins", error);
+        console.error("Error fetching lifts", error);
     }
 };

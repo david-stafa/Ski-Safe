@@ -1,6 +1,5 @@
 import mapboxgl from "mapbox-gl";
 import "./pop-up.scss";
-import { getPins } from "../Pins/getPins";
 import { pinOnMap } from "../Pins/addPinOnMap/addPinOnMap";
 import { DeletePin } from "../Pins/DeletePin";
 import React, { useEffect, useState, useCallback, useContext } from "react";
@@ -14,6 +13,7 @@ import UserContext from "../../context/UserContext";
 export default function ShowPopUp({ map }) {
     const { user, setUser } = useContext(UserContext);
     const [isModalOpen, toggleIsModalOpen] = useToggle(false);
+    const [isMyFormModalOpen, toggleIsMyFormModalOpen] = useToggle(false);
     const [details, setDetails] = useState({
         longitude: null,
         latitude: null,
@@ -27,6 +27,10 @@ export default function ShowPopUp({ map }) {
     const handleDeleteClick = () => {
         DeletePin(details.id);
     };
+    const handleEditClick = () => {
+        toggleIsModalOpen();
+        toggleIsMyFormModalOpen();
+    };
     const handleClick = useCallback(
         (e) => {
             const pinProperties = e.features[0].properties;
@@ -35,9 +39,13 @@ export default function ShowPopUp({ map }) {
 
             const newDetails = {
                 ...details,
+                longitude: coordinates[0],
+                latitude: coordinates[1],
                 title: pinProperties.title,
                 slug: pinProperties.slug,
                 severity: pinProperties.severity,
+                severity_id: pinProperties.severity_id,
+                type_id: pinProperties.type_id,
                 description: pinProperties.description,
                 id: pinProperties.id,
                 images: pinProperties.images,
@@ -80,6 +88,14 @@ export default function ShowPopUp({ map }) {
         };
     }, [map, details, handleClick]);
 
+    useEffect(() => {
+        map.on("click", "lifts", handleClick);
+        console.log(details);
+        return () => {
+            map.off("click", "points", handleClick);
+        };
+    }, [map, details, handleClick]);
+
     // syle the mouse as user enters points
     map.on("mouseenter", "points", () => {
         map.getCanvas().style.cursor = "pointer";
@@ -87,6 +103,16 @@ export default function ShowPopUp({ map }) {
 
     // remove mouse style as user leaves
     map.on("mouseleave", "points", () => {
+        map.getCanvas().style.cursor = "";
+    });
+
+    // syle the mouse as user enters points
+    map.on("mouseenter", "lifts", () => {
+        map.getCanvas().style.cursor = "pointer";
+    });
+
+    // remove mouse style as user leaves
+    map.on("mouseleave", "lifts", () => {
         map.getCanvas().style.cursor = "";
     });
 
@@ -109,20 +135,12 @@ export default function ShowPopUp({ map }) {
                             src={details.images}
                             alt="modalpin"
                         />
-                        <div className="buttons-delete-edit">
-                            {user && user.role === "admin" && (
-                                <button
-                                    className="delete-button"
-                                    onClick={handleDeleteClick}
-                                >
-                                    Delete
-                                </button>
-                            )}
-                            <button className="button-edit">Edit</button>
-                        </div>
+                        <button onClick={handleDeleteClick}>Delete</button>
+                        <button onClick={handleEditClick}>Edit</button>
                     </div>
                 </Modal>
             )}
+            {isMyFormModalOpen && <MyFormModalContent details={details} />}
         </>
     );
 }

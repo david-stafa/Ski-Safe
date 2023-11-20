@@ -9,6 +9,8 @@ class Map_pin extends Model
 {
     use HasFactory;
 
+    protected $table = "map_pins";
+
     public function severity()
     {
         return $this->belongsTo(Severity::class);

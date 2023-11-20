@@ -18,7 +18,6 @@ export default function UserProfile() {
     const [userData, setUserData] = useState({
         name: "",
         email: "",
-        // image: "", // Added 'image' to the state
     });
 
     // We populate the userData state when the user context changes
@@ -27,7 +26,6 @@ export default function UserProfile() {
             setUserData({
                 name: user.name,
                 email: user.email,
-                // image: user.image || "", // Initialize with the user's image URL if available
             });
         }
     }, [user]);

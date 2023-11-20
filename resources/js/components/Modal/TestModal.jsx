@@ -14,7 +14,7 @@ export default function TestModal() {
                     <p>It can be closed by X or by hitting overlay.</p>
                     <img
                         className="image"
-                        src="/images/Modal/Modal.png"
+                        src="/images/Modal/Modal.jpeg"
                         alt="modal"
                     />
                 </Modal>

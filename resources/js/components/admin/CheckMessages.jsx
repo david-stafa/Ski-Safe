@@ -42,7 +42,7 @@ export default function CheckMessages() {
 
     return (
         <div className="message-container">
-            <h1 className="message-header">Check messages from contact list</h1>
+            <h1 className="message-header">RECEIVED MESSAGES</h1>
             <table className="message-table">
                 <thead className="table-header">
                     <tr>
@@ -71,7 +71,7 @@ export default function CheckMessages() {
                             <td>{message.read ? "Read" : "Unread"}</td>
                             <td>
                                 <button onClick={() => markAsRead(message.id)}>
-                                    Solved
+                                    Solve
                                 </button>
                             </td>
                         </tr>
@@ -79,7 +79,13 @@ export default function CheckMessages() {
                 </tbody>
             </table>
 
-            <Link to={"/contact/archive"}>Archive</Link>
+            <Link to={"/contact/archive"} className="admin-button">
+                Archive
+            </Link>
+
+            <Link to={"/admin"} className="back-button">
+                Go Back
+            </Link>
         </div>
     );
 }

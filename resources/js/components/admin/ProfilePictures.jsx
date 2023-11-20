@@ -39,7 +39,7 @@ export default function ProfilePictures() {
 
     return (
         <>
-            <h1 className="pictures-header">PICTURES</h1>
+            <h1 className="pictures-header">WEB PICTURES</h1>
             <table className="pictures-table">
                 <thead>
                     <tr>
@@ -81,6 +81,9 @@ export default function ProfilePictures() {
                     ))}
                 </tbody>
             </table>
+            <Link to={"/admin"} className="back-button">
+                Go Back
+            </Link>
         </>
     );
 }

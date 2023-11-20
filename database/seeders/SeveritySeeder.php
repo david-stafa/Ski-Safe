@@ -17,16 +17,21 @@ class SeveritySeeder extends Seeder
             [
                 [
                     'id' => 1,
+                    'name' => 'Not Applicable',
+                    'description' => 'A pin with a type other than "hazard"'
+                ],
+                [
+                    'id' => 2,
                     'name' => 'Low',
                     'description' => 'A hazard with either a low consequence of very low likelyhood'
                 ],
                 [
-                    'id' => 2,
+                    'id' => 3,
                     'name' => 'Moderate',
                     'description' => 'A hazard with a significant likelyhood, but low consequence and the inverse'
                 ],
                 [
-                    'id' => 1,
+                    'id' => 4,
                     'name' => 'High',
                     'description' => 'A hazard with either a high consequence or a moderate consequence and high likeihood'
                 ],

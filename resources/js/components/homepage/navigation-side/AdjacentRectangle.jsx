@@ -8,7 +8,7 @@ export default function AdjacentRectangle({
     onClose,
     navExpanded,
 }) {
-    const leftPosition = navExpanded ? "350px" : "270px";
+    const leftPosition = navExpanded ? "372px" : "292px";
     return (
         <div className="adjacent-rectangle" style={{ left: leftPosition }}>
             {activeItem === "search" && <SearchBar onClose={onClose} />}

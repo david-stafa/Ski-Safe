@@ -1,17 +1,24 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useContext } from "react";
 import mapboxgl from "mapbox-gl";
 import "./map.scss";
 import { mapBoxToken } from "./helpers/map-helper";
-import { addPinLayer } from "./Pins/addPinLayer";
+import { addHazardLayer } from "./Pins/addHazardLayer";
 
 import { pinOnMap } from "./Pins/addPinOnMap/addPinOnMap";
 import ShowPopUp from "./popUp/showPopUp";
+import Weather from "../components/homepage/weather/Weather";
+
+import { addLiftLayer } from "./Pins/addLiftLayer";
+import UserContext from "../context/UserContext";
 
 mapboxgl.accessToken = mapBoxToken;
 
 export default function Map() {
     const [mapState, setMapState] = useState(null);
     const mapContainer = useRef();
+    const { user, setUser } = useContext(UserContext);
+
+
 
     useEffect(() => {
         // as the page mounts this renders our personalised map style (2D)
@@ -50,16 +57,25 @@ export default function Map() {
             //     },
             // });
             map.rotateTo(190, { duration: 5000 });
-            addPinLayer(map);
+            addHazardLayer(map);
+            addLiftLayer(map);
+
+            // map.setLayoutProperty("lifts", "visibility", "visible");
+            // map.setLayoutProperty("points", "visibility", "visible");
             setMapState(map);
 
-            pinOnMap(map);
-        });
-    }, []);
+            if (user?.role === "admin") {
+                pinOnMap(map);
+            }
+            });
+
+    }, [user]);
 
     return (
         <>
-            <div className="map" id="map" ref={mapContainer}></div>
+            <div className="map" id="map" ref={mapContainer}>
+                <Weather />
+            </div>
             {mapState && <ShowPopUp map={mapState} />}
         </>
     );
