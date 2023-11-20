@@ -1,80 +1,85 @@
 import mapboxgl from "mapbox-gl";
 import "./addPinOnMap.scss";
 import { MyFormModalContent } from "./MyFormModalContent";
-import React, { useContext, useEffect, useState } from "react";
-
-// modal 1/4
-// import React from "react";
+import AddPinContent from "./AddPinContent";
+import React, { useEffect, useState, useCallback } from "react";
 import { createRoot } from "react-dom/client";
-import Modal from "../../../components/Modal/Modal";
+import useToggle from "../../../components/Modal/use-toggle";
 
-export const pinOnMap = (map) => {
-    // modal 2/4
-    const handleToggleModal = (content) => {
-        const modalRoot = document.createElement("div");
-        document.body.appendChild(modalRoot);
-
-        const root = createRoot(modalRoot);
-
-        const handleDismiss = () => {
-            root.unmount();
-            modalRoot.remove();
-        };
-
-        root.render(
-            <Modal handleDismiss={handleDismiss} markerOnMap={markerOnMap}>
-                {content}
-            </Modal>
-        );
-    };
-
+export default function AddPinOnMap({ map }) {
+    const [isMyFormModalOpen, toggleIsMyFormModalOpen] = useToggle(false);
+    const [coordinates, setCoordinates] = useState([]);
     let markerOnMap = false;
-    //Look of the marker
+
     const marker = new mapboxgl.Marker({
         color: "#314ccd",
     });
 
     //on click function
-    map.on("dblclick", (event) => {
-        const popup = new mapboxgl.Popup().setHTML(
-            `
-                <div class="pop-up">
-                    <h3>[${event.lngLat.lng.toFixed(
-                        6
-                    )}, ${event.lngLat.lat.toFixed(6)}]</h3>
-                    <button id="create-form-button">Create a pin</button>
-                </div>
-            `
-        );
+    const handleDblClick = useCallback(
+        (e) => {
+            const newCoordinates = [
+                e.lngLat.lng.toFixed(6),
+                e.lngLat.lat.toFixed(6),
+            ];
 
-        // modal 4/4
-        setTimeout(() => {
-            document
-                .getElementById("create-form-button")
-                .addEventListener("click", () => {
-                    handleToggleModal(
-                        <MyFormModalContent
-                            lng={event.lngLat.lng.toFixed(6)}
-                            lat={event.lngLat.lat.toFixed(6)}
-                            marker={marker}
-                            markerOnMap={markerOnMap}
-                            map={map}
-                        />
-                    );
-                });
-        }, 0);
+            setCoordinates(newCoordinates);
 
-        // Enables to put pin one one click, on second click deletes it
-        if (markerOnMap) {
-            marker.remove();
-            markerOnMap = false;
-        } else {
-            marker
-                .setLngLat([event.lngLat.lng, event.lngLat.lat])
-                .setPopup(popup)
-                .addTo(map)
-                .togglePopup();
-            markerOnMap = true;
-        }
-    });
-};
+            const placeHolder = document.createElement("div");
+            placeHolder.className = "pop-up";
+            const popUpRoot = createRoot(placeHolder);
+            popUpRoot.render(
+                <AddPinContent
+                    isMyFormModalOpen={isMyFormModalOpen}
+                    toggleIsMyFormModalOpen={toggleIsMyFormModalOpen}
+                    coordinates={newCoordinates}
+                />
+            );
+
+            const popup = new mapboxgl.Popup({
+                closeButton: false,
+                closeOnClick: true,
+            })
+                .setDOMContent(placeHolder)
+                .setLngLat([e.lngLat.lng.toFixed(6), e.lngLat.lat.toFixed(6)])
+                .addTo(map);
+
+            console.log(popup);
+
+            // Enables to put pin one one click, on second click deletes it
+            if (markerOnMap) {
+                marker.remove();
+                markerOnMap = false;
+            } else {
+                marker
+                    .setLngLat([e.lngLat.lng, e.lngLat.lat])
+                    .setPopup(popup)
+                    .addTo(map)
+                    .togglePopup();
+                markerOnMap = true;
+            }
+        },
+        [map, coordinates]
+    );
+
+    useEffect(() => {
+        map.on("dblclick", handleDblClick);
+        console.log(coordinates);
+        return () => {
+            map.off("click", handleDblClick);
+        };
+    }, [map, coordinates, handleDblClick]);
+
+    return (
+        <>
+            {isMyFormModalOpen && (
+                <MyFormModalContent
+                    coordinates={coordinates}
+                    marker={marker}
+                    markerOnMap={markerOnMap}
+                    map={map}
+                />
+            )}
+        </>
+    );
+}
