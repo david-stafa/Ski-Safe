@@ -42,7 +42,8 @@ export default function PopUpContent({
 
             {details.type_id === 2 && (
                 <>
-                    <h2>Waiting Time</h2>
+                    <h1>{details.title}</h1>
+                    <h4>Waiting Time</h4>
                     <h2>{waitingTime} min</h2>
 
                     <button onClick={handleIncreaseClick}>+</button>
