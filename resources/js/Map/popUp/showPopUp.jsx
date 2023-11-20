@@ -134,8 +134,23 @@ export default function ShowPopUp({ map }) {
                             src={details.images}
                             alt="modalpin"
                         />
-                        <button onClick={handleDeleteClick}>Delete</button>
-                        <button onClick={handleEditClick}>Edit</button>
+
+                        {user && user.role === "admin" && (
+                            <>
+                                <button
+                                    id="delete-button-pins-modal"
+                                    onClick={handleDeleteClick}
+                                >
+                                    Delete
+                                </button>
+                                <button
+                                    id="edit-button-pins-modal"
+                                    onClick={handleEditClick}
+                                >
+                                    Edit
+                                </button>
+                            </>
+                        )}
                     </div>
                 </Modal>
             )}
