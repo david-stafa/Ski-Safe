@@ -6,7 +6,7 @@ import "./myFormModalContent.scss";
 
 export let handleFetch = false;
 
-export const MyFormModalContent = ({ coordinates, marker, map, details }) => {
+export const MyFormModalContent = ({ coordinates, map, details }) => {
     const [formData, setFormData] = useState({
         id: details?.id || null,
         title: details?.title || "",
@@ -23,20 +23,24 @@ export const MyFormModalContent = ({ coordinates, marker, map, details }) => {
     const [toggleContent, setToggleContent] = useState(true);
 
     const handleChange = (e) => {
+        if (e.target.name === "type_id" && e.target.value === "") {
+            return;
+        }
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(details);
+        if (formData.type_id === null) {
+            alert("Please select a type");
+            return;
+        }
         try {
             if (!details) {
                 const response = await axios.post("/api/pin/store", formData);
                 console.log("Your pin was successfully created", response.data);
                 setToggleContent(false);
-                markerOnMap = false;
                 handleFetch = true;
-                marker.remove();
                 addHazardLayer(map);
             } else {
                 const response = await axios.post(
@@ -128,9 +132,10 @@ export const MyFormModalContent = ({ coordinates, marker, map, details }) => {
                             onChange={handleChange}
                             className="input-field"
                         >
+                            <option value="">Please Select</option>
                             <option value="1">Hazard</option>
-                            <option value="3">Lift</option>
-                            <option value="4">Powder Of Intrest</option>
+                            <option value="2">Lift</option>
+                            <option value="3">Powder Of Intrest</option>
                         </select>
                     </div>
 

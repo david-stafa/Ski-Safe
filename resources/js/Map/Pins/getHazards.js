@@ -26,11 +26,9 @@ export const getHazards = async () => {
                 active: item.active,
             },
         }));
-        console.log(pins);
         return pins;
     } catch (error) {
         console.error("Error fetching pins:", error);
-        console.log(pins);
         return [];
     }
 };
