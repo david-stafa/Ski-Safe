@@ -26,6 +26,9 @@ $nav-logo-size: 36px;
     padding: 10px 20px;
     transition: background-color 0.3s;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    height: 60px;
+    max-height: 60px;
+    padding: 0 1.5rem;
 
     .logo {
         height: $nav-logo-size;
@@ -48,7 +51,6 @@ $nav-logo-size: 36px;
             .login {
                 display: flex;
                 align-items: center;
-                gap: 10px;
 
                 .profile-picture {
                     width: 40px;
@@ -109,6 +111,7 @@ $nav-logo-size: 36px;
 #anchor {
     padding: 0;
     background-color: #f8f8f7;
+    margin: 0 0 0 5px;
 }
 
 body {

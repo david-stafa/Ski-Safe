@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { types } from "../homepage/contactUs/types";
+import { Link } from "react-router-dom";
 
 export default function Archive() {
     const [messages, setMessages] = useState([]);
@@ -47,6 +48,10 @@ export default function Archive() {
                     ))}
                 </tbody>
             </table>
+
+            <Link to={"/contactusmessages"} className="back-button">
+                Go Back
+            </Link>
         </div>
     );
 }

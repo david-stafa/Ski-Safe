@@ -70,8 +70,8 @@ export default function Navigation() {
                 <div className="nav">
                     <div className="nav-links">
                         <Link to={"/"}>Home</Link>
-                        <Link to={"/about-us"}>About us</Link>
-                        <Link to={"/contact-us"}>Contact us</Link>
+                        <Link to={"/about-us"}>About</Link>
+                        <Link to={"/contact-us"}>Contact</Link>
                         {user && <Link to={"/profile"}>Profile</Link>}
                         {user && user.role === "admin" && (
                             <Link to={"/admin"}>Admin</Link>
@@ -86,9 +86,9 @@ export default function Navigation() {
                         ) : (
                             <div className="login">
                                 <span className="login-welcome">
-                                    Welcome{" "}
+                                    Hello
                                     <span className="login-welcome-name">
-                                        {user.name}
+                                        {user.name}!
                                     </span>
                                 </span>
                                 <Link to={"/profile"} id="anchor">

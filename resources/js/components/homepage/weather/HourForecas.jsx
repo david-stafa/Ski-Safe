@@ -24,7 +24,5 @@ export default function HourForecast({ forecast }) {
         </div>
     ));
 
-    console.log(dailyForecast);
-
     return <div className="forecast">{renderContent}</div>;
 }

@@ -1,9 +1,17 @@
+import { useState } from "react";
 import HourForecast from "./HourForecas";
 import "./currentWeather.scss";
 
-export default function Forecast({ data, isOpen, forecast }) {
+export default function Forecast({ data, forecast }) {
+
+    const [isOpen, setIsOpen] = useState(false);
+
   return (
-      <div className="weather">
+      <div
+          className="weather"
+          onMouseEnter={() => setIsOpen(true)}
+          onMouseLeave={() => setIsOpen(false)}
+      >
           <div className="weather__top">
               <div className="weather__top-paragraph">
                   <p className="city">Mnt. Logan</p>
