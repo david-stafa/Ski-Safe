@@ -49,18 +49,9 @@ export default function AddPinOnMap({ map }) {
                     popup.addTo(map);
                 }
             }, 500);
-
-            // Enables to put pin one one click, on second click deletes it
-            // if (markerOnMap) {
-            //     marker.remove();
-            //     markerOnMap = false;
         },
         [map, coordinates]
     );
-
-    useEffect(() => {
-        map.on("click");
-    });
 
     useEffect(() => {
         map.on("dblclick", handleDblClick);
