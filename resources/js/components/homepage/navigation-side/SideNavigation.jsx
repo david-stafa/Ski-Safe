@@ -36,7 +36,7 @@ export default function SideNavigation({
         >
             <div className="sidenav__content">
                 <img
-                    src="/images/Logo/logo.png"
+                    src="/images/Logo/logo.jpeg"
                     alt="Logo"
                     className="sidenav__logo"
                 />

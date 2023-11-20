@@ -78,7 +78,7 @@ export default function ContactUs() {
                     <h4>You help us grow!</h4>
                     <img
                         className="image"
-                        src="/images/Modal/Feedback.png"
+                        src="/images/Modal/Feedback.jpeg"
                         alt="feedback"
                     />
                 </Modal>

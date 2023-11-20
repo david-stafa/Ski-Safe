@@ -1,3 +1,4 @@
+
 import mapboxgl from "mapbox-gl";
 import "./pop-up.scss";
 import { getPins } from "../Pins/getPins";
