@@ -1,7 +1,5 @@
-
 import mapboxgl from "mapbox-gl";
 import "./pop-up.scss";
-import { getPins } from "../Pins/getPins";
 import { pinOnMap } from "../Pins/addPinOnMap/addPinOnMap";
 import { DeletePin } from "../Pins/DeletePin";
 import React, { useEffect, useState, useCallback } from "react";
@@ -45,6 +43,7 @@ export default function ShowPopUp({ map }) {
                 slug: pinProperties.slug,
                 severity: pinProperties.severity,
                 severity_id: pinProperties.severity_id,
+                type_id: pinProperties.type_id,
                 description: pinProperties.description,
                 id: pinProperties.id,
                 images: pinProperties.images,
@@ -87,6 +86,14 @@ export default function ShowPopUp({ map }) {
         };
     }, [map, details, handleClick]);
 
+    useEffect(() => {
+        map.on("click", "lifts", handleClick);
+        console.log(details);
+        return () => {
+            map.off("click", "points", handleClick);
+        };
+    }, [map, details, handleClick]);
+
     // syle the mouse as user enters points
     map.on("mouseenter", "points", () => {
         map.getCanvas().style.cursor = "pointer";
@@ -94,6 +101,16 @@ export default function ShowPopUp({ map }) {
 
     // remove mouse style as user leaves
     map.on("mouseleave", "points", () => {
+        map.getCanvas().style.cursor = "";
+    });
+
+    // syle the mouse as user enters points
+    map.on("mouseenter", "lifts", () => {
+        map.getCanvas().style.cursor = "pointer";
+    });
+
+    // remove mouse style as user leaves
+    map.on("mouseleave", "lifts", () => {
         map.getCanvas().style.cursor = "";
     });
 

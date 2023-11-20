@@ -2,11 +2,13 @@ import { useRef, useEffect, useState, useContext } from "react";
 import mapboxgl from "mapbox-gl";
 import "./map.scss";
 import { mapBoxToken } from "./helpers/map-helper";
-import { addPinLayer } from "./Pins/addPinLayer";
+import { addHazardLayer } from "./Pins/addHazardLayer";
 
 import { pinOnMap } from "./Pins/addPinOnMap/addPinOnMap";
 import ShowPopUp from "./popUp/showPopUp";
 import Weather from "../components/homepage/weather/Weather";
+
+import { addLiftLayer } from "./Pins/addLiftLayer";
 import UserContext from "../context/UserContext";
 
 mapboxgl.accessToken = mapBoxToken;
@@ -55,7 +57,11 @@ export default function Map() {
             //     },
             // });
             map.rotateTo(190, { duration: 5000 });
-            addPinLayer(map);
+            addHazardLayer(map);
+            addLiftLayer(map);
+
+            // map.setLayoutProperty("lifts", "visibility", "visible");
+            // map.setLayoutProperty("points", "visibility", "visible");
             setMapState(map);
 
             if (user?.role === "admin") {
