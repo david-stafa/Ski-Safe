@@ -135,7 +135,10 @@ export const MyFormModalContent = ({
                         </select>
                     </div>
 
-                    <button type="submit" className="submit-button">
+                    <button
+                        type="submit"
+                        className="submit-button submit-button_registration"
+                    >
                         Submit
                     </button>
                 </form>
@@ -144,7 +147,7 @@ export const MyFormModalContent = ({
                     {details?.id ? (
                         <h1>You have succesfully updated this pin</h1>
                     ) : (
-                        <h1>You have succesfully submited new pin</h1>
+                        <h1>You have successfully submitted new pin</h1>
                     )}
                 </div>
             )}
