@@ -18,7 +18,7 @@ export default function UserProfile() {
     const [userData, setUserData] = useState({
         name: "",
         email: "",
-        image: "", // Added 'image' to the state
+        // image: "", // Added 'image' to the state
     });
 
     // We populate the userData state when the user context changes
@@ -27,7 +27,7 @@ export default function UserProfile() {
             setUserData({
                 name: user.name,
                 email: user.email,
-                image: user.image || "", // Initialize with the user's image URL if available
+                // image: user.image || "", // Initialize with the user's image URL if available
             });
         }
     }, [user]);
@@ -107,7 +107,7 @@ export default function UserProfile() {
                     <div className="user-details">
                         <p>Name: {userData.name}</p>
                         <p>Email: {userData.email}</p>
-                        <button
+                        <button 
                             onClick={() => setIsEditMode(true)}
                             className="edit-button"
                         >
