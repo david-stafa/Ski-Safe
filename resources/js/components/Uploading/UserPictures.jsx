@@ -43,7 +43,7 @@ export default function UserPictures({ userUpload }) {
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Name</th>
+                        <th>Pic Name</th>
                         <th>Description</th>
                         <th>Image</th>
                         <th>Actions</th>

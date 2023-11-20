@@ -21,7 +21,7 @@ $nav-logo-size: 36px;
     align-items: center;
     background-color: $nav-background-color;
     backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px); // just for a Safari
+    -webkit-backdrop-filter: blur(15px);
     border-bottom: 1px solid $nav-border-color;
     padding: 10px 20px;
     transition: background-color 0.3s;
@@ -55,6 +55,14 @@ $nav-logo-size: 36px;
                     height: 40px;
                     border-radius: 50%;
                     object-fit: cover;
+                    border: 2px solid transparent;
+                    transition: border 0.3s;
+                    padding: 0px;
+                    transition: transform 0.3s ease;
+
+                    &:hover {
+                        transform: scale(1.2);
+                    }
                 }
 
                 .login-welcome {
@@ -96,6 +104,11 @@ $nav-logo-size: 36px;
             }
         }
     }
+}
+
+#anchor {
+    padding: 0;
+    background-color: #f8f8f7;
 }
 
 body {

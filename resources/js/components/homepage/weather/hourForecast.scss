@@ -1,4 +1,4 @@
-.forecast{
+.forecast {
     margin: 10px auto 0 auto;
     width: 100%;
     height: 200px;
@@ -10,26 +10,24 @@
     flex-direction: column;
     justify-content: center;
 
-    &__hourly{
+    &__hourly {
         display: flex;
         justify-content: space-around;
         align-items: center;
         height: 12%;
         flex-grow: 1;
         padding: 4px 0;
-        & > *{
+        & > * {
             font-size: 12px;
         }
-        &-image{
+        &-image {
             width: 25px;
         }
-        &-time{
+        &-time {
             // font-weight: italic;
         }
-        &-temperature{
+        &-temperature {
             font-weight: bold;
         }
-
     }
 }
-

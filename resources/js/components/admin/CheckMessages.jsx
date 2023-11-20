@@ -71,7 +71,7 @@ export default function CheckMessages() {
                             <td>{message.read ? "Read" : "Unread"}</td>
                             <td>
                                 <button onClick={() => markAsRead(message.id)}>
-                                    Solved
+                                    Solve
                                 </button>
                             </td>
                         </tr>

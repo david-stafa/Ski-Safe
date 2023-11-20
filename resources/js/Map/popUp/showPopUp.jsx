@@ -71,7 +71,7 @@
 //                                 <p>{description}</p>
 //                                 <img
 //                                     className="image"
-//                                     src="/images/ModalPin/ModalPin.png"
+//                                     src="/images/ModalPin/ModalPin.jpeg"
 //                                     alt="modalpin"
 //                                 />
 //                                 {role === "admin" && (
