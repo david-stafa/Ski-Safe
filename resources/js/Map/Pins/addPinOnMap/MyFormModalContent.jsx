@@ -6,8 +6,7 @@ import { addHazardLayer } from "../addHazardLayer";
 export let handleFetch = false;
 
 export const MyFormModalContent = ({
-    lng,
-    lat,
+    coordinates,
     marker,
     markerOnMap,
     map,
@@ -17,26 +16,13 @@ export const MyFormModalContent = ({
         id: details?.id || null,
         title: details?.title || "",
         description: details?.description || "",
-        latitude: details?.latitude || lat,
-        longitude: details?.longitude || lng,
+        latitude: details?.latitude || coordinates[1],
+        longitude: details?.longitude || coordinates[0],
         severity_id: details?.severity_id || 1,
         severity: details?.severtiy || 1,
         slug: details?.slug || "",
         active: true,
     });
-
-    // details &&
-    //     setFormData({
-    //         id: details.id,
-    //         title: details.title,
-    //         description: details.description,
-    //         latitude: details.latitude,
-    //         longitude: details.longitude,
-    //         severity_id: details.severity_id,
-    //         severity: details.severity,
-    //         slug: details.slug,
-    //         active: true,
-    //     });
 
     const [toggleContent, setToggleContent] = useState(true);
 
