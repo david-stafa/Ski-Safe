@@ -6,6 +6,7 @@ import { addPinLayer } from "./Pins/addPinLayer";
 
 import { pinOnMap } from "./Pins/addPinOnMap/addPinOnMap";
 import ShowPopUp from "./popUp/showPopUp";
+import Weather from "../components/homepage/weather/Weather";
 
 mapboxgl.accessToken = mapBoxToken;
 
@@ -59,7 +60,9 @@ export default function Map() {
 
     return (
         <>
-            <div className="map" id="map" ref={mapContainer}></div>
+            <div className="map" id="map" ref={mapContainer}>
+                <Weather />
+            </div>
             {mapState && <ShowPopUp map={mapState} />}
         </>
     );
