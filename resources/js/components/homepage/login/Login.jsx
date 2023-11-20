@@ -66,7 +66,7 @@ export default function Login() {
                 onSubmit={handleSubmit}
                 className="register-form"
             >
-                <div className="input-group">
+                <div className="input-group-login">
                     <label htmlFor="email">Email:</label>
                     <br />
                     <input
@@ -75,7 +75,7 @@ export default function Login() {
                         name="email"
                         value={values.email}
                         onChange={handleChange}
-                        className="input-field"
+                        className="input-field-login"
                     />
                     <br />
                     {errors.email ? (
@@ -91,7 +91,7 @@ export default function Login() {
                     )}
                 </div>
 
-                <div className="input-group">
+                <div className="input-group-login">
                     <label htmlFor="password">Password:</label>
                     <br />
                     <input
@@ -100,7 +100,7 @@ export default function Login() {
                         name="password"
                         value={values.password}
                         onChange={handleChange}
-                        className="input-field"
+                        className="input-field-login"
                     />
                     <br />
                     {errors.password ? (

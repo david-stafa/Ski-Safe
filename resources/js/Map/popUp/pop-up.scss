@@ -126,17 +126,6 @@
     margin-top: 10px; /* Add margin to separate image from text */
 }
 
-.delete-button,
-.button-edit {
-    background-color: #f00; /* Red for delete button */
-    color: white;
-    font-family: "Segoe UI";
-    border-radius: 15px;
-    width: 120px; /* Adjust width to your preference */
-    padding: 10px; /* Adjust padding to your preference */
-    margin: 0 10px; /* Add margin between buttons */
-}
-
 .button-edit {
     background-color: rgba(0, 0, 255, 0.652); /* Blue for edit button */
 }
@@ -166,4 +155,34 @@
 }
 .input-field {
     color: blue;
+}
+#delete-button-pins-modal {
+    background-color: rgba(255, 0, 0, 0.885);
+    color: white;
+    font-family: "Segoe UI";
+    border-radius: 15px;
+    width: 120px;
+    padding: 10px;
+    margin: 0 10px;
+    margin-top: 10%;
+    transition: background-color 0.3s;
+}
+
+#delete-button-pins-modal:hover {
+    background-color: #d400008d;
+}
+#edit-button-pins-modal {
+    background-color: #2e3133;
+    color: white;
+    font-family: "Segoe UI";
+    border-radius: 15px;
+    width: 120px;
+    padding: 10px;
+    margin: 0 10px;
+    margin-top: 10%;
+    transition: background-color 0.3s;
+}
+
+#edit-button-pins-modal:hover {
+    background-color: #2e313376;
 }

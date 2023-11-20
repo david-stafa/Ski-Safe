@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import mapboxgl, { Map } from "mapbox-gl";
 import { addHazardLayer } from "../addHazardLayer";
+import "./myFormModalContent.scss";
 
 export let handleFetch = false;
 
@@ -83,7 +84,7 @@ export const MyFormModalContent = ({
                         {details?.id ? (
                             <h2>Edit a pin number {details.id}</h2>
                         ) : (
-                            <h2>Create a pin</h2>
+                            <h2 className="create-pin-title">CREATE A PIN</h2>
                         )}
                     </div>
                     <div className="input-group">
@@ -94,7 +95,7 @@ export const MyFormModalContent = ({
                             name="title"
                             value={formData.title}
                             onChange={handleChange}
-                            className="input-field"
+                            className="input-field-createPin"
                         />
                     </div>
 
@@ -106,7 +107,7 @@ export const MyFormModalContent = ({
                             id="slug"
                             value={formData.slug}
                             onChange={handleChange}
-                            className="input-field"
+                            className="input-field-createPin"
                         />
                     </div>
 
@@ -117,6 +118,7 @@ export const MyFormModalContent = ({
                             id="description"
                             value={formData.description}
                             onChange={handleChange}
+                            className="input-field-createPin"
                         />
                     </div>
 
@@ -143,7 +145,7 @@ export const MyFormModalContent = ({
                     </button>
                 </form>
             ) : (
-                <div>
+                <div className="success-message">
                     {details?.id ? (
                         <h1>You have succesfully updated this pin</h1>
                     ) : (
