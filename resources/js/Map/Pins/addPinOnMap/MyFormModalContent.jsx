@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import mapboxgl, { Map } from "mapbox-gl";
 import { addHazardLayer } from "../addHazardLayer";
 import "./myFormModalContent.scss";
+import UserContext from "../../../context/UserContext";
 
 export let handleFetch = false;
 
 export const MyFormModalContent = ({ coordinates, map, details }) => {
+    const { user, setUser } = useContext(UserContext);
     const [formData, setFormData] = useState({
         id: details?.id || null,
         title: details?.title || "",
@@ -133,9 +135,13 @@ export const MyFormModalContent = ({ coordinates, map, details }) => {
                             className="input-field"
                         >
                             <option value="">Please Select</option>
-                            <option value="1">Hazard</option>
-                            <option value="2">Lift</option>
-                            <option value="3">Powder Of Intrest</option>
+                            {user && user.role === "admin" && (
+                                <>
+                                    <option value="1">Hazard</option>
+                                    <option value="2">Lift</option>
+                                </>
+                            )}
+                            <option value="3">Powder Of Interest</option>
                         </select>
                     </div>
 
