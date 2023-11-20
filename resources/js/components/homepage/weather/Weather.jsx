@@ -5,7 +5,7 @@ import Forecast from "./Forecast";
 export default function Weather() {
     const [currentWeather, setCurrentWeather] = useState(null);
     const [currentForecast, setCurrentForecast] = useState(null);
-    const [isOpen, setIsOpen] = useState(false);
+
 
     const loadWeather = async () => {
         try {
@@ -30,22 +30,18 @@ export default function Weather() {
 
     useEffect(() => {
         loadWeather();
+        console.log('fetched')
     }, []);
 
-    console.log(currentWeather);
-    console.log(currentForecast);
 
     return (
         <div
             className="container"
-            onMouseEnter={() => setIsOpen(true)}
-            onMouseLeave={() => setIsOpen(false)}
         >
             {currentWeather && (
                 <Forecast
                     data={currentWeather}
                     forecast={currentForecast}
-                    isOpen={isOpen}
                 />
             )}
         </div>
