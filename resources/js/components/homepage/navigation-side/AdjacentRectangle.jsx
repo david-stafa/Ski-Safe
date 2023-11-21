@@ -11,6 +11,8 @@ export default function AdjacentRectangle({
     setFilterHazards,
     filterLifts,
     setFilterLifts,
+    filterPois,
+    setFilterPois,
     onSearch,
     onClearSearch,
 }) {
@@ -32,6 +34,8 @@ export default function AdjacentRectangle({
                     setFilterHazards={setFilterHazards}
                     filterLifts={filterLifts}
                     setFilterLifts={setFilterLifts}
+                    filterPois={filterPois}
+                    setFilterPois={setFilterPois}
                 />
             )}
         </div>
