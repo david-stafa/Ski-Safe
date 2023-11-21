@@ -90,7 +90,7 @@ class Map_pinController extends Controller
         $map_pin->slug = $request->input('slug');
         $map_pin->active = $request->input('active');
         $map_pin->images = $request->input('images');
-        // $map_pin->type_id = $request->input('type_id');
+        $map_pin->type_id = $request->input('type_id');
         // $map_pin->creator_id = $request->input('creator_id');
         // $map_pin->video = $request->input('video');
         $map_pin->save();
