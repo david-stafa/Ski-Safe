@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\Api\Admin\AdminController;
 use App\Http\Controllers\Api\Admin\RoleController;
+use App\Http\Controllers\ForumController;
 use App\Http\Controllers\UploadController;
 use App\Models\Upload;
 use Illuminate\Http\Request;
@@ -68,3 +69,6 @@ Route::middleware(['auth', 'can:admin'])->group(function () { // using can:: wil
     Route::resource('/events', EventController::class);
 
 });
+
+Route::get('/forum/threads', [ForumController::class, 'index']);
+Route::get('/forum/threads/{id}', [ForumController::class, 'show']);

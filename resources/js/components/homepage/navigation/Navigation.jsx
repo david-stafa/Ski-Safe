@@ -57,6 +57,8 @@ export default function Navigation() {
     }, [user]);
     // profile pic above
 
+    console.log(user?.role)
+
     return (
         <>
             <div className="left-panel-container">
@@ -72,6 +74,7 @@ export default function Navigation() {
                         <Link to={"/"}>Home</Link>
                         <Link to={"/about-us"}>About</Link>
                         <Link to={"/contact-us"}>Contact</Link>
+                        <Link to={"/forum"}>Forum</Link>
                         {user && <Link to={"/profile"}>Profile</Link>}
                         {user && user.role === "admin" && (
                             <Link to={"/admin"}>Admin</Link>

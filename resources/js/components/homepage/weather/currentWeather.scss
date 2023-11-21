@@ -14,6 +14,14 @@
             "Helvetica Neue", Arial, sans-serif;
     
 
+    &__top{
+        margin: 15px -5px 10px -5px;
+        margin-top: 15px;
+        background-color: rgba(245, 245, 245, 0.9);
+        border-radius: 12px;
+        color: rgba(97, 176, 210, 1);
+    }
+
     &__top,
     &__bottom{
      display: flex;   
@@ -24,17 +32,18 @@
         font-weight: 600;
         font-size: 18px;
         line-height: 1;
-        margin: 0;
+        margin: 0 0 0 10px;
         letter-spacing: 1px;
      }
      .description{
         font-weight: 400;
         font-size: 14px;
         line-height: 1;
-        margin: 0;
+        margin: 0 0 0 10px;
+
      }
      .weather-icon{
-        width: 100px;
+        width: 90px;
      }
     }
     

@@ -13,6 +13,8 @@ import EditUpload from "../Uploading/EditUpload";
 import ProfilePictures from "../admin/ProfilePictures";
 import CheckMessages from "../admin/CheckMessages";
 import Archive from "../admin/Archive";
+import Forum from "./forum/Forum";
+import ForumThreadDetail from "./forum/ForumThreadDetail";
 
 export default function Homepage() {
     return (
@@ -23,10 +25,15 @@ export default function Homepage() {
                     <Route path="/" element={<MainContent />}></Route>
                     <Route path="/about-us" element={<AboutUs />}></Route>
                     <Route path="/contact-us" element={<ContactUs />}></Route>
+
+                    <Route path="/forum" element={<Forum />}></Route>
+                    <Route path="forum/thread/:id" element={<ForumThreadDetail />}></Route>
+
                     <Route path="/register" element={<Register />}></Route>
                     <Route path="/log-in" element={<Login />}></Route>
                     <Route path="/profile" element={<UserProfile />}></Route>
                     <Route path="/admin" element={<Admin />}></Route>
+
                     <Route
                         path="/profilepictures"
                         element={<ProfilePictures />}
