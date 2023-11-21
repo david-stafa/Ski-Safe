@@ -121,4 +121,14 @@ class Map_pinController extends Controller
         return ($mission);
     }
     //end of edit & delete ************************
+
+    public function search(Request $request) {
+    $searchText = $request->query('text');
+
+    $map_pins = Map_pin::where('title', 'LIKE', "%{$searchText}%")
+                       ->orWhere('slug', 'LIKE', "%{$searchText}%")
+                       ->get();
+
+    return response()->json($map_pins);
+}
 }
