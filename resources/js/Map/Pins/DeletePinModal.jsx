@@ -1,8 +1,10 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import useToggle from "../../components/Modal/use-toggle";
+import loadLayers from "./addPinOnMap/loadLayers";
+import Modal from "../../components/Modal/Modal";
 
-export default function DeletePinModal({ details }) {
+export default function DeletePinModal({ details, map }) {
     const [successModal, toggleSuccessModal] = useToggle(false);
     const [errorModal, toggleErrorModal] = useToggle(false);
 
@@ -18,6 +20,7 @@ export default function DeletePinModal({ details }) {
                     response.data
                 );
                 toggleSuccessModal(!successModal);
+                loadLayers(map);
             } catch (error) {
                 console.error(
                     "No record with this ID exists in the Database",
@@ -36,8 +39,18 @@ export default function DeletePinModal({ details }) {
 
     return (
         <>
-            {successModal && <div>Pin number {details.id} was delted</div>}
-            {errorModal && <div>There was an error, please try again</div>}
+            {successModal && (
+                <Modal handleDismiss={toggleSuccessModal}>
+                    <p>Pin number: {details.id} was succesfully deleted</p>
+                </Modal>
+            )}
+            {errorModal && (
+                <Modal handleDismiss={toggleErrorModal}>
+                    <p>There was an error locating Pin number: {details.id}.</p>
+                    <br />
+                    <p>Please Try again</p>
+                </Modal>
+            )}
         </>
     );
 }
