@@ -1,6 +1,6 @@
 import mapboxgl from "mapbox-gl";
 import "./pop-up.scss";
-import { DeletePin } from "../Pins/DeletePin";
+import DeletePinModal from "../Pins/DeletePinModal";
 import React, { useEffect, useState, useCallback, useContext } from "react";
 import Modal from "../../components/Modal/Modal";
 import useToggle from "../../components/Modal/use-toggle";
@@ -8,28 +8,32 @@ import PopUpContent from "./popUpContent";
 import { createRoot } from "react-dom/client";
 import { MyFormModalContent } from "../Pins/addPinOnMap/MyFormModalContent";
 import UserContext from "../../context/UserContext";
+import cursorStyle from "../Pins/cursorStyle";
 
 export default function ShowPopUp({ map }) {
     const { user, setUser } = useContext(UserContext);
+    const [isDeleteModalOpen, toggleIsDeleteModalOpen] = useToggle(false);
     const [isModalOpen, toggleIsModalOpen] = useToggle(false);
     const [isMyFormModalOpen, toggleIsMyFormModalOpen] = useToggle(false);
+
     const [details, setDetails] = useState({
         longitude: null,
         latitude: null,
         title: "",
         slug: "",
         severity: "",
+        severity_id: "",
         type_id: null,
         description: "",
         id: "",
         images: "",
     });
     const handleDeleteClick = () => {
-        DeletePin(details.id);
+        toggleIsDeleteModalOpen(!isDeleteModalOpen);
     };
     const handleEditClick = () => {
-        toggleIsModalOpen();
-        toggleIsMyFormModalOpen();
+        toggleIsModalOpen(!toggleIsModalOpen);
+        toggleIsMyFormModalOpen(!isMyFormModalOpen);
     };
     const handleClick = useCallback(
         (e) => {
@@ -61,6 +65,7 @@ export default function ShowPopUp({ map }) {
                     isModalOpen={isModalOpen}
                     toggleIsModalOpen={toggleIsModalOpen}
                     details={newDetails}
+                    user={user}
                 />
             );
             const myPopUp = new mapboxgl.Popup({
@@ -82,6 +87,7 @@ export default function ShowPopUp({ map }) {
 
     useEffect(() => {
         map.on("click", "points", handleClick);
+        console.log(details);
         return () => {
             map.off("click", "points", handleClick);
         };
@@ -90,29 +96,18 @@ export default function ShowPopUp({ map }) {
     useEffect(() => {
         map.on("click", "lifts", handleClick);
         return () => {
-            map.off("click", "points", handleClick);
+            map.off("click", "lifts", handleClick);
         };
     }, [map, details, handleClick]);
 
-    // syle the mouse as user enters points
-    map.on("mouseenter", "points", () => {
-        map.getCanvas().style.cursor = "pointer";
-    });
+    useEffect(() => {
+        map.on("click", "pois", handleClick);
+        return () => {
+            map.off("click", "pois", handleClick);
+        };
+    }, [map, details, handleClick]);
 
-    // remove mouse style as user leaves
-    map.on("mouseleave", "points", () => {
-        map.getCanvas().style.cursor = "";
-    });
-
-    // syle the mouse as user enters points
-    map.on("mouseenter", "lifts", () => {
-        map.getCanvas().style.cursor = "pointer";
-    });
-
-    // remove mouse style as user leaves
-    map.on("mouseleave", "lifts", () => {
-        map.getCanvas().style.cursor = "";
-    });
+    cursorStyle(map);
 
     return (
         <>
@@ -121,10 +116,12 @@ export default function ShowPopUp({ map }) {
                     <div className="mainBox">
                         <h3 className="mainBox-h3">Event: {details.title}</h3>
 
-                        <p className="pop-up__severity">
-                            <span className="severity-tite">Severity:</span>{" "}
-                            <span>{details.severity}</span>
-                        </p>
+                        {details.type_id == 1 && (
+                            <p className="pop-up__severity">
+                                <span className="severity-tite">Severity:</span>{" "}
+                                <span>{details.severity}</span>
+                            </p>
+                        )}
                         <h4>Basic Description:</h4>
                         <p>{details.slug}</p>
                         <p>{details.description}</p>
@@ -153,10 +150,14 @@ export default function ShowPopUp({ map }) {
                     </div>
                 </Modal>
             )}
-            {isMyFormModalOpen && (
-                <MyFormModalContent
+
+            {isMyFormModalOpen && <MyFormModalContent details={details} />}
+            {isDeleteModalOpen && (
+                <DeletePinModal
+                    map={map}
                     details={details}
-                    toggleIsMyFormModalOpen={toggleIsMyFormModalOpen}
+                    isDeleteModalOpen={isDeleteModalOpen}
+                    toggleIsDeleteModalOpen={toggleIsDeleteModalOpen}
                 />
             )}
         </>

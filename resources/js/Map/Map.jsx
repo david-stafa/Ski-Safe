@@ -2,17 +2,20 @@ import { useRef, useEffect, useState, useContext } from "react";
 import mapboxgl from "mapbox-gl";
 import "./map.scss";
 import { mapBoxToken } from "./helpers/map-helper";
-import { addHazardLayer } from "./Pins/addHazardLayer";
 import ShowPopUp from "./popUp/showPopUp";
 import Weather from "../components/homepage/weather/Weather";
-
-import { addLiftLayer } from "./Pins/addLiftLayer";
 import UserContext from "../context/UserContext";
 import AddPinOnMap from "./Pins/addPinOnMap/addPinOnMap";
+import loadLayers from "./Pins/addPinOnMap/loadLayers";
 
 mapboxgl.accessToken = mapBoxToken;
 
-export default function Map({ filterHazards, filterLifts }) {
+export default function Map({
+    filterHazards,
+    filterLifts,
+    filterPois,
+    searchResults,
+}) {
     const [mapState, setMapState] = useState(null);
     const mapContainer = useRef();
     const { user, setUser } = useContext(UserContext);
@@ -40,39 +43,70 @@ export default function Map({ filterHazards, filterLifts }) {
             map.doubleClickZoom.disable();
 
             map.rotateTo(190, { duration: 5000 });
-            addHazardLayer(map);
-            addLiftLayer(map);
+            loadLayers(map);
 
             // map.setLayoutProperty("lifts", "visibility", "visible");
             // map.setLayoutProperty("points", "visibility", "visible");
             setMapState(map);
-
         });
     }, [user]);
 
+    // search below !!!!!!!!!!!!!!!!!!!!!!!!
+    useEffect(() => {
+        if (mapState) {
+            clearMap(searchResults);
+        }
+    }, [searchResults, mapState]);
+
+    // console.log("Map", searchResults); // data is here!!
+
+    function clearMap(results) {
+        if (!mapState) return;
+
+        const layers = ["points", "lifts", "pois"]; // Add layers here!!!
+
+        if (results.length > 0) {
+            const resultIds = results.map((result) => result.id);
+
+            layers.forEach((layerId) => {
+                if (mapState.getLayer(layerId)) {
+                    mapState.setFilter(layerId, [
+                        "in",
+                        ["get", "id"],
+                        ["literal", resultIds],
+                    ]);
+                }
+            });
+        } else {
+            layers.forEach((layerId) => {
+                if (mapState.getLayer(layerId)) {
+                    mapState.setFilter(layerId, null);
+                }
+            });
+        }
+    }
+    // search above !!!!!!!!!!!!!!!!!!!
+
     // filters below
     const updateLayerVisibility = () => {
-        if (mapState) {
-            if (mapState.getLayer("points")) {
+        const setLayerVisibility = (layerName, filterCondition) => {
+            if (mapState && mapState.getLayer(layerName)) {
                 mapState.setLayoutProperty(
-                    "points",
+                    layerName,
                     "visibility",
-                    filterHazards ? "visible" : "none"
+                    filterCondition ? "visible" : "none"
                 );
             }
-            if (mapState.getLayer("lifts")) {
-                mapState.setLayoutProperty(
-                    "lifts",
-                    "visibility",
-                    filterLifts ? "visible" : "none"
-                );
-            }
-        }
+        };
+
+        setLayerVisibility("points", filterHazards);
+        setLayerVisibility("lifts", filterLifts);
+        setLayerVisibility("pois", filterPois);
     };
 
     useEffect(() => {
         updateLayerVisibility();
-    }, [filterHazards, filterLifts, mapState]);
+    }, [filterHazards, filterLifts, filterPois, mapState]);
     // filters above
 
     return (
