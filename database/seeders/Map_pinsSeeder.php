@@ -184,6 +184,51 @@ class Map_pinsSeeder extends Seeder
                 'active' => true,
                 'images' => 'https://cdn.pixabay.com/photo/2017/07/19/10/33/avalanche-2518679_1280.jpg'
             ],
+            [
+                'longitude' => -140.405911,
+                // -117.23 with aberration 0.06
+                'latitude' => 60.623059,
+                // 52.16 with aberration 0.06
+                'title' => 'Natural Half Pipe',
+
+                'severity_id' => 1,
+                "type_id" => 3,
+                // number 1, 2, or 3
+                'slug' => 'Great natural half pipe!',
+                'description' => 'Me and my buddies rode here all day! We left a few nice kickers around, have fun!',
+                'active' => true,
+                'images' => 'https://cdn.pixabay.com/photo/2016/01/26/00/26/canazei-1161799_1280.jpg'
+            ],
+            [
+                'longitude' => -140.424205,
+                // -117.23 with aberration 0.06
+                'latitude' => 60.562849,
+                // 52.16 with aberration 0.06
+                'title' => 'Backcounrty Pow!',
+
+                'severity_id' => 1,
+                "type_id" => 3,
+                // number 1, 2, or 3
+                'slug' => 'Awesome Powdery Run!',
+                'description' => 'Reall amazing conditions here! Careful not to venture onto the eastern aspect, I saw on the hazards filter that the avalanche hazard is high there. Peace!',
+                'active' => true,
+                'images' => 'https://cdn.pixabay.com/photo/2019/03/19/19/22/snow-4066640_1280.jpg'
+            ],
+            [
+                'longitude' => -140.291508,
+                // -117.23 with aberration 0.06
+                'latitude' => 60.644705,
+                // 52.16 with aberration 0.06
+                'title' => 'Snowball Fight',
+
+                'severity_id' => 1,
+                "type_id" => 3,
+                // number 1, 2, or 3
+                'slug' => 'FIGHT!!',
+                'description' => 'Huge snowballfight at the kiddies slope, come on down...If you dare!',
+                'active' => true,
+                'images' => 'https://cdn.pixabay.com/photo/2014/12/23/14/57/snowball-fight-578445_1280.jpg'
+            ],
 
         ];
 
