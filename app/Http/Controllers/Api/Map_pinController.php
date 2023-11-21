@@ -33,6 +33,12 @@ class Map_pinController extends Controller
         return $map_pins;
     }
 
+    public function getPois()
+    {
+        $map_pins = Map_pin::where('type_id', 3)->get();
+
+        return $map_pins;
+    }
 
     public function edit(Request $request, $id)
     {

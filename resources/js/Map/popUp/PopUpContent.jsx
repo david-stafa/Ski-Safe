@@ -30,20 +30,21 @@ export default function PopUpContent({
 
     return (
         <>
-            {details.type_id === 1 && (
-                <>
-                    <h1>{details.title}</h1>
-                    <p>{details.severity}</p>
-                    <p>{details.slug}</p>
+            {details.type_id === 1 ||
+                (details.type_id === 3 && (
+                    <>
+                        <h1>{details.title}</h1>
+                        {details.severity_id > 1 && <p>{details.severity}</p>}
+                        <p>{details.slug}</p>
 
-                    <button
-                        className="more-details-button"
-                        onClick={handleClick}
-                    >
-                        MoreDetails
-                    </button>
-                </>
-            )}
+                        <button
+                            className="more-details-button"
+                            onClick={handleClick}
+                        >
+                            MoreDetails
+                        </button>
+                    </>
+                ))}
 
             {details.type_id === 2 && (
                 <>
