@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('forum_threads', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('content');
+            $table->string('content')->nullable();
             $table->unsignedBigInteger('user_id'); 
             $table->timestamps(); 
         });

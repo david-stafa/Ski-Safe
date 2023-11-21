@@ -17,7 +17,6 @@ return new class extends Migration
             $table->text('content');
             $table->unsignedBigInteger('user_id'); 
             $table->timestamps(); 
-            $table->foreign('thread_id')->references('id')->on('forum_threads');
         });
     }
 
