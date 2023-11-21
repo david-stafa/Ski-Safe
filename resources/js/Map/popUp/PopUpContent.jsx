@@ -1,12 +1,14 @@
-import { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 // import UserContext from "../../context/UserContext";
 
 export default function PopUpContent({
     isModalOpen,
     toggleIsModalOpen,
     details,
+    user,
 }) {
     // const { user, setUser } = useContext(UserContext);
+
     const [waitingTime, setWaitingTime] = useState(5);
 
     const handleClick = () => {
@@ -22,6 +24,9 @@ export default function PopUpContent({
         newWaitingTime < 6 ? (newWaitingTime = 0) : (newWaitingTime -= 5);
         setWaitingTime(newWaitingTime);
     };
+    useEffect(() => {
+        console.log(user);
+    });
 
     return (
         <>
@@ -45,7 +50,10 @@ export default function PopUpContent({
                     <h1>{details.title}</h1>
                     <h4>Waiting Time</h4>
                     <h2>{waitingTime} min</h2>
-
+                </>
+            )}
+            {details.type_id === 2 && user && user.role === "admin" && (
+                <>
                     <button onClick={handleIncreaseClick}>+</button>
                     <button onClick={handleDecreaseClick}>-</button>
                 </>
