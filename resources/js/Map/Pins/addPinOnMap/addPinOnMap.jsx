@@ -69,6 +69,7 @@ export default function AddPinOnMap({ map }) {
                     marker={marker}
                     markerOnMap={markerOnMap}
                     map={map}
+                    toggleIsMyFormModalOpen={toggleIsMyFormModalOpen}
                 />
             )}
         </>

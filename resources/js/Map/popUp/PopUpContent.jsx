@@ -1,12 +1,14 @@
-import { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 // import UserContext from "../../context/UserContext";
 
 export default function PopUpContent({
     isModalOpen,
     toggleIsModalOpen,
     details,
+    user,
 }) {
     // const { user, setUser } = useContext(UserContext);
+
     const [waitingTime, setWaitingTime] = useState(5);
 
     const handleClick = () => {
@@ -25,10 +27,11 @@ export default function PopUpContent({
 
     return (
         <>
-            {details.type_id === 1 && (
+            <h1>{details.title}</h1>
+
+            {details.type_id !== 2 ? (
                 <>
-                    <h1>{details.title}</h1>
-                    <p>{details.severity}</p>
+                    {details.severity_id > 1 && <p>{details.severity}</p>}
                     <p>{details.slug}</p>
 
                     <button
@@ -38,16 +41,18 @@ export default function PopUpContent({
                         MoreDetails
                     </button>
                 </>
-            )}
-
-            {details.type_id === 2 && (
+            ) : (
                 <>
-                    <h1>{details.title}</h1>
-                    <h4>Waiting Time</h4>
-                    <h2>{waitingTime} min</h2>
-
-                    <button onClick={handleIncreaseClick}>+</button>
-                    <button onClick={handleDecreaseClick}>-</button>
+                    <>
+                        <h4>Waiting Time</h4>
+                        <h2>{waitingTime} min</h2>
+                    </>
+                    {details.type_id === 2 && user && user.role === "admin" && (
+                        <>
+                            <button onClick={handleIncreaseClick}>+</button>
+                            <button onClick={handleDecreaseClick}>-</button>
+                        </>
+                    )}
                 </>
             )}
         </>

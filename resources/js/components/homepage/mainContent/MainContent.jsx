@@ -19,12 +19,29 @@ export default function MainContent() {
     // Filters below
     const [filterHazards, setFilterHazards] = useState(true);
     const [filterLifts, setFilterLifts] = useState(true);
+    const [filterPois, setFilterPois] = useState(true);
     // Filters above
+
+    // Search below
+    const [searchResults, setSearchResults] = useState([]);
+    const handleSearchResults = (results) => {
+        setSearchResults(results);
+    };
+
+    const handleClearSearch = () => {
+        setSearchResults([]);
+    };
+    //Search above
 
     return (
         <>
             <div className="main-content">
-                <Map filterHazards={filterHazards} filterLifts={filterLifts} />
+                <Map
+                    filterHazards={filterHazards}
+                    filterLifts={filterLifts}
+                    filterPois={filterPois}
+                    searchResults={searchResults}
+                />
                 <SideNavigation
                     onItemSelect={handleItemSelect}
                     setNavExpanded={setNavExpanded}
@@ -39,6 +56,10 @@ export default function MainContent() {
                         setFilterHazards={setFilterHazards}
                         filterLifts={filterLifts}
                         setFilterLifts={setFilterLifts}
+                        filterPois={filterPois}
+                        setFilterPois={setFilterPois}
+                        onSearch={handleSearchResults}
+                        onClearSearch={handleClearSearch}
                     />
                 )}
                 {/* <Weather /> */}

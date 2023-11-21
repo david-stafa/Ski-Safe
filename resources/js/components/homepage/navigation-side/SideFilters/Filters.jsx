@@ -9,6 +9,8 @@ export default function Filters({
     setFilterHazards,
     filterLifts,
     setFilterLifts,
+    filterPois,
+    setFilterPois,
 }) {
     return (
         <div className="filters-container">
@@ -19,28 +21,47 @@ export default function Filters({
                 </button>
             </div>
 
-            <div className="filter-option">
-                <label>
-                    <input
-                        type="checkbox"
-                        checked={filterHazards}
-                        onChange={() => setFilterHazards(!filterHazards)}
-                    />
-                    <span className="slider"></span>
-                </label>
-                <p>Hazards</p>
-            </div>
+            <div className="filters-content">
+                <div className="filter-group">
+                    <div className="filter-option">
+                        <label>
+                            <input
+                                type="checkbox"
+                                checked={filterHazards}
+                                onChange={() =>
+                                    setFilterHazards(!filterHazards)
+                                }
+                            />
+                            <span className="slider"></span>
+                        </label>
+                        <p className="par">Hazards</p>
+                    </div>
+                    <div className="filter-option">
+                        <label>
+                            <input
+                                type="checkbox"
+                                checked={filterLifts}
+                                onChange={() => setFilterLifts(!filterLifts)}
+                            />
+                            <span className="slider"></span>
+                        </label>
+                        <p className="par">Lifts</p>
+                    </div>
+                </div>
 
-            <div className="filter-option">
-                <label>
-                    <input
-                        type="checkbox"
-                        checked={filterLifts}
-                        onChange={() => setFilterLifts(!filterLifts)}
-                    />
-                    <span className="slider"></span>
-                </label>
-                <p>Lifts</p>
+                <div className="filter-group">
+                    <div className="filter-option">
+                        <label>
+                            <input
+                                type="checkbox"
+                                checked={filterPois}
+                                onChange={() => setFilterPois(!filterPois)}
+                            />
+                            <span className="slider"></span>
+                        </label>
+                        <p className="par">POIs</p>
+                    </div>
+                </div>
             </div>
         </div>
     );
