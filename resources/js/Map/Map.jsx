@@ -74,7 +74,7 @@ export default function Map({ filterHazards, filterLifts }) {
     return (
         <>
             <div className="map" id="map" ref={mapContainer}>
-                {/* <Weather /> */}
+                <Weather />
             </div>
             {mapState && <ShowPopUp map={mapState} />}
             {mapState && <AddPinOnMap map={mapState} />}
