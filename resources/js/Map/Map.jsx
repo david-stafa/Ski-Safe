@@ -115,7 +115,7 @@ export default function Map({
                 <Weather />
             </div>
             {mapState && <ShowPopUp map={mapState} />}
-            {mapState && <AddPinOnMap map={mapState} />}
+            {mapState && <AddPinOnMap user={user} map={mapState} />}
         </>
     );
 }
