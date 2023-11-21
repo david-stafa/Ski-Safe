@@ -4,10 +4,16 @@ import mapboxgl, { Map } from "mapbox-gl";
 import { addHazardLayer } from "../addHazardLayer";
 import "./myFormModalContent.scss";
 import UserContext from "../../../context/UserContext";
+import Modal from "../../../components/Modal/Modal";
 
 export let handleFetch = false;
 
-export const MyFormModalContent = ({ coordinates, map, details }) => {
+export const MyFormModalContent = ({
+    coordinates,
+    map,
+    details,
+    toggleIsMyFormModalOpen,
+}) => {
     const { user, setUser } = useContext(UserContext);
     const [formData, setFormData] = useState({
         id: details?.id || null,
@@ -64,108 +70,111 @@ export const MyFormModalContent = ({ coordinates, map, details }) => {
     }, [handleFetch]);
 
     return (
-        <div className="register-container">
-            {toggleContent ? (
-                <form
-                    className="modalContent-data"
-                    action=""
-                    onSubmit={handleSubmit}
-                >
-                    <div className="register-header">
+        <Modal handleDismiss={toggleIsMyFormModalOpen}>
+            <div className="register-container">
+                {toggleContent ? (
+                    <form
+                        className="modalContent-data"
+                        action=""
+                        onSubmit={handleSubmit}
+                    >
+                        <div className="register-header">
+                            {details?.id ? (
+                                <h2>Edit a pin number {details.id}</h2>
+                            ) : (
+                                <h2 className="create-pin-title">
+                                    CREATE A PIN
+                                </h2>
+                            )}
+                        </div>
+                        <div className="input-group">
+                            <label htmlFor="title">Title</label>
+                            <input
+                                id="title"
+                                type="text"
+                                name="title"
+                                value={formData.title}
+                                onChange={handleChange}
+                                className="input-field-createPin"
+                            />
+                        </div>
+
+                        <div className="input-group">
+                            <label htmlFor="slug">Slug</label>
+                            <input
+                                type="text"
+                                name="slug"
+                                id="slug"
+                                value={formData.slug}
+                                onChange={handleChange}
+                                className="input-field-createPin"
+                            />
+                        </div>
+
+                        <div className="input-group">
+                            <label htmlFor="description">Description</label>
+                            <textarea
+                                name="description"
+                                id="description"
+                                value={formData.description}
+                                onChange={handleChange}
+                                className="input-field-createPin"
+                            />
+                        </div>
+
+                        <div className="input-group">
+                            <label htmlFor="severity_id">Severity</label>
+                            <select
+                                name="severity_id"
+                                id="severity_id"
+                                value={formData.severity_id || ""}
+                                onChange={handleChange}
+                                className="input-field"
+                            >
+                                <option value="1">Not Applicable</option>
+                                <option value="2">Low</option>
+                                <option value="3">Moderate</option>
+                                <option value="4">High</option>
+                            </select>
+                        </div>
+
+                        <div className="input-group">
+                            <label htmlFor="type_id">Type</label>
+                            <select
+                                name="type_id"
+                                id="type_id"
+                                value={formData.type_id}
+                                onChange={handleChange}
+                                className="input-field"
+                            >
+                                <option value="">Please Select</option>
+                                {user && user.role === "admin" && (
+                                    <>
+                                        <option value="1">Hazard</option>
+                                        <option value="2">Lift</option>
+                                    </>
+                                )}
+                                <option value="3">Powder Of Interest</option>
+                            </select>
+                        </div>
+
+                        <button
+                            type="submit"
+                            className="submit-button submit-button_registration"
+                        >
+                            Submit
+                        </button>
+                    </form>
+                ) : (
+                    <div id="success-message">
                         {details?.id ? (
-                            <h2>Edit a pin number {details.id}</h2>
+                            <h1>You have successfully updated this pin</h1>
                         ) : (
-                            <h2 className="create-pin-title">CREATE A PIN</h2>
+                            <h1>You have successfully submitted new pin</h1>
                         )}
                     </div>
-                    <div className="input-group">
-                        <label htmlFor="title">Title</label>
-                        <input
-                            id="title"
-                            type="text"
-                            name="title"
-                            value={formData.title}
-                            onChange={handleChange}
-                            className="input-field-createPin"
-                        />
-                    </div>
-
-                    <div className="input-group">
-                        <label htmlFor="slug">Slug</label>
-                        <input
-                            type="text"
-                            name="slug"
-                            id="slug"
-                            value={formData.slug}
-                            onChange={handleChange}
-                            className="input-field-createPin"
-                        />
-                    </div>
-
-                    <div className="input-group">
-                        <label htmlFor="description">Description</label>
-                        <textarea
-                            name="description"
-                            id="description"
-                            value={formData.description}
-                            onChange={handleChange}
-                            className="input-field-createPin"
-                        />
-                    </div>
-
-                    <div className="input-group">
-                        <label htmlFor="severity_id">Severity</label>
-                        <select
-                            name="severity_id"
-                            id="severity_id"
-                            value={formData.severity_id || ""}
-                            onChange={handleChange}
-                            className="input-field"
-                        >
-                            <option value="1">Not Applicable</option>
-                            <option value="2">Low</option>
-                            <option value="3">Moderate</option>
-                            <option value="4">High</option>
-                        </select>
-                    </div>
-
-                    <div className="input-group">
-                        <label htmlFor="type_id">Type</label>
-                        <select
-                            name="type_id"
-                            id="type_id"
-                            value={formData.type_id}
-                            onChange={handleChange}
-                            className="input-field"
-                        >
-                            <option value="">Please Select</option>
-                            {user && user.role === "admin" && (
-                                <>
-                                    <option value="1">Hazard</option>
-                                    <option value="2">Lift</option>
-                                </>
-                            )}
-                            <option value="3">Powder Of Interest</option>
-                        </select>
-                    </div>
-
-                    <button
-                        type="submit"
-                        className="submit-button submit-button_registration"
-                    >
-                        Submit
-                    </button>
-                </form>
-            ) : (
-                <div id="success-message">
-                    {details?.id ? (
-                        <h1>You have successfully updated this pin</h1>
-                    ) : (
-                        <h1>You have successfully submitted new pin</h1>
-                    )}
-                </div>
-            )}
-        </div>
+                )}
+            </div>
+        </Modal>
     );
 };
-

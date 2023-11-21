@@ -153,7 +153,12 @@ export default function ShowPopUp({ map }) {
                     </div>
                 </Modal>
             )}
-            {isMyFormModalOpen && <MyFormModalContent details={details} />}
+            {isMyFormModalOpen && (
+                <MyFormModalContent
+                    details={details}
+                    toggleIsMyFormModalOpen={toggleIsMyFormModalOpen}
+                />
+            )}
         </>
     );
 }

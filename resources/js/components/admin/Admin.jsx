@@ -4,6 +4,7 @@ import UserContext from "../../context/UserContext";
 import "./admin.scss";
 import ProfilePictures from "./ProfilePictures";
 import { Link } from "react-router-dom";
+import Event from "../events/Event";
 
 export default function Admin() {
     // State to store user data
@@ -33,6 +34,7 @@ export default function Admin() {
             console.error("Error fetching user data:", error);
         }
     };
+
     const fetchPinsData = async () => {
         try {
             const response = await axios.get("/api/pins");
@@ -89,20 +91,19 @@ export default function Admin() {
         <>
             {user?.role === "admin" ? (
                 <div className="admin-container">
-                    <h1 className="admin-title">
-                        Hello Admin, the user can't see this page
-                    </h1>
-                    <h2>User Data:</h2>
+                    <h1 className="admin-title">Hello Admin</h1>
+
+                    <Event />
+
+                    <h2>User Data</h2>
                     <ul className="admin-list">
                         {users.map((user, index) => (
                             <li key={index} className="admin-list-item">
                                 Name: {user.name}
-                                <br /> Email: {user.email}{" "}
+                                <br /> Email: {user.email}
                                 <select
                                     defaultValue={user.role}
-                                    onChange={(e) => {
-                                        saveNewUserRole(e, user);
-                                    }}
+                                    onChange={(e) => saveNewUserRole(e, user)}
                                     className="admin-select"
                                 >
                                     {userRoles.map((role, index) => (

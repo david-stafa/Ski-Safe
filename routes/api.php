@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\Api\Map_pinController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\Api\Admin\AdminController;
@@ -62,4 +63,6 @@ Route::middleware(['auth', 'can:admin'])->group(function () { // using can:: wil
     Route::get('/admin', [AdminController::class, 'showJson']);
     Route::get('/user-roles', [RoleController::class, "getAllRoles"]);
     Route::post('/user-roles/update', [RoleController::class, "updateRole"]);
+    Route::resource('/events', EventController::class);
+
 });
