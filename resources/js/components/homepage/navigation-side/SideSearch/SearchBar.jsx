@@ -1,19 +1,32 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { X as Close } from "react-feather";
+import _ from "lodash";
 
 import "./SearchBar.scss";
+import axios from "axios";
 
 export default function SearchBar({ onClose }) {
     const [searchTerm, setSearchTerm] = useState("");
 
+    const debouncedSearch = _.debounce(async (query) => {
+        try {
+            const response = await axios.get("api/search-pins", {
+                params: { text: query },
+            });
+            console.log("Search results:", response.data);
+        } catch (error) {
+            console.error("Error during search:", error);
+        }
+    }, 500);
+
+    useEffect(() => {
+        if (searchTerm) {
+            debouncedSearch(searchTerm);
+        }
+    }, [searchTerm]);
+
     const handleSearchChange = (ev) => {
         setSearchTerm(ev.target.value);
-    };
-
-    const handleSearch = () => {
-        console.log("Searching for:", searchTerm);
-        // Axis or ....
-        setSearchTerm("");
     };
 
     return (
@@ -31,9 +44,6 @@ export default function SearchBar({ onClose }) {
                     value={searchTerm}
                     onChange={handleSearchChange}
                 />
-                <button onClick={handleSearch} className="search-button">
-                    Search
-                </button>
             </div>
         </div>
     );

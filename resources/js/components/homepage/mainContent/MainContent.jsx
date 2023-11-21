@@ -21,6 +21,10 @@ export default function MainContent() {
     const [filterLifts, setFilterLifts] = useState(true);
     // Filters above
 
+    // Search below
+
+    //Search above
+
     return (
         <>
             <div className="main-content">

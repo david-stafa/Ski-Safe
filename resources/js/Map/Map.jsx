@@ -46,7 +46,6 @@ export default function Map({ filterHazards, filterLifts }) {
             // map.setLayoutProperty("lifts", "visibility", "visible");
             // map.setLayoutProperty("points", "visibility", "visible");
             setMapState(map);
-
         });
     }, [user]);
 
