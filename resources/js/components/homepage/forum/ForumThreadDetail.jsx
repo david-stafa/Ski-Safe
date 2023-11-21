@@ -53,7 +53,7 @@ export default function ForumThreadDetail({ data }) {
         <div className="thread">
             <div className="thread__heading">
                 <h1>{thread?.title}</h1>
-                <p>Author: {thread?.user.name}</p>
+                <p>Author: {thread?.user?.name}</p>
                 <p>
                     Created at: {createdAt} {createdAtTime}
                 </p>
