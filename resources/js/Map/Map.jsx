@@ -2,14 +2,11 @@ import { useRef, useEffect, useState, useContext } from "react";
 import mapboxgl from "mapbox-gl";
 import "./map.scss";
 import { mapBoxToken } from "./helpers/map-helper";
-import { addHazardLayer } from "./Pins/addHazardLayer";
 import ShowPopUp from "./popUp/showPopUp";
 import Weather from "../components/homepage/weather/Weather";
-
-import { addLiftLayer } from "./Pins/addLiftLayer";
 import UserContext from "../context/UserContext";
 import AddPinOnMap from "./Pins/addPinOnMap/addPinOnMap";
-import { addPoiLayer } from "./Pins/addPoiLayer";
+import loadLayers from "./Pins/addPinOnMap/loadLayers";
 
 mapboxgl.accessToken = mapBoxToken;
 
@@ -41,9 +38,7 @@ export default function Map({ filterHazards, filterLifts, searchResults }) {
             map.doubleClickZoom.disable();
 
             map.rotateTo(190, { duration: 5000 });
-            addHazardLayer(map);
-            addLiftLayer(map);
-            addPoiLayer(map);
+            loadLayers(map);
 
             // map.setLayoutProperty("lifts", "visibility", "visible");
             // map.setLayoutProperty("points", "visibility", "visible");

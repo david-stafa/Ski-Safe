@@ -16,7 +16,6 @@ export const addHazardLayer = async (map) => {
                   data: geojson,
               });
 
-        // It deletes the current layer before refresh - to prevend having duplicate layers
         if (map.getLayer("points")) {
             map.removeLayer("points");
         }
