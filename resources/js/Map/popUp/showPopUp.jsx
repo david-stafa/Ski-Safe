@@ -19,6 +19,7 @@ export default function ShowPopUp({ map }) {
         title: "",
         slug: "",
         severity: "",
+        type_id: null,
         description: "",
         id: "",
         images: "",
@@ -81,7 +82,6 @@ export default function ShowPopUp({ map }) {
 
     useEffect(() => {
         map.on("click", "points", handleClick);
-        console.log(details);
         return () => {
             map.off("click", "points", handleClick);
         };
@@ -89,7 +89,6 @@ export default function ShowPopUp({ map }) {
 
     useEffect(() => {
         map.on("click", "lifts", handleClick);
-        console.log(details);
         return () => {
             map.off("click", "points", handleClick);
         };

@@ -1,18 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import mapboxgl, { Map } from "mapbox-gl";
 import { addHazardLayer } from "../addHazardLayer";
 import "./myFormModalContent.scss";
+import UserContext from "../../../context/UserContext";
 
 export let handleFetch = false;
 
-export const MyFormModalContent = ({
-    coordinates,
-    marker,
-    markerOnMap,
-    map,
-    details,
-}) => {
+export const MyFormModalContent = ({ coordinates, map, details }) => {
+    const { user, setUser } = useContext(UserContext);
     const [formData, setFormData] = useState({
         id: details?.id || null,
         title: details?.title || "",
@@ -21,6 +17,7 @@ export const MyFormModalContent = ({
         longitude: details?.longitude || coordinates[0],
         severity_id: details?.severity_id || 1,
         severity: details?.severtiy || 1,
+        type_id: details?.type_id || 1,
         slug: details?.slug || "",
         active: true,
     });
@@ -28,20 +25,24 @@ export const MyFormModalContent = ({
     const [toggleContent, setToggleContent] = useState(true);
 
     const handleChange = (e) => {
+        if (e.target.name === "type_id" && e.target.value === "") {
+            return;
+        }
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(details);
+        if (formData.type_id === null) {
+            alert("Please select a type");
+            return;
+        }
         try {
             if (!details) {
                 const response = await axios.post("/api/pin/store", formData);
                 console.log("Your pin was successfully created", response.data);
                 setToggleContent(false);
-                markerOnMap = false;
                 handleFetch = true;
-                marker.remove();
                 addHazardLayer(map);
             } else {
                 const response = await axios.post(
@@ -65,7 +66,11 @@ export const MyFormModalContent = ({
     return (
         <div className="register-container">
             {toggleContent ? (
-                <form action="" onSubmit={handleSubmit}>
+                <form
+                    className="modalContent-data"
+                    action=""
+                    onSubmit={handleSubmit}
+                >
                     <div className="register-header">
                         {details?.id ? (
                             <h2>Edit a pin number {details.id}</h2>
@@ -109,7 +114,7 @@ export const MyFormModalContent = ({
                     </div>
 
                     <div className="input-group">
-                        <label htmlFor="severity_id">Severity state</label>
+                        <label htmlFor="severity_id">Severity</label>
                         <select
                             name="severity_id"
                             id="severity_id"
@@ -117,9 +122,30 @@ export const MyFormModalContent = ({
                             onChange={handleChange}
                             className="input-field"
                         >
+                            <option value="1">Not Applicable</option>
                             <option value="2">Low</option>
                             <option value="3">Moderate</option>
                             <option value="4">High</option>
+                        </select>
+                    </div>
+
+                    <div className="input-group">
+                        <label htmlFor="type_id">Type</label>
+                        <select
+                            name="type_id"
+                            id="type_id"
+                            value={formData.type_id}
+                            onChange={handleChange}
+                            className="input-field"
+                        >
+                            <option value="">Please Select</option>
+                            {user && user.role === "admin" && (
+                                <>
+                                    <option value="1">Hazard</option>
+                                    <option value="2">Lift</option>
+                                </>
+                            )}
+                            <option value="3">Powder Of Interest</option>
                         </select>
                     </div>
 
@@ -131,9 +157,9 @@ export const MyFormModalContent = ({
                     </button>
                 </form>
             ) : (
-                <div className="success-message">
+                <div id="success-message">
                     {details?.id ? (
-                        <h1>You have succesfully updated this pin</h1>
+                        <h1>You have successfully updated this pin</h1>
                     ) : (
                         <h1>You have successfully submitted new pin</h1>
                     )}
