@@ -38,9 +38,6 @@ export default function Map({ filterHazards, filterLifts }) {
             map.doubleClickZoom.disable();
 
             map.rotateTo(190, { duration: 5000 });
-            // addHazardLayer(map);
-            // addLiftLayer(map);
-            // addPoiLayer(map);
             loadLayers(map);
 
             // map.setLayoutProperty("lifts", "visibility", "visible");
@@ -77,7 +74,7 @@ export default function Map({ filterHazards, filterLifts }) {
     return (
         <>
             <div className="map" id="map" ref={mapContainer}>
-                <Weather />
+                {/* <Weather /> */}
             </div>
             {mapState && <ShowPopUp map={mapState} />}
             {mapState && <AddPinOnMap map={mapState} />}

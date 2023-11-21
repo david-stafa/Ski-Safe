@@ -13,7 +13,7 @@
     },
     "dependencies": {
         "@vitejs/plugin-react": "^4.1.1",
-        "esbuild": "^0.19.6",
+        "esbuild": "^0.19.7",
         "i": "^0.3.7",
         "lodash": "^4.17.21",
         "mapbox-gl": "^2.15.0",
