@@ -9,6 +9,7 @@ import Weather from "../components/homepage/weather/Weather";
 import { addLiftLayer } from "./Pins/addLiftLayer";
 import UserContext from "../context/UserContext";
 import AddPinOnMap from "./Pins/addPinOnMap/addPinOnMap";
+import { addPoiLayer } from "./Pins/addPoiLayer";
 
 mapboxgl.accessToken = mapBoxToken;
 
@@ -42,6 +43,7 @@ export default function Map({ filterHazards, filterLifts, searchResults }) {
             map.rotateTo(190, { duration: 5000 });
             addHazardLayer(map);
             addLiftLayer(map);
+            addPoiLayer(map);
 
             // map.setLayoutProperty("lifts", "visibility", "visible");
             // map.setLayoutProperty("points", "visibility", "visible");

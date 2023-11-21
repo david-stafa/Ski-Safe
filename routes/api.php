@@ -31,6 +31,7 @@ Route::get('/user', function (Request $request) {
 Route::get('/map-pins', [Map_pinController::class, 'index'])->name('pins');
 Route::get('/hazard-pins', [Map_pinController::class, 'getHazards'])->name('hazards');
 Route::get('/lift-pins', [Map_pinController::class, 'getLifts'])->name('lifts');
+Route::get('/poi-pins', [Map_pinController::class, 'getPois'])->name('pois');
 
 Route::post('/pin/store', [Map_pinController::class, 'store'])->name('pins.store');
 
