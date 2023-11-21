@@ -65,7 +65,11 @@ export const MyFormModalContent = ({
     return (
         <div className="register-container">
             {toggleContent ? (
-                <form action="" onSubmit={handleSubmit}>
+                <form
+                    className="modalContent-data"
+                    action=""
+                    onSubmit={handleSubmit}
+                >
                     <div className="register-header">
                         {details?.id ? (
                             <h2>Edit a pin number {details.id}</h2>
@@ -131,9 +135,9 @@ export const MyFormModalContent = ({
                     </button>
                 </form>
             ) : (
-                <div className="success-message">
+                <div id="success-message">
                     {details?.id ? (
-                        <h1>You have succesfully updated this pin</h1>
+                        <h1>You have successfully updated this pin</h1>
                     ) : (
                         <h1>You have successfully submitted new pin</h1>
                     )}
