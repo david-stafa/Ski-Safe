@@ -24,9 +24,6 @@ export default function PopUpContent({
         newWaitingTime < 6 ? (newWaitingTime = 0) : (newWaitingTime -= 5);
         setWaitingTime(newWaitingTime);
     };
-    useEffect(() => {
-        console.log(user);
-    });
 
     return (
         <>

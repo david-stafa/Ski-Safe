@@ -1,6 +1,6 @@
 import mapboxgl from "mapbox-gl";
 import "./pop-up.scss";
-import { DeletePin } from "../Pins/DeletePin";
+import DeletePinModal from "../Pins/DeletePinModal";
 import React, { useEffect, useState, useCallback, useContext } from "react";
 import Modal from "../../components/Modal/Modal";
 import useToggle from "../../components/Modal/use-toggle";
@@ -11,6 +11,7 @@ import UserContext from "../../context/UserContext";
 
 export default function ShowPopUp({ map }) {
     const { user, setUser } = useContext(UserContext);
+    const [isDeleteModalOpen, toggleIsDeleteModalOpen] = useToggle(false);
     const [isModalOpen, toggleIsModalOpen] = useToggle(false);
     const [isMyFormModalOpen, toggleIsMyFormModalOpen] = useToggle(false);
     const [details, setDetails] = useState({
@@ -26,7 +27,7 @@ export default function ShowPopUp({ map }) {
         images: "",
     });
     const handleDeleteClick = () => {
-        DeletePin(details.id);
+        toggleIsDeleteModalOpen();
     };
     const handleEditClick = () => {
         toggleIsModalOpen();
@@ -81,10 +82,6 @@ export default function ShowPopUp({ map }) {
         },
         [map, details]
     );
-
-    // useEffect(() => {
-    //     console.log(user);
-    // });
 
     useEffect(() => {
         map.on("click", "points", handleClick);
@@ -178,6 +175,13 @@ export default function ShowPopUp({ map }) {
                 </Modal>
             )}
             {isMyFormModalOpen && <MyFormModalContent details={details} />}
+            {isDeleteModalOpen && (
+                <DeletePinModal
+                    details={details}
+                    isDeleteModalOpen={isDeleteModalOpen}
+                    toggleIsDeleteModalOpen={toggleIsDeleteModalOpen}
+                />
+            )}
         </>
     );
 }
