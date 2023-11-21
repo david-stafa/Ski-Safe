@@ -150,6 +150,7 @@ export default function ShowPopUp({ map }) {
                     </div>
                 </Modal>
             )}
+
             {isMyFormModalOpen && <MyFormModalContent details={details} />}
             {isDeleteModalOpen && (
                 <DeletePinModal
