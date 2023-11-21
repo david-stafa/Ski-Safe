@@ -61,6 +61,7 @@ export default function ShowPopUp({ map }) {
                     isModalOpen={isModalOpen}
                     toggleIsModalOpen={toggleIsModalOpen}
                     details={newDetails}
+                    user={user}
                 />
             );
             const myPopUp = new mapboxgl.Popup({
@@ -79,6 +80,10 @@ export default function ShowPopUp({ map }) {
         },
         [map, details]
     );
+
+    // useEffect(() => {
+    //     console.log(user);
+    // });
 
     useEffect(() => {
         map.on("click", "points", handleClick);
