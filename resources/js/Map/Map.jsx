@@ -12,7 +12,7 @@ import AddPinOnMap from "./Pins/addPinOnMap/addPinOnMap";
 
 mapboxgl.accessToken = mapBoxToken;
 
-export default function Map({ filterHazards, filterLifts }) {
+export default function Map({ filterHazards, filterLifts, searchResults }) {
     const [mapState, setMapState] = useState(null);
     const mapContainer = useRef();
     const { user, setUser } = useContext(UserContext);
@@ -49,24 +49,56 @@ export default function Map({ filterHazards, filterLifts }) {
         });
     }, [user]);
 
+    // search below !!!!!!!!!!!!!!!!!!!!!!!!
+    useEffect(() => {
+        if (mapState) {
+            clearMap(searchResults);
+        }
+    }, [searchResults, mapState]);
+
+    // console.log("Map", searchResults); // data is here!!
+
+    function clearMap(results) {
+        if (!mapState) return;
+
+        const layers = ["points", "lifts"]; // Add layers here!!!
+
+        if (results.length > 0) {
+            const resultIds = results.map((result) => result.id);
+
+            layers.forEach((layerId) => {
+                if (mapState.getLayer(layerId)) {
+                    mapState.setFilter(layerId, [
+                        "in",
+                        ["get", "id"],
+                        ["literal", resultIds],
+                    ]);
+                }
+            });
+        } else {
+            layers.forEach((layerId) => {
+                if (mapState.getLayer(layerId)) {
+                    mapState.setFilter(layerId, null);
+                }
+            });
+        }
+    }
+    // search above !!!!!!!!!!!!!!!!!!!
+
     // filters below
     const updateLayerVisibility = () => {
-        if (mapState) {
-            if (mapState.getLayer("points")) {
+        const setLayerVisibility = (layerName, filterCondition) => {
+            if (mapState && mapState.getLayer(layerName)) {
                 mapState.setLayoutProperty(
-                    "points",
+                    layerName,
                     "visibility",
-                    filterHazards ? "visible" : "none"
+                    filterCondition ? "visible" : "none"
                 );
             }
-            if (mapState.getLayer("lifts")) {
-                mapState.setLayoutProperty(
-                    "lifts",
-                    "visibility",
-                    filterLifts ? "visible" : "none"
-                );
-            }
-        }
+        };
+
+        setLayerVisibility("points", filterHazards);
+        setLayerVisibility("lifts", filterLifts);
     };
 
     useEffect(() => {

@@ -11,11 +11,19 @@ export default function AdjacentRectangle({
     setFilterHazards,
     filterLifts,
     setFilterLifts,
+    onSearch,
+    onClearSearch,
 }) {
     const leftPosition = navExpanded ? "372px" : "292px";
     return (
         <div className="adjacent-rectangle" style={{ left: leftPosition }}>
-            {activeItem === "search" && <SearchBar onClose={onClose} />}
+            {activeItem === "search" && (
+                <SearchBar
+                    onClose={onClose}
+                    onSearch={onSearch}
+                    onClearSearch={onClearSearch}
+                />
+            )}
             {activeItem === "severity" && <Severity onClose={onClose} />}
             {activeItem === "filters" && (
                 <Filters
