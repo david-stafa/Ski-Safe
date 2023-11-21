@@ -19,6 +19,7 @@ export default function MainContent() {
     // Filters below
     const [filterHazards, setFilterHazards] = useState(true);
     const [filterLifts, setFilterLifts] = useState(true);
+    const [filterPois, setFilterPois] = useState(true);
     // Filters above
 
     // Search below
@@ -38,6 +39,7 @@ export default function MainContent() {
                 <Map
                     filterHazards={filterHazards}
                     filterLifts={filterLifts}
+                    filterPois={filterPois}
                     searchResults={searchResults}
                 />
                 <SideNavigation
@@ -54,6 +56,8 @@ export default function MainContent() {
                         setFilterHazards={setFilterHazards}
                         filterLifts={filterLifts}
                         setFilterLifts={setFilterLifts}
+                        filterPois={filterPois}
+                        setFilterPois={setFilterPois}
                         onSearch={handleSearchResults}
                         onClearSearch={handleClearSearch}
                     />

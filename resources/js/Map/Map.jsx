@@ -10,7 +10,12 @@ import loadLayers from "./Pins/addPinOnMap/loadLayers";
 
 mapboxgl.accessToken = mapBoxToken;
 
-export default function Map({ filterHazards, filterLifts, searchResults }) {
+export default function Map({
+    filterHazards,
+    filterLifts,
+    filterPois,
+    searchResults,
+}) {
     const [mapState, setMapState] = useState(null);
     const mapContainer = useRef();
     const { user, setUser } = useContext(UserContext);
@@ -58,7 +63,7 @@ export default function Map({ filterHazards, filterLifts, searchResults }) {
     function clearMap(results) {
         if (!mapState) return;
 
-        const layers = ["points", "lifts"]; // Add layers here!!!
+        const layers = ["points", "lifts", "pois"]; // Add layers here!!!
 
         if (results.length > 0) {
             const resultIds = results.map((result) => result.id);
@@ -96,11 +101,12 @@ export default function Map({ filterHazards, filterLifts, searchResults }) {
 
         setLayerVisibility("points", filterHazards);
         setLayerVisibility("lifts", filterLifts);
+        setLayerVisibility("pois", filterPois);
     };
 
     useEffect(() => {
         updateLayerVisibility();
-    }, [filterHazards, filterLifts, mapState]);
+    }, [filterHazards, filterLifts, filterPois, mapState]);
     // filters above
 
     return (

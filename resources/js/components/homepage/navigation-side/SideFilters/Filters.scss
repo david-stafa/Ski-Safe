@@ -12,6 +12,12 @@
     margin-bottom: 10px;
 }
 
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
 .close-button {
     background: none;
     border: none;
@@ -27,11 +33,16 @@
     align-items: center;
     margin: 5px 0;
 
+    .par {
+        margin-left: 2px;
+        margin-right: 2px;
+    }
+
     label {
         position: relative;
         display: inline-block;
-        width: 60px;
-        height: 34px;
+        width: 40px;
+        height: 20px;
     }
 
     .slider {
@@ -43,15 +54,15 @@
         bottom: 0;
         background-color: #ccc;
         transition: 0.4s;
-        border-radius: 34px;
+        border-radius: 20px;
 
         &:before {
             position: absolute;
             content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
+            height: 16px;
+            width: 16px;
+            left: 2px;
+            bottom: 2px;
             background-color: white;
             transition: 0.4s;
             border-radius: 50%;
@@ -72,11 +83,15 @@
         }
 
         &:checked + .slider:before {
-            transform: translateX(26px);
+            transform: translateX(22px);
         }
     }
 
     p {
         margin-left: 10px;
     }
+}
+
+.filters-content {
+    display: flex;
 }
