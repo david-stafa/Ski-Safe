@@ -5,6 +5,7 @@ import { addHazardLayer } from "../addHazardLayer";
 import "./myFormModalContent.scss";
 import UserContext from "../../../context/UserContext";
 import Modal from "../../../components/Modal/Modal";
+import loadLayers from "./loadLayers";
 
 export let handleFetch = false;
 
@@ -49,7 +50,7 @@ export const MyFormModalContent = ({
                 console.log("Your pin was successfully created", response.data);
                 setToggleContent(false);
                 handleFetch = true;
-                addHazardLayer(map);
+                loadLayers(map);
             } else {
                 const response = await axios.post(
                     `api/map-pins/edit/${details.id}`,

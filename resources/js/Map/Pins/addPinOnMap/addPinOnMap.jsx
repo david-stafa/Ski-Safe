@@ -2,11 +2,11 @@ import mapboxgl from "mapbox-gl";
 import "./addPinOnMap.scss";
 import { MyFormModalContent } from "./MyFormModalContent";
 import AddPinContent from "./AddPinContent";
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useContext } from "react";
 import { createRoot } from "react-dom/client";
 import useToggle from "../../../components/Modal/use-toggle";
 
-export default function AddPinOnMap({ map }) {
+export default function AddPinOnMap({ map, user }) {
     const [isMyFormModalOpen, toggleIsMyFormModalOpen] = useToggle(false);
     const [coordinates, setCoordinates] = useState([]);
     let markerOnMap = false;
@@ -30,6 +30,7 @@ export default function AddPinOnMap({ map }) {
             const popUpRoot = createRoot(placeHolder);
             popUpRoot.render(
                 <AddPinContent
+                    user={user}
                     isMyFormModalOpen={isMyFormModalOpen}
                     toggleIsMyFormModalOpen={toggleIsMyFormModalOpen}
                     coordinates={newCoordinates}
@@ -55,7 +56,6 @@ export default function AddPinOnMap({ map }) {
 
     useEffect(() => {
         map.on("dblclick", handleDblClick);
-        console.log(coordinates);
         return () => {
             map.off("dblclick", handleDblClick);
         };
