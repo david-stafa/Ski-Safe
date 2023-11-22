@@ -26,9 +26,9 @@ export default function Map({
         const map = new mapboxgl.Map({
             container: mapContainer.current,
             style: "mapbox://styles/themainkane/clou0eblx00un01o46rwmb8f4",
-            center: [-140.404811, 60.568208],
-            zoom: 11,
-            pitch: 66,
+            center: [-140.34805, 60.590849],
+            zoom: 11.1,
+            pitch: 90,
         });
 
         map.on("load", () => {
@@ -43,7 +43,7 @@ export default function Map({
             });
             map.doubleClickZoom.disable();
 
-            map.rotateTo(190, { duration: 5000 });
+            map.rotateTo(183, { duration: 10000 });
             loadLayers(map);
 
             // map.setLayoutProperty("lifts", "visibility", "visible");
@@ -117,7 +117,7 @@ export default function Map({
                 <EventOnHomepage />
             </div>
             {mapState && <ShowPopUp map={mapState} />}
-            {mapState && <AddPinOnMap map={mapState} />}
+            {mapState && <AddPinOnMap user={user} map={mapState} />}
         </>
     );
 }
