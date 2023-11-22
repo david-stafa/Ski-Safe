@@ -85,3 +85,32 @@
         }
     }
 }
+
+@media (max-width: 768px) {
+    .testimonials-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .testimonial-item {
+        width: 100%;
+        margin: 10px 0;
+        opacity: 1;
+        filter: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .testimonials-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .testimonial-item {
+        width: 100%;
+        padding: 20px;
+        margin: 10px 0;
+        opacity: 1;
+        filter: none;
+    }
+}

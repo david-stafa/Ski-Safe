@@ -59,8 +59,8 @@ $admin-button-hover: darken($admin-button-color, 10%);
 }
 .back-button {
     padding: 10px 15px;
-    background-color: #f44336; // Red color for emphasis
-    color: white; // White text for contrast
+    background-color: #f44336;
+    color: white;
     text-decoration: none;
     border: none;
     border-radius: 5px;
@@ -69,7 +69,7 @@ $admin-button-hover: darken($admin-button-color, 10%);
     transition: background-color 0.3s, color 0.3s;
 
     &:hover {
-        background-color: darken(#f44336, 10%); // Darken on hover
+        background-color: darken(#f44336, 10%);
         color: #fff;
     }
 
