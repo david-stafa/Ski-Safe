@@ -33,9 +33,6 @@ export const MyFormModalContent = ({
     const [selectedFile, setSelectedFile] = useState(null);
 
     const handleChange = (e) => {
-        if (e.target.name === "type_id" && e.target.value === "") {
-            return;
-        }
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
@@ -50,34 +47,38 @@ export const MyFormModalContent = ({
             return;
         }
 
-        const submitData = new FormData();
-        if (selectedFile) {
-            submitData.append("image", selectedFile);
-        }
-        Object.keys(formData).forEach((key) => {
-            submitData.append(key, formData[key]);
-        });
-
         try {
             let response;
             if (!details) {
-                response = await axios.post("/api/pin/store", submitData, {
-                    headers: {
-                        "Content-Type": "multipart/form-data",
-                    },
-                });
+                response = await axios.post("/api/pin/store", formData);
             } else {
                 response = await axios.post(
                     `/api/map-pins/edit/${details.id}`,
-                    submitData,
+                    formData
+                );
+            }
+            // console.log("Pin data processed", response.data);
+            const mapPinId = response.data.id;
+
+            if (selectedFile) {
+                const imageFormData = new FormData();
+                imageFormData.append("image", selectedFile);
+                imageFormData.append("map_pin_id", mapPinId);
+                imageFormData.append("name", formData.title);
+                imageFormData.append("description", formData.slug);
+
+                let imageResponse = await axios.post(
+                    "/api/uploads",
+                    imageFormData,
                     {
                         headers: {
                             "Content-Type": "multipart/form-data",
                         },
                     }
                 );
+                // console.log("Image uploaded", imageResponse.data);
             }
-            console.log("Your pin was successfully processed", response.data);
+
             setToggleContent(false);
             handleFetch = true;
             loadLayers(map);
@@ -88,7 +89,7 @@ export const MyFormModalContent = ({
 
     useEffect(() => {
         if (map) {
-            console.log("updated");
+            console.log("Map updated");
         }
     }, [handleFetch]);
 

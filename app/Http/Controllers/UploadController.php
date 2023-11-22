@@ -63,19 +63,13 @@ class UploadController extends Controller
         try {
             $imageName = Str::random(32).".".$request->image->getClientOriginalExtension();
 
-            $mapPinId = $request->input('map_pin_id', null);
-            $mapPin = null;
-            if ($mapPinId) {
-                $mapPin = Map_pin::find($mapPinId);
-            }
-
             // Create
          Upload::create([
-            'name' => $mapPin ? $mapPin->title : $request->name,
+           'name' => $request->name,
             'image' => $imageName,
-            'description' => $mapPin ? $mapPin->description : $request->description,
+            'description' => $request->description,
             'user_id' => Auth::id(),
-            'map_pin_id' => $mapPinId,
+            'map_pin_id' => $request->input('map_pin_id', null),
         ]);
 
             // Save in floder
@@ -191,4 +185,14 @@ class UploadController extends Controller
         $uploads = Upload::with('user')->get();
         return response()->json($uploads);
     }
+
+    public function getMapPinImage($mapPinId)
+{
+    $upload = Upload::where('map_pin_id', $mapPinId)->first();
+    if ($upload) {
+        return response()->json(['image' => '/storage/' . $upload->image]);
+    } else {
+        return response()->json(['message' => 'Image not found'], 404);
+    }
+}
 }

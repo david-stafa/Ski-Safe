@@ -71,7 +71,7 @@ class Map_pinController extends Controller
         // $map_pin->images = $request->input('images');
         $map_pin->update();
 
-        return response()->json(['message' => 'Pin updated succesfully']);
+        return response()->json(['message' => 'Pin updated successfully', 'id' => $map_pin->id]);
 
 
     }
@@ -95,15 +95,14 @@ class Map_pinController extends Controller
         $map_pin->latitude = $request->input('latitude');
         $map_pin->severity_id = $request->input('severity_id');
         $map_pin->slug = $request->input('slug');
-        $map_pin->active = $request->input('active');
+        $map_pin->active = $request->input('active')? 1 : 0;
         $map_pin->images = $request->input('images');
         $map_pin->type_id = $request->input('type_id');
         // $map_pin->creator_id = $request->input('creator_id');
         // $map_pin->video = $request->input('video');
         $map_pin->save();
 
-        return
-            response()->json(['message' => 'Pin updated succesfully']);
+        return response()->json(['message' => 'Pin updated successfully', 'id' => $map_pin->id]);
     }
 
 

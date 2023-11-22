@@ -9,6 +9,7 @@ import { createRoot } from "react-dom/client";
 import { MyFormModalContent } from "../Pins/addPinOnMap/MyFormModalContent";
 import UserContext from "../../context/UserContext";
 import cursorStyle from "../Pins/cursorStyle";
+import axios from "axios";
 
 export default function ShowPopUp({ map }) {
     const { user, setUser } = useContext(UserContext);
@@ -35,11 +36,24 @@ export default function ShowPopUp({ map }) {
         toggleIsModalOpen(!toggleIsModalOpen);
         toggleIsMyFormModalOpen(!isMyFormModalOpen);
     };
+
+    const fetchImage = async (mapPinId) => {
+        try {
+            const response = await axios.get(`/api/map-pin-image/${mapPinId}`);
+            return response.data.image;
+        } catch (error) {
+            console.error("Error fetching image:", error);
+            return null;
+        }
+    };
+
     const handleClick = useCallback(
-        (e) => {
+        async (e) => {
             const pinProperties = e.features[0].properties;
             const coordinates = e.features[0].geometry.coordinates.slice();
             console.log(pinProperties);
+
+            const imageUrl = await fetchImage(pinProperties.id);
 
             const newDetails = {
                 ...details,
@@ -53,6 +67,7 @@ export default function ShowPopUp({ map }) {
                 description: pinProperties.description,
                 id: pinProperties.id,
                 images: pinProperties.images,
+                image: imageUrl,
             };
 
             setDetails(newDetails);
@@ -127,7 +142,7 @@ export default function ShowPopUp({ map }) {
                         <p>{details.description}</p>
                         <img
                             className="image"
-                            src={details.images}
+                            src={details.image}
                             alt="modalpin"
                         />
 
