@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\Api\Admin\AdminController;
 use App\Http\Controllers\Api\Admin\RoleController;
-use App\Http\Controllers\ForumController;
+use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ThreadsController;
 use App\Http\Controllers\UploadController;
 use App\Models\Upload;
@@ -72,6 +72,13 @@ Route::middleware(['auth', 'can:admin'])->group(function () { // using can:: wil
 });
 
 // FORUM
-Route::get('/forum/threads', [ForumController::class, 'index']);
-Route::get('/forum/threads/{id}', [ForumController::class, 'show']);
+// Threads
+Route::get('/forum/threads', [ThreadsController::class, 'index']);
+Route::get('/forum/threads/{id}', [ThreadsController::class, 'show']);
 Route::post('/forum/threads/create', [ThreadsController::class, 'store']);
+Route::post('/forum/threads/update/{id}', [ThreadsController::class, 'update']);
+Route::delete('/forum/threads/delete/{id}', [ThreadsController::class, 'destroy']);
+
+//Posts
+Route::post('/forum/posts/create', [PostsController::class, 'store']);
+Route::delete('/forum/posts/delete/{id}', [PostsController::class, 'destroy']);

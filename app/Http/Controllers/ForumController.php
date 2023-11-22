@@ -14,8 +14,8 @@ class ForumController extends Controller
     public function index()
     {
         // $messages = Message::all();
-        $forumThreads = Forum_thread::with('forum_post', 'user')
-        ->orderBy('created_at', 'desc') // 'desc' for descending order, 'asc' for ascending order
+        $forumThreads = Forum_thread::orderBy('created_at', 'desc') // 'desc' for descending order, 'asc' for ascending order
+        ->with('forum_post.user.uploads', 'user.uploads')
         ->get();
        
         return ($forumThreads);
@@ -23,7 +23,7 @@ class ForumController extends Controller
 
     public function show(string $id)
     {
-        $forumThread = Forum_thread::with('forum_post.user' , 'user.uploads')->findOrFail($id);
+        $forumThread = Forum_thread::with('forum_post.user.uploads' , 'user.uploads')->findOrFail($id);
 
         return $forumThread;
     }

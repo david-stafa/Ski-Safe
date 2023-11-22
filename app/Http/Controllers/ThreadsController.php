@@ -12,7 +12,12 @@ class ThreadsController extends Controller
      */
     public function index()
     {
-        //
+        // $messages = Message::all();
+        $forumThreads = Forum_thread::orderBy('created_at', 'desc') // 'desc' for descending order, 'asc' for ascending order
+        ->with('forum_post.user.uploads', 'user.uploads')
+        ->get();
+
+        return ($forumThreads);
     }
 
     /**
@@ -40,7 +45,9 @@ class ThreadsController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $forumThread = Forum_thread::with('forum_post.user.uploads', 'user.uploads')->findOrFail($id);
+
+        return $forumThread;
     }
 
     /**
@@ -48,7 +55,18 @@ class ThreadsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string'
+        ]);
+
+        $thread = Forum_thread::findOrFail($id);
+        $thread->title = $request->input('title');
+        $thread->content = $request->input('content');
+        $thread->user_id = $request->input('user_id');
+        $thread->update();
+
+        return response()->json($thread, 201);
     }
 
     /**
@@ -56,6 +74,16 @@ class ThreadsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $thread = Forum_thread::findOrFail($id);
+
+        if (!$thread) {
+            return response()->json([
+                'message' => "Image not found!"
+            ], 404);
+        }
+        
+        $thread->delete();
+
+        return response()->json(null, 204);
     }
 }

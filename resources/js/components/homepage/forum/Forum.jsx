@@ -1,15 +1,19 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import ForumThreads from "./ForumThreads";
+import { useContext, useEffect, useState } from "react";
+import ForumThreads from "./Threads";
 import ThreadCRUD from "./ThreadCRUD";
+import UserContext from "../../../context/UserContext";
+
 
 export default function Forum() {
     const [forumData, setForumData] = useState({
         toggleForm: false,
         threads: [],
         posts: [],
-        createThread: null,
     });
+
+    const[refreshFetch, setRefreshFetch]=useState(false)
+    const { user, setUser } = useContext(UserContext);
 
     const forumThreads = async () => {
         try {
@@ -25,27 +29,35 @@ export default function Forum() {
 
     useEffect(() => {
         forumThreads();
-    }, []);
+    }, [refreshFetch]);
 
     console.log(forumData);
 
     return (
         <>
-            <button onClick={() => setForumData({ ...forumData, toggleForm: true })}>
-                Post something
-            </button>
+            {user && (
+                <button
+                    onClick={() =>
+                        setForumData({ ...forumData, toggleForm: !forumData.toggleForm })
+                    }
+                >
+                    { forumData.toggleForm ? 'Stop posting' : 'Post something' }
+                </button>
+            )}
             {forumData.toggleForm ? (
                 <>
-                    <button onClick={() =>setForumData({ ...forumData, toggleForm: false })}>
-                        Cancel posting
-                    </button>
-                    <ThreadCRUD />
+
+                    <ThreadCRUD
+                        refreshFetch={refreshFetch}
+                        setRefreshFetch={setRefreshFetch}
+                    />
+
                 </>
             ) : (
                 ""
             )}
-            
-            <ForumThreads forumData={forumData} />
+
+            <div className="forum__box"><ForumThreads forumData={forumData} /></div>
         </>
     );
 }
