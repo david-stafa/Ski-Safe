@@ -188,7 +188,11 @@ class UploadController extends Controller
 
     public function getMapPinImage($mapPinId)
 {
-    $upload = Upload::where('map_pin_id', $mapPinId)->first();
+    $upload = Upload::where('map_pin_id', $mapPinId)
+                    ->orderBy('created_at', 'desc')
+                    ->first();
+
+
     if ($upload) {
         return response()->json(['image' => '/storage/' . $upload->image]);
     } else {

@@ -56,7 +56,6 @@ export const MyFormModalContent = ({
                     `/api/map-pins/edit/${details.id}`,
                     formData
                 );
-
             }
             // console.log("Pin data processed", response.data);
             const mapPinId = response.data.id;
@@ -85,6 +84,9 @@ export const MyFormModalContent = ({
             loadLayers(map);
         } catch (error) {
             console.error("Error:", error);
+            alert(
+                "If you are uploading image, please use (jpeg, png, jpg, gif, svg) up to 2 MB."
+            );
         }
     };
 
