@@ -140,11 +140,13 @@ export default function ShowPopUp({ map }) {
                         <h4>Basic Description:</h4>
                         <p>{details.slug}</p>
                         <p>{details.description}</p>
-                        <img
-                            className="image"
-                            src={details.image}
-                            alt="modalpin"
-                        />
+                        {details.image && (
+                            <img
+                                className="image"
+                                src={details.image}
+                                alt="modalpin"
+                            />
+                        )}
 
                         {user && user.role === "admin" && (
                             <>
