@@ -22,7 +22,6 @@ export default function ForumThreadDetail({ data }) {
     const updatedAtTime = thread?.updated_at.slice(11, 17);
 
     const renderPosts = thread?.forum_post.map((event, i) => {
-
         //* Time variables for post
         const createdAtPost = new Date(event.created_at).toLocaleDateString();
         const updatedAtPost = new Date(event.updated_at).toLocaleDateString();
@@ -47,7 +46,7 @@ export default function ForumThreadDetail({ data }) {
         loadThread();
     }, []);
 
-    console.log(thread)
+    console.log(thread);
 
     return (
         <div className="thread">

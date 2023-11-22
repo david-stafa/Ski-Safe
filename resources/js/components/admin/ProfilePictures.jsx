@@ -26,15 +26,13 @@ export default function ProfilePictures() {
     }, []);
 
     const deleteUpload = (id) => {
-        axios
-            .delete(`http://www.skisafe.test/api/uploadsdelete/${id}`)
-            .then((response) => {
-                //  console.log(response.data);
-                alert("You have successfully deleted your picture!");
-                setTimeout(() => {
-                    window.location.reload();
-                }, 2000);
-            });
+        axios.delete(`/api/uploadsdelete/${id}`).then((response) => {
+            //  console.log(response.data);
+            alert("You have successfully deleted your picture!");
+            setTimeout(() => {
+                window.location.reload();
+            }, 2000);
+        });
     };
 
     return (

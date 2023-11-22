@@ -7,7 +7,7 @@ import "./UserPictures.scss";
 export default function UserPictures({ userUpload }) {
     const deleteUpload = (id) => {
         axios
-            .delete(`http://www.skisafe.test/api/uploadsdelete/${id}`)
+            .delete(`/api/uploadsdelete/${id}`)
             .then((response) => {
                 console.log(response.data);
                 alert("You have successfully deleted your picture!");
@@ -23,9 +23,7 @@ export default function UserPictures({ userUpload }) {
 
     const setAsProfilePicture = (id) => {
         axios
-            .post(
-                `http://www.skisafe.test/api/uploads/${id}/set-profile-picture`
-            )
+            .post(`/api/uploads/${id}/set-profile-picture`)
             .then((response) => {
                 alert("Profile picture updated successfully!");
                 window.location.reload();

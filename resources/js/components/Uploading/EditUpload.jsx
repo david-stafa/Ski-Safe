@@ -32,7 +32,7 @@ export default function EditUpload() {
 
         try {
             const response = await axios.post(
-                `http://www.skisafe.test/api/uploadsupdate/${id}`,
+                `/api/uploadsupdate/${id}`,
                 formData,
                 { headers: { "Content-Type": "multipart/form-data" } }
             );
@@ -46,7 +46,9 @@ export default function EditUpload() {
                 "Something is wrong, picture is not updated: ",
                 error
             );
-            alert("Failed to update your picture. Please try again.");
+            alert(
+                "Please upload an image (jpeg, png, jpg, gif, svg) up to 2 MB."
+            );
         }
     };
 
@@ -61,12 +63,10 @@ export default function EditUpload() {
     }, []);
 
     const getupload = () => {
-        axios
-            .get(`http://www.skisafe.test/api/uploads/${id}`)
-            .then((response) => {
-                console.log(response.data);
-                setInputs(response.data.upload);
-            });
+        axios.get(`/api/uploads/${id}`).then((response) => {
+            console.log(response.data);
+            setInputs(response.data.upload);
+        });
     };
 
     return (
