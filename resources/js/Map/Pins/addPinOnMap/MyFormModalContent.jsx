@@ -58,6 +58,7 @@ export const MyFormModalContent = ({
                 );
                 console.log("Your pin was successfully edited", response.data);
                 setToggleContent(false);
+                loadLayers(map);
             }
         } catch (error) {
             console.error("Error:", error);
