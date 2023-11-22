@@ -5,6 +5,7 @@ import "./admin.scss";
 import ProfilePictures from "./ProfilePictures";
 import { Link } from "react-router-dom";
 import Event from "../events/Event";
+import EventOnHomepage from "../events/EventOnHomepage";
 
 export default function Admin() {
     // State to store user data
@@ -126,6 +127,7 @@ export default function Admin() {
             ) : (
                 <h1>Access denied</h1>
             )}
+            <EventOnHomepage />
         </>
     );
 }

@@ -7,6 +7,7 @@ import Weather from "../components/homepage/weather/Weather";
 import UserContext from "../context/UserContext";
 import AddPinOnMap from "./Pins/addPinOnMap/addPinOnMap";
 import loadLayers from "./Pins/addPinOnMap/loadLayers";
+import EventOnHomepage from "../components/events/EventOnHomepage";
 
 mapboxgl.accessToken = mapBoxToken;
 
@@ -113,6 +114,7 @@ export default function Map({
         <>
             <div className="map" id="map" ref={mapContainer}>
                 <Weather />
+                <EventOnHomepage />
             </div>
             {mapState && <ShowPopUp map={mapState} />}
             {mapState && <AddPinOnMap map={mapState} />}
