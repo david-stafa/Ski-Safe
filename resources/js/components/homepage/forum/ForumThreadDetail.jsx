@@ -16,27 +16,42 @@ export default function ForumThreadDetail({ data }) {
     };
 
     //* Time variables for thread
-    const createdAt = new Date(thread?.created_at).toLocaleDateString();
-    const updatedAt = new Date(thread?.updated_at).toLocaleDateString();
-    const createdAtTime = thread?.created_at.slice(11, 17);
-    const updatedAtTime = thread?.updated_at.slice(11, 17);
+    const createdAt = new Date(thread?.created_at).toLocaleString("cs-CZ", {
+        dateStyle: "short",
+        timeStyle: "short",
+    });
+    const updatedAt = new Date(thread?.updated_at).toLocaleString("cs-CZ", {
+        dateStyle: "short",
+        timeStyle: "short",
+    });
+
 
     const renderPosts = thread?.forum_post.map((event, i) => {
-
+        
         //* Time variables for post
-        const createdAtPost = new Date(event.created_at).toLocaleDateString();
-        const updatedAtPost = new Date(event.updated_at).toLocaleDateString();
-        const createdAtTimePost = event.created_at.slice(11, 17);
-        const updatedAtTimePost = event.updated_at.slice(11, 17);
+        const createdAtPost = new Date(event.created_at).toLocaleString(
+            "cs-CZ",
+            {
+                dateStyle: "short",
+                timeStyle: "short",
+            }
+        );
+        const updatedAtPost = new Date(event.updated_at).toLocaleString(
+            "cs-CZ",
+            {
+                dateStyle: "short",
+                timeStyle: "short",
+            }
+        );
 
         return (
-            <div className="post">
+            <div className="post" key={i}>
                 <p>{event.user_id}</p>
                 <p>
-                    Created at: {createdAtPost}, {createdAtTimePost}
+                    Created at: {createdAtPost}
                 </p>
                 <p>
-                    Updated at: {updatedAtPost}, {updatedAtTimePost}
+                    Updated at: {updatedAtPost}
                 </p>
                 <p>{event.content}</p>
             </div>
@@ -47,7 +62,7 @@ export default function ForumThreadDetail({ data }) {
         loadThread();
     }, []);
 
-    console.log(thread)
+    console.log(thread);
 
     return (
         <div className="thread">
@@ -55,17 +70,14 @@ export default function ForumThreadDetail({ data }) {
                 <h1>{thread?.title}</h1>
                 <p>Author: {thread?.user?.name}</p>
                 <p>
-                    Created at: {createdAt} {createdAtTime}
+                    Created at: {createdAt}
                 </p>
                 <p>
                     {" "}
-                    Updated at: {updatedAt} {updatedAtTime}
+                    Updated at: {updatedAt}
                 </p>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex
-                    beatae temporibus amet odio labore porro, molestias rerum
-                    neque eaque tempore quae tenetur voluptatem adipisci illo
-                    quos quas deleniti quisquam obcaecati!
+                    {thread?.content}
                 </p>
             </div>
             <div className="posts">{renderPosts}</div>

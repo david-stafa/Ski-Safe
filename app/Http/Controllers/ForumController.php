@@ -13,15 +13,17 @@ class ForumController extends Controller
      */
     public function index()
     {
-       // $messages = Message::all();
-       $forumThreads = Forum_thread::with('forum_post', 'user')->get();
+        // $messages = Message::all();
+        $forumThreads = Forum_thread::with('forum_post', 'user')
+        ->orderBy('created_at', 'desc') // 'desc' for descending order, 'asc' for ascending order
+        ->get();
        
         return ($forumThreads);
     }
 
     public function show(string $id)
     {
-        $forumThread = Forum_thread::with('forum_post', 'user')->findOrFail($id);
+        $forumThread = Forum_thread::with('forum_post.user' , 'user.uploads')->findOrFail($id);
 
         return $forumThread;
     }
