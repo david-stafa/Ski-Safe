@@ -84,6 +84,7 @@ class Map_pinController extends Controller
             // 'severity' => 'required',
             // 'slug' => 'required',
             'description' => 'required',
+            //'image' => 'mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $map_pin = new Map_pin;

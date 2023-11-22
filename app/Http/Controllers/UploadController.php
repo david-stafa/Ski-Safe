@@ -8,6 +8,7 @@ use App\Http\Requests\UploadStoreRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use App\Models\Map_pin;
 
 class UploadController extends Controller
 {
@@ -62,12 +63,19 @@ class UploadController extends Controller
         try {
             $imageName = Str::random(32).".".$request->image->getClientOriginalExtension();
 
+            $mapPinId = $request->input('map_pin_id', null);
+            $mapPin = null;
+            if ($mapPinId) {
+                $mapPin = Map_pin::find($mapPinId);
+            }
+
             // Create
          Upload::create([
-            'name' => $request->name,
+            'name' => $mapPin ? $mapPin->title : $request->name,
             'image' => $imageName,
-            'description' => $request->description,
+            'description' => $mapPin ? $mapPin->description : $request->description,
             'user_id' => Auth::id(),
+            'map_pin_id' => $mapPinId,
         ]);
 
             // Save in floder
@@ -112,7 +120,6 @@ class UploadController extends Controller
     public function update(UploadStoreRequest $request, $id)
     {
         try {
-            // Find image
             $upload = Upload::find($id);
             if(!$upload){
                 return response()->json([
@@ -124,6 +131,10 @@ class UploadController extends Controller
             // echo "description : $request->description";
             $upload->name = $request->name;
             $upload->description = $request->description;
+
+             if ($request->has('map_pin_id')) {
+            $upload->map_pin_id = $request->input('map_pin_id');
+        }
 
             if($request->image) {
                 $storage = Storage::disk('public');

@@ -30,6 +30,7 @@ export const MyFormModalContent = ({
     });
 
     const [toggleContent, setToggleContent] = useState(true);
+    const [selectedFile, setSelectedFile] = useState(null);
 
     const handleChange = (e) => {
         if (e.target.name === "type_id" && e.target.value === "") {
@@ -38,27 +39,48 @@ export const MyFormModalContent = ({
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
+    const handleFileChange = (e) => {
+        setSelectedFile(e.target.files[0]);
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (formData.type_id === null) {
             alert("Please select a type");
             return;
         }
+
+        const submitData = new FormData();
+        if (selectedFile) {
+            submitData.append("image", selectedFile);
+        }
+        Object.keys(formData).forEach((key) => {
+            submitData.append(key, formData[key]);
+        });
+
         try {
+            let response;
             if (!details) {
-                const response = await axios.post("/api/pin/store", formData);
-                console.log("Your pin was successfully created", response.data);
-                setToggleContent(false);
-                handleFetch = true;
-                loadLayers(map);
+                response = await axios.post("/api/pin/store", submitData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                });
             } else {
-                const response = await axios.post(
-                    `api/map-pins/edit/${details.id}`,
-                    formData
+                response = await axios.post(
+                    `/api/map-pins/edit/${details.id}`,
+                    submitData,
+                    {
+                        headers: {
+                            "Content-Type": "multipart/form-data",
+                        },
+                    }
                 );
-                console.log("Your pin was successfully edited", response.data);
-                setToggleContent(false);
             }
+            console.log("Your pin was successfully processed", response.data);
+            setToggleContent(false);
+            handleFetch = true;
+            loadLayers(map);
         } catch (error) {
             console.error("Error:", error);
         }
@@ -157,6 +179,17 @@ export const MyFormModalContent = ({
                                 )}
                                 <option value="3">Powder Of Interest</option>
                             </select>
+                        </div>
+
+                        <div className="input-group">
+                            <label htmlFor="imageupload">Upload Image</label>
+                            <input
+                                type="file"
+                                name="imageupload"
+                                id="imageupload"
+                                onChange={handleFileChange}
+                                className="input-field"
+                            />
                         </div>
 
                         <button

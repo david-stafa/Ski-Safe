@@ -46,7 +46,9 @@ export default function EditUpload() {
                 "Something is wrong, picture is not updated: ",
                 error
             );
-            alert("Failed to update your picture. Please try again.");
+            alert(
+                "Please upload an image (jpeg, png, jpg, gif, svg) up to 2 MB."
+            );
         }
     };
 
