@@ -53,7 +53,8 @@ export default function ThreadDetail({ data }) {
 
         return (
             <div className="thread__post__box" key={i}>
-                <p className="thread__post__user">{event.user_id}</p>
+                <img src={event.user && event.user.uploads[0] && event.user.uploads[0].image  ? `/storage/${event.user.uploads[0].image}` : `/images/ProfilePic/Default.png`} alt="avatar" />
+                <p className="thread__post__user">{event.user?.name}</p>
                 <p className="thread__post__created">
                     Created at: {createdAtPost}
                 </p>
@@ -104,7 +105,7 @@ export default function ThreadDetail({ data }) {
     return (
         <div className="thread">
             <div className="thread__buttons">
-            {user?.id === thread?.user_id && (
+                {user?.id === thread?.user_id && (
                     <>
                         <button onClick={() => setOpenEdit(!openEdit)}>
                             {openEdit ? "Cancel editting" : "Edit"}
@@ -113,9 +114,8 @@ export default function ThreadDetail({ data }) {
                             Delete
                         </button>
                     </>
-                
-            )}
-            <button onClick={navigateToContacts}>Forum</button>
+                )}
+                <button onClick={navigateToContacts}>Forum</button>
             </div>
             {openEdit ? (
                 <ThreadCRUD
@@ -128,6 +128,10 @@ export default function ThreadDetail({ data }) {
                 <>
                     <div className="thread__heading">
                         <h1>{thread?.title}</h1>
+                        <img
+                            src={ thread?.user && thread.user.uploads[0] && thread.user.uploads[0].image  ? `/storage/${thread.user.uploads[0].image}` : `/images/ProfilePic/Default.png`}
+                            alt=""
+                        />
                         <p>Author: {thread?.user?.name}</p>
                         <p>Created at: {createdAt}</p>
                         <p> Updated at: {updatedAt}</p>
