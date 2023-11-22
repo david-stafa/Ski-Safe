@@ -21,7 +21,7 @@ const SuccessModal = ({ isOpen, onRequestClose }) => {
                 </div>
                 <video autoPlay loop muted className="video-background">
                     <source
-                        src="https://static.videezy.com/system/resources/previews/000/004/927/original/Snowflakes_Falling_Motion_Background_4K.mp4"
+                        src="https://player.vimeo.com/external/219330771.sd.mp4?s=fd5e5f1cca0c55c06d20b844f135e9d7b53b200a&profile_id=164&oauth2_token_id=57447761"
                         type="video/mp4"
                     />
                 </video>
