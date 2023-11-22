@@ -56,6 +56,7 @@ export const MyFormModalContent = ({
                     `/api/map-pins/edit/${details.id}`,
                     formData
                 );
+
             }
             // console.log("Pin data processed", response.data);
             const mapPinId = response.data.id;
