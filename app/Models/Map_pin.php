@@ -16,4 +16,8 @@ class Map_pin extends Model
         return $this->belongsTo(Severity::class);
     }
 
+    public function uploads()
+    {
+        return $this->hasMany(Upload::class);
+    }
 }

@@ -7,11 +7,7 @@ export default ({ mode }) => {
     return defineConfig({
         plugins: [
             laravel({
-                input: [
-                    "resources/css/app.css",
-                    "resources/js/app.js",
-                    "resources/js/Skisafe.jsx",
-                ],
+                input: ["resources/css/app.css", "resources/js/Skisafe.jsx"],
                 refresh: true,
             }),
             react(),

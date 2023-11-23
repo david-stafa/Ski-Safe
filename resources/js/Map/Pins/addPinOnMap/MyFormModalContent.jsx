@@ -30,12 +30,14 @@ export const MyFormModalContent = ({
     });
 
     const [toggleContent, setToggleContent] = useState(true);
+    const [selectedFile, setSelectedFile] = useState(null);
 
     const handleChange = (e) => {
-        if (e.target.name === "type_id" && e.target.value === "") {
-            return;
-        }
         setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleFileChange = (e) => {
+        setSelectedFile(e.target.files[0]);
     };
 
     const handleSubmit = async (e) => {
@@ -44,29 +46,53 @@ export const MyFormModalContent = ({
             alert("Please select a type");
             return;
         }
+
         try {
+            let response;
             if (!details) {
-                const response = await axios.post("/api/pin/store", formData);
-                console.log("Your pin was successfully created", response.data);
-                setToggleContent(false);
-                handleFetch = true;
-                loadLayers(map);
+                response = await axios.post("/api/pin/store", formData);
             } else {
-                const response = await axios.post(
-                    `api/map-pins/edit/${details.id}`,
+                response = await axios.post(
+                    `/api/map-pins/edit/${details.id}`,
                     formData
                 );
-                console.log("Your pin was successfully edited", response.data);
-                setToggleContent(false);
             }
+            // console.log("Pin data processed", response.data);
+            const mapPinId = response.data.id;
+
+            if (selectedFile) {
+                const imageFormData = new FormData();
+                imageFormData.append("image", selectedFile);
+                imageFormData.append("map_pin_id", mapPinId);
+                imageFormData.append("name", formData.title);
+                imageFormData.append("description", formData.slug);
+
+                let imageResponse = await axios.post(
+                    "/api/uploads",
+                    imageFormData,
+                    {
+                        headers: {
+                            "Content-Type": "multipart/form-data",
+                        },
+                    }
+                );
+                // console.log("Image uploaded", imageResponse.data);
+            }
+
+            setToggleContent(false);
+            handleFetch = true;
+            loadLayers(map);
         } catch (error) {
             console.error("Error:", error);
+            alert(
+                "If you are uploading image, please use (jpeg, png, jpg, gif, svg) up to 2 MB."
+            );
         }
     };
 
     useEffect(() => {
         if (map) {
-            console.log("updated");
+            console.log("Map updated");
         }
     }, [handleFetch]);
 
@@ -157,6 +183,17 @@ export const MyFormModalContent = ({
                                 )}
                                 <option value="3">Powder Of Interest</option>
                             </select>
+                        </div>
+
+                        <div className="input-group">
+                            <label htmlFor="imageupload">Upload Image</label>
+                            <input
+                                type="file"
+                                name="imageupload"
+                                id="imageupload"
+                                onChange={handleFileChange}
+                                className="input-field"
+                            />
                         </div>
 
                         <button
