@@ -27,22 +27,25 @@
         justify-content: space-between;
         align-items: center;
 
-        .city {
-            font-weight: 600;
-            font-size: 18px;
-            line-height: 1;
-            margin: 0 0 0 10px;
-            letter-spacing: 1px;
-        }
-        .description {
-            font-weight: 400;
-            font-size: 14px;
-            line-height: 1;
-            margin: 0 0 0 10px;
-        }
-        .weather-icon {
-            width: 90px;
-        }
+
+     .city{
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 1;
+        margin: 0 0 0 10px;
+        letter-spacing: 1px;
+     }
+     .description{
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 1;
+        margin: 0 0 0 10px;
+
+     }
+     .weather-icon{
+        width: 90px;
+        margin-right: 10px;
+     }
     }
 
     &__bottom {

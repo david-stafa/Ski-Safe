@@ -14,7 +14,8 @@ class Upload extends Model
         'image',
         'description',
         'user_id',
-        'is_profile_picture'
+        'is_profile_picture',
+        'map_pin_id'
     ];
 
     public function user()
@@ -31,5 +32,10 @@ class Upload extends Model
     } else {
         return response()->json(['message' => 'Upload not found'], 404);
     }
-}
+    }
+
+    public function mapPin()
+    {
+        return $this->belongsTo(Map_pin::class, 'map_pin_id');
+    }
 }

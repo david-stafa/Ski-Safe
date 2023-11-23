@@ -17,5 +17,6 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
-/resources/js/Map/helpers/map-helpers.js
+/resources/js/Map/helpers/map-helper.js
 phploy.ini
+

@@ -14,7 +14,7 @@ import ProfilePictures from "../admin/ProfilePictures";
 import CheckMessages from "../admin/CheckMessages";
 import Archive from "../admin/Archive";
 import Forum from "./forum/Forum";
-import ForumThreadDetail from "./forum/ForumThreadDetail";
+import ThreadDetail from "./forum/ThreadDetail";
 
 export default function Homepage() {
     return (
@@ -27,7 +27,9 @@ export default function Homepage() {
                     <Route path="/contact-us" element={<ContactUs />}></Route>
 
                     <Route path="/forum" element={<Forum />}></Route>
-                    <Route path="forum/thread/:id" element={<ForumThreadDetail />}></Route>
+
+                    <Route path="forum/thread/:id" element={<ThreadDetail />}></Route>
+
 
                     <Route path="/register" element={<Register />}></Route>
                     <Route path="/log-in" element={<Login />}></Route>

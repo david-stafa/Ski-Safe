@@ -43,24 +43,46 @@ $admin-button-hover: darken($admin-button-color, 10%);
 }
 
 .admin-button {
-    padding: 10px 20px;
-    background-color: $admin-button-color;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 50%;
     cursor: pointer;
     margin: 10px;
     text-decoration: none;
-    transition: background-color 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out;
 
     &:hover {
-        background-color: $admin-button-hover;
+        transform: scale(1.1);
     }
 }
+
+.admin-pictures {
+    background-image: url("/images/Admin/pictures.jpeg");
+}
+
+.admin-messages {
+    background-image: url("/images/Admin/messages.jpeg");
+}
+
+.admin-roles {
+    background-image: url("/images/Admin/roles.jpeg");
+}
+
+.admin-events {
+    background-image: url("/images/Admin/events.jpeg");
+}
+
 .back-button {
     padding: 10px 15px;
-    background-color: #f44336; // Red color for emphasis
-    color: white; // White text for contrast
+    background-color: #f44336;
+    color: white;
     text-decoration: none;
     border: none;
     border-radius: 5px;
@@ -69,7 +91,7 @@ $admin-button-hover: darken($admin-button-color, 10%);
     transition: background-color 0.3s, color 0.3s;
 
     &:hover {
-        background-color: darken(#f44336, 10%); // Darken on hover
+        background-color: darken(#f44336, 10%);
         color: #fff;
     }
 

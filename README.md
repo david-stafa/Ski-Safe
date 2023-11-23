@@ -73,7 +73,7 @@ Each issue Git commit should reference the Trello IssueName it relates to for ea
 Instructions on setting up the development environment will be added here.
 
 1. git clone
-2. www.skisafe.test
+2. https://www.ski-safe.codeboot.cz/
 3. vhost, etc/hosts
 4. .env
 5. set up folder
@@ -129,7 +129,7 @@ We will adhere to the recommended conventions for breakpoints at 480px and 768px
 
 ## License
 
-All rights are for fun as we will be using chatGPT and phind as hell...
+No license, this is just for testing and project purposes.
 
 ## ACCESSING PREVIEW!
 

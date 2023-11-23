@@ -57,7 +57,7 @@ export default function Navigation() {
     }, [user]);
     // profile pic above
 
-    console.log(user?.role)
+    console.log(user?.role);
 
     return (
         <>
