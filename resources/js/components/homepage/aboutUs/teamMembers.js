@@ -2,10 +2,10 @@ import { v4 as uuidv4 } from "uuid";
 
 export const teamMembers = [
     {
-        src: "/images/About/damaris.png",
+        src: "/images/About/damaris2.png",
         alt: "Damaris",
         title: "Damaris Jean Jorge Manzano",
-        bio: "Frontend Developer with a passion for UI design and bringing concepts to life.",
+        bio: "Junior Full Stack Developer / React, JavaScript, PHP & Laravel, | Passionate about learning new things and helping others.",
         social: "https://www.linkedin.com/in/damaris-jjm/",
         id: uuidv4(),
     },

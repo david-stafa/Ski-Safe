@@ -27,10 +27,12 @@ export default function MainContent() {
     const handleSearchResults = (results) => {
         setSearchResults(results);
     };
+    const [showEventPage, setShowEventPage] = useState(false);
 
     const handleClearSearch = () => {
         setSearchResults([]);
     };
+
     //Search above
 
     return (
@@ -41,11 +43,14 @@ export default function MainContent() {
                     filterLifts={filterLifts}
                     filterPois={filterPois}
                     searchResults={searchResults}
+                    showEventPage={showEventPage}
                 />
                 <SideNavigation
                     onItemSelect={handleItemSelect}
                     setNavExpanded={setNavExpanded}
                     navExpanded={navExpanded}
+                    showEventPage={showEventPage}
+                    setShowEventPage={setShowEventPage}
                 />
                 {activeItem && (
                     <AdjacentRectangle

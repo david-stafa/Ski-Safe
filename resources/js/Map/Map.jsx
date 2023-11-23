@@ -16,6 +16,7 @@ export default function Map({
     filterLifts,
     filterPois,
     searchResults,
+    showEventPage,
 }) {
     const [mapState, setMapState] = useState(null);
     const mapContainer = useRef();
@@ -114,10 +115,10 @@ export default function Map({
         <>
             <div className="map" id="map" ref={mapContainer}>
                 <Weather />
-                <EventOnHomepage />
             </div>
             {mapState && <ShowPopUp map={mapState} />}
             {mapState && <AddPinOnMap user={user} map={mapState} />}
+            {showEventPage && <EventOnHomepage />}
         </>
     );
 }

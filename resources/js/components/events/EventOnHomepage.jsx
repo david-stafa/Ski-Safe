@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import UserContext from "../../context/UserContext";
-import "./events.scss";
+import "./eventsHomepage.scss";
 
 export default function EventOnHomepage() {
     const [events, setEvents] = useState([]);
@@ -29,7 +29,6 @@ export default function EventOnHomepage() {
         }
     };
 
-    console.log(fetchEventsData);
     useEffect(() => {
         fetchEventsData();
     }, []);
@@ -41,34 +40,34 @@ export default function EventOnHomepage() {
                         {sortedEvents.length > 0 ? sortedEvents[0].title : ""}
                     </p>
                 </div>
-                {/* <img
-                    // src={`images/weather-icons/${data.weather[0].icon}.png`}
+                <img
+                    src={`/images/EventLogo/Screenshot 2023-11-22 at 14.49.24.png`}
                     alt="picture-event"
                     className="event-picture"
-                /> */}
+                />
             </div>
             <div className="event__bottom">
                 <div className="description">
                     <div className="description-row">
                         <span className="description-label">Description</span>
                         <p className="p-description">
-                            {sortedEvents.lenght > 0
+                            {sortedEvents.length > 0
                                 ? sortedEvents[0].description
                                 : ""}
                         </p>
                     </div>
                     <div className="description-row">
-                        <span className="description-label">From</span>
-                        <p className="p-description">
-                            {sortedEvents.lenght > 0
+                        <span className="description-label">Strat Date</span>
+                        <p className="p-description-time">
+                            {sortedEvents.length > 0
                                 ? sortedEvents[0].start_date
                                 : ""}
                         </p>
                     </div>
                     <div className="description-row">
-                        <span className="description-label">To</span>
-                        <p className="p-description">
-                            {sortedEvents.lenght > 0
+                        <span className="description-label">End Date</span>
+                        <p className="p-description-date">
+                            {sortedEvents.length > 0
                                 ? sortedEvents[0].end_date
                                 : ""}
                         </p>

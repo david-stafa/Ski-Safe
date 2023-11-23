@@ -5,7 +5,7 @@ import "./admin.scss";
 import ProfilePictures from "./ProfilePictures";
 import { Link } from "react-router-dom";
 import Event from "../events/Event";
-import EventOnHomepage from "../events/EventOnHomepage";
+import UsersData from "./UsersData";
 
 export default function Admin() {
     // State to store user data
@@ -17,24 +17,7 @@ export default function Admin() {
 
     const [userPins, setUserPins] = useState([]);
 
-    // We fetch the user data
-    const fetchUserData = async () => {
-        try {
-            const response = await axios.get("/api/admin");
-            const data = response.data;
 
-            const userData = data.map((user) => ({
-                id: user.id,
-                name: user.name,
-                email: user.email,
-                role: user.role,
-            }));
-            // Update the users state with the fetched data
-            setUsers(userData);
-        } catch (error) {
-            console.error("Error fetching user data:", error);
-        }
-    };
 
     const fetchPinsData = async () => {
         try {
@@ -69,21 +52,11 @@ export default function Admin() {
         } catch {}
     };
 
-    const saveNewUserRole = async (e, user) => {
-        const data = {
-            user_id: user.id,
-            role: e.target.value,
-        };
-        // console.log(data);
-        try {
-            const response = await axios.post("/api/user-roles/update", data);
-            console.log(response.data);
-        } catch {}
-    };
+   
 
     // Use useEffect to fetch user data and roles when the component mounts
     useEffect(() => {
-        fetchUserData();
+        // fetchUserData();
         fetchRoles();
         setUserPins();
     }, []);
@@ -96,26 +69,7 @@ export default function Admin() {
 
                     <Event />
 
-                    <h2>User Data</h2>
-                    <ul className="admin-list">
-                        {users.map((user, index) => (
-                            <li key={index} className="admin-list-item">
-                                Name: {user.name}
-                                <br /> Email: {user.email}
-                                <select
-                                    defaultValue={user.role}
-                                    onChange={(e) => saveNewUserRole(e, user)}
-                                    className="admin-select"
-                                >
-                                    {userRoles.map((role, index) => (
-                                        <option key={index} value={role}>
-                                            {role}
-                                        </option>
-                                    ))}
-                                </select>
-                            </li>
-                        ))}
-                    </ul>
+                    <UsersData userRoles={userRoles} />
 
                     <Link to={"/profilepictures"} className="admin-button">
                         Check Pictures
@@ -127,7 +81,6 @@ export default function Admin() {
             ) : (
                 <h1>Access denied</h1>
             )}
-            <EventOnHomepage />
         </>
     );
 }

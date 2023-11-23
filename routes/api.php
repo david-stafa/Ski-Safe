@@ -66,9 +66,13 @@ Route::middleware(['auth', 'can:admin'])->group(function () { // using can:: wil
     Route::get('/admin', [AdminController::class, 'showJson']);
     Route::get('/user-roles', [RoleController::class, "getAllRoles"]);
     Route::post('/user-roles/update', [RoleController::class, "updateRole"]);
-    Route::resource('/events', EventController::class);
-
+    Route::post('/events', [EventController::class, 'store']);// Create a new event
+    Route::put('/events/{id}', [EventController::class, 'update']);// Update an existing event
+    Route::delete('/events/{id}', [EventController::class, 'destroy']);// Delete an existing event
+    Route::get('/events/{id}', [EventController::class, 'show']);// Show details of a specific event
 });
 
 Route::get('/forum/threads', [ForumController::class, 'index']);
 Route::get('/forum/threads/{id}', [ForumController::class, 'show']);
+Route::get('/events', [EventController::class, 'index']);
+
