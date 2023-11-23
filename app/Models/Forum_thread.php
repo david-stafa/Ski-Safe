@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Forum_thread extends Model
 {
+    protected $fillable = ['title', 'content', 'user_id'];
+    
     use HasFactory;
 
     public function forum_post()
