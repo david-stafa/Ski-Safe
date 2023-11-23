@@ -4,11 +4,21 @@ import "./navigation.scss";
 import UserContext from "../../../context/UserContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Menu } from "react-feather";
 
 export default function Navigation() {
     const { user, setUser } = useContext(UserContext);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const navigate = useNavigate();
+
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
+
+    const closeMenu = () => {
+        setIsMenuOpen(false);
+    };
 
     const handleLogout = async (ev) => {
         ev.preventDefault();
@@ -60,7 +70,15 @@ export default function Navigation() {
     console.log(user?.role);
 
     return (
-        <>
+        <div
+            className={
+                "nav-container" + (isMenuOpen ? " mobile-menu-open" : "")
+            }
+        >
+            {console.log("isMenuOpen:", isMenuOpen)}
+            <div className="burger-menu" onClick={toggleMenu}>
+                <Menu size={24} />
+            </div>
             <div className="left-panel-container">
                 <Link to={"/"}>
                     <img
@@ -69,15 +87,30 @@ export default function Navigation() {
                         alt="logo ski safe"
                     />
                 </Link>
+
                 <div className="nav">
                     <div className="nav-links">
-                        <Link to={"/"}>Home</Link>
-                        <Link to={"/about-us"}>About</Link>
-                        <Link to={"/contact-us"}>Contact</Link>
-                        <Link to={"/forum"}>Forum</Link>
-                        {user && <Link to={"/profile"}>Profile</Link>}
+                        <Link to={"/"} onClick={closeMenu}>
+                            Home
+                        </Link>
+                        <Link to={"/about-us"} onClick={closeMenu}>
+                            About
+                        </Link>
+                        <Link to={"/contact-us"} onClick={closeMenu}>
+                            Contact
+                        </Link>
+                        <Link to={"/forum"} onClick={closeMenu}>
+                            Forum
+                        </Link>
+                        {user && (
+                            <Link to={"/profile"} onClick={closeMenu}>
+                                Profile
+                            </Link>
+                        )}
                         {user && user.role === "admin" && (
-                            <Link to={"/admin"}>Admin</Link>
+                            <Link to={"/admin"} onClick={closeMenu}>
+                                Admin
+                            </Link>
                         )}
                     </div>
                     <div className="nav-actions">
@@ -110,6 +143,6 @@ export default function Navigation() {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 }
