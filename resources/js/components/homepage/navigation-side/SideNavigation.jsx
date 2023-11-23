@@ -1,16 +1,22 @@
 import "./sideNavigation.scss";
 import { useState, useRef } from "react";
-import { AlertTriangle, Search, Sliders } from "react-feather";
+import { AlertTriangle, Search, Sliders, Calendar } from "react-feather";
 
 export default function SideNavigation({
     onItemSelect,
     setNavExpanded,
     navExpanded,
+    showEventPage,
+    setShowEventPage,
 }) {
     const [navClosed, setNavClosed] = useState(true);
 
     const hoverRef = useRef();
 
+    const handleEventClick = () => {
+        console.log("Event link clicked");
+        setShowEventPage(!showEventPage);
+    };
     const handleMouseEnter = () => {
         hoverRef.current = setTimeout(() => {
             setNavExpanded(true);
@@ -63,6 +69,10 @@ export default function SideNavigation({
                 >
                     <Sliders size={24} />
                     <span>Filters</span>
+                </div>
+                <div className="sidenav__link" onClick={handleEventClick}>
+                    <Calendar size={24} />
+                    <span>Events</span>
                 </div>
             </div>
         </nav>
