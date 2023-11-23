@@ -11,7 +11,7 @@ export default function Footer() {
                 <p>
                     Follow us on <span> </span>
                     <a
-                        href="https://twitter.com/4pawsofawesome"
+                        href="/"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="Twitter"
@@ -19,7 +19,7 @@ export default function Footer() {
                         <span className="icon icon-twitter"></span>
                     </a>
                     <a
-                        href="https://www.facebook.com/S20.officialPage"
+                        href="/"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="Facebook"
@@ -27,7 +27,7 @@ export default function Footer() {
                         <span className="icon icon-facebook"></span>
                     </a>
                     <a
-                        href="https://www.instagram.com/slaviapraha/"
+                        href="/"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="Instagram"
