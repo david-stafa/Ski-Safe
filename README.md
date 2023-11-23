@@ -129,7 +129,7 @@ We will adhere to the recommended conventions for breakpoints at 480px and 768px
 
 ## License
 
-All rights are for fun as we will be using chatGPT and phind as hell...
+No license, this is just for testing and project purposes.
 
 ## ACCESSING PREVIEW!
 

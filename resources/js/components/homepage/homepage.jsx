@@ -27,7 +27,9 @@ export default function Homepage() {
                     <Route path="/contact-us" element={<ContactUs />}></Route>
 
                     <Route path="/forum" element={<Forum />}></Route>
+
                     <Route path="forum/thread/:id" element={<ThreadDetail />}></Route>
+
 
                     <Route path="/register" element={<Register />}></Route>
                     <Route path="/log-in" element={<Login />}></Route>
