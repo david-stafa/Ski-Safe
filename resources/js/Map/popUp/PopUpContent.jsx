@@ -38,7 +38,7 @@ export default function PopUpContent({
                         className="more-details-button"
                         onClick={handleClick}
                     >
-                        MoreDetails
+                        More Details
                     </button>
                 </>
             ) : (
