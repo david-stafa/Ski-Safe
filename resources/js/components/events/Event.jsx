@@ -2,6 +2,8 @@ import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import UserContext from "../../context/UserContext";
 
+import "./Event.scss";
+
 export default function Event() {
     const [events, setEvents] = useState([]);
     const { user } = useContext(UserContext);
@@ -89,9 +91,9 @@ export default function Event() {
 
     return (
         <>
-            <section>
-                <h2>Event Management</h2>
-                <form onSubmit={handleEventFormSubmit}>
+            <section className="event-container">
+                <h2 className="event-header">Event Management</h2>
+                <form className="event-form" onSubmit={handleEventFormSubmit}>
                     <input
                         type="text"
                         name="title"
@@ -121,22 +123,46 @@ export default function Event() {
                         {editEventId ? "Update Event" : "Create Event"}
                     </button>
                 </form>
-                <ul>
-                    {events.map((event) => (
-                        <li key={event.id}>
-                            {event.title} {event.description},{" "}
-                            {event.start_date}, {event.end_date}
-                            <button onClick={() => deleteEvent(event.id)}>
-                                Delete
-                            </button>
-                            <button
-                                onClick={() => loadEventForEditing(event.id)}
-                            >
-                                Edit
-                            </button>
-                        </li>
-                    ))}
-                </ul>
+
+                <div className="event-table-container">
+                    <table className="event-table">
+                        <thead>
+                            <tr>
+                                <th>Event</th>
+                                <th>Description</th>
+                                <th>Starts</th>
+                                <th>Ends</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {events.map((event) => (
+                                <tr key={event.id}>
+                                    <td>{event.title}</td>
+                                    <td>{event.description}</td>
+                                    <td>{event.start_date}</td>
+                                    <td>{event.end_date}</td>
+                                    <td>
+                                        <button
+                                            onClick={() =>
+                                                deleteEvent(event.id)
+                                            }
+                                        >
+                                            Delete
+                                        </button>
+                                        <button
+                                            onClick={() =>
+                                                loadEventForEditing(event.id)
+                                            }
+                                        >
+                                            Edit
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </section>
         </>
     );
