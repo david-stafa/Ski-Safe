@@ -41,14 +41,18 @@ export default function DeletePinModal({ details, map }) {
         <>
             {successModal && (
                 <Modal handleDismiss={toggleSuccessModal}>
-                    <p>Pin number: {details.id} was succesfully deleted</p>
+                    <p style={{ color: "white" }}>
+                        Pin number: {details.id} was succesfully deleted
+                    </p>
                 </Modal>
             )}
             {errorModal && (
                 <Modal handleDismiss={toggleErrorModal}>
-                    <p>There was an error locating Pin number: {details.id}.</p>
+                    <p style={{ color: "white" }}>
+                        There was an error locating Pin number: {details.id}.
+                    </p>
                     <br />
-                    <p>Please Try again</p>
+                    <p style={{ color: "white" }}>Please Try again</p>
                 </Modal>
             )}
         </>
