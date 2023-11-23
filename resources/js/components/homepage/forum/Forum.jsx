@@ -38,19 +38,20 @@ export default function Forum() {
         <>
             <div className="forum-header">
                 <h1>FORUM</h1>
+                {user && (
+                    <button
+                        onClick={() =>
+                            setForumData({
+                                ...forumData,
+                                toggleForm: !forumData.toggleForm,
+                            })
+                        }
+                        className="forum__button"
+                    >
+                        {forumData.toggleForm ? "Stop posting" : "Post something"}
+                    </button>
+                )}
             </div>
-            {user && (
-                <button
-                    onClick={() =>
-                        setForumData({
-                            ...forumData,
-                            toggleForm: !forumData.toggleForm,
-                        })
-                    }
-                >
-                    {forumData.toggleForm ? "Stop posting" : "Post something"}
-                </button>
-            )}
             {forumData.toggleForm ? (
                 <>
                     <ThreadCRUD

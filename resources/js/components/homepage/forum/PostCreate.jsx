@@ -58,7 +58,7 @@ export default function PostCreate({ setOpenAnswer, openAnswer, id, setRefreshFe
                     value={createPost.content}
                     onChange={handleChange}
                 ></textarea>
-                <button>Send answer</button>
+                <button className="forum__button">Send answer</button>
             </form>
         </>
     );

@@ -53,7 +53,7 @@ export default function ThreadDetail({ data }) {
 
         return (
             <div className="thread__post__box" key={i}>
-                <div className="thread__post__user-info">
+                <div className="thread__post__user">
                     <img
                         className="thread__post__user-picture"
                         src={
@@ -79,7 +79,7 @@ export default function ThreadDetail({ data }) {
                 {(user.id === event.user_id || user.role === "admin") && (
                     <button
                         onClick={() => deletePost(thread.id, event.id)}
-                        className="thread__post__button-delete"
+                        className="thread__post__button-delete forum__button button__delete"
                     >
                         Delete post
                     </button>
@@ -118,19 +118,25 @@ export default function ThreadDetail({ data }) {
     return (
         <div className="thread">
             <div className="thread__buttons">
-
-                {(user?.id === thread?.user_id || user.role === 'admin') && (
+                {(user?.id === thread?.user_id || user.role === "admin") && (
                     <>
-                        <button onClick={() => setOpenEdit(!openEdit)}>
+                        <button
+                            onClick={() => setOpenEdit(!openEdit)}
+                            className="forum__button"
+                        >
                             {openEdit ? "Cancel editting" : "Edit"}
                         </button>
-                        <button onClick={() => deleteThread(thread.id)}>
+                        <button
+                            onClick={() => deleteThread(thread.id)}
+                            className="button__delete forum__button"
+                        >
                             Delete
                         </button>
                     </>
                 )}
-                <button onClick={navigateToContacts}>Back to Forum</button>
-
+                <button onClick={navigateToContacts} className="forum__button">
+                    Back to Forum
+                </button>
             </div>
             {openEdit ? (
                 <ThreadCRUD
@@ -142,25 +148,36 @@ export default function ThreadDetail({ data }) {
             ) : (
                 <>
                     <div className="thread__heading">
+                        <div className="thread__heading__user">
+                            <img
+                                src={
+                                    thread?.user &&
+                                    thread.user.uploads[0] &&
+                                    thread.user.uploads[0].image
+                                        ? `/storage/${thread.user.uploads[0].image}`
+                                        : `/images/ProfilePic/Default.png`
+                                }
+                                alt=""
+                            />
+                            <div className="hread__heading__user__description">
+                                <p className="author">Author: {thread?.user?.name}</p>
+                                <p className="time_details">
+                                    Created at: {createdAt}
+                                </p>
+                                <p className="time_details">
+                                    {" "}
+                                    Updated at: {updatedAt}
+                                </p>
+                            </div>
+                        </div>
                         <h1>{thread?.title}</h1>
-                        <img
-                            src={
-                                thread?.user &&
-                                thread.user.uploads[0] &&
-                                thread.user.uploads[0].image
-                                    ? `/storage/${thread.user.uploads[0].image}`
-                                    : `/images/ProfilePic/Default.png`
-                            }
-                            alt=""
-                        />
-                        <p>Author: {thread?.user?.name}</p>
-                        <p>Created at: {createdAt}</p>
-                        <p> Updated at: {updatedAt}</p>
                         <p>{thread?.content}</p>
                     </div>
-                    <div className="thread__posts">{renderPosts}</div>
                     {user && (
-                        <button onClick={() => setOpenAnswer(!openAnswer)}>
+                        <button
+                            onClick={() => setOpenAnswer(!openAnswer)}
+                            className="forum__button margin__button"
+                        >
                             {openAnswer ? "Stop answering" : "Answer here"}
                         </button>
                     )}
@@ -177,6 +194,7 @@ export default function ThreadDetail({ data }) {
                     ) : (
                         ""
                     )}
+                    <div className="thread__posts">{renderPosts}</div>
                 </>
             )}
         </div>
