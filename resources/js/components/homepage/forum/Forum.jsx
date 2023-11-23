@@ -4,6 +4,7 @@ import ForumThreads from "./Threads";
 import ThreadCRUD from "./ThreadCRUD";
 import UserContext from "../../../context/UserContext";
 
+import "./Forum.scss";
 
 export default function Forum() {
     const [forumData, setForumData] = useState({
@@ -12,7 +13,7 @@ export default function Forum() {
         posts: [],
     });
 
-    const[refreshFetch, setRefreshFetch]=useState(false)
+    const [refreshFetch, setRefreshFetch] = useState(false);
     const { user, setUser } = useContext(UserContext);
 
     const forumThreads = async () => {
@@ -35,29 +36,35 @@ export default function Forum() {
 
     return (
         <>
+            <div className="forum-header">
+                <h1>FORUM</h1>
+            </div>
             {user && (
                 <button
                     onClick={() =>
-                        setForumData({ ...forumData, toggleForm: !forumData.toggleForm })
+                        setForumData({
+                            ...forumData,
+                            toggleForm: !forumData.toggleForm,
+                        })
                     }
                 >
-                    { forumData.toggleForm ? 'Stop posting' : 'Post something' }
+                    {forumData.toggleForm ? "Stop posting" : "Post something"}
                 </button>
             )}
             {forumData.toggleForm ? (
                 <>
-
                     <ThreadCRUD
                         refreshFetch={refreshFetch}
                         setRefreshFetch={setRefreshFetch}
                     />
-
                 </>
             ) : (
                 ""
             )}
 
-            <div className="forum__box"><ForumThreads forumData={forumData} /></div>
+            <div className="forum__box">
+                <ForumThreads forumData={forumData} />
+            </div>
         </>
     );
 }
