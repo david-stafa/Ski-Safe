@@ -17,8 +17,6 @@ export default function Admin() {
 
     const [userPins, setUserPins] = useState([]);
 
-
-
     const fetchPinsData = async () => {
         try {
             const response = await axios.get("/api/pins");
@@ -52,8 +50,6 @@ export default function Admin() {
         } catch {}
     };
 
-   
-
     // Use useEffect to fetch user data and roles when the component mounts
     useEffect(() => {
         // fetchUserData();
@@ -64,26 +60,34 @@ export default function Admin() {
     return (
         <>
             {user?.role === "admin" ? (
-                <div className="admin-container">
-                    <h1 className="admin-title">Hello Admin</h1>
+                <>
+                    <h1 className="admin-title">HELLO ADMIN</h1>
+                    <div className="admin-container">
+                        <div className="admin-button-container">
+                            <Link
+                                to={"/events/admin"}
+                                className="admin-button admin-events"
+                            >
+                                {/* Check Events */}
+                            </Link>
 
-                    <Event />
+                            <Link
+                                to={"/profilepictures"}
+                                className="admin-button admin-pictures"
+                            >
+                                {/* Check Pictures */}
+                            </Link>
+                            <Link
+                                to={"/contactusmessages"}
+                                className="admin-button admin-messages"
+                            >
+                                {/* Check Messages */}
+                            </Link>
+                        </div>
 
-                    <UsersData userRoles={userRoles} />
-
-                    <Link
-                        to={"/profilepictures"}
-                        className="admin-button admin-pictures"
-                    >
-                        Check Pictures
-                    </Link>
-                    <Link
-                        to={"/contactusmessages"}
-                        className="admin-button admin-messages"
-                    >
-                        {/* Check Messages */}
-                    </Link>
-                </div>
+                        <UsersData userRoles={userRoles} />
+                    </div>
+                </>
             ) : (
                 <h1>Access denied</h1>
             )}

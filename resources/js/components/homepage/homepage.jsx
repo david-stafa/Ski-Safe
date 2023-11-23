@@ -15,6 +15,8 @@ import CheckMessages from "../admin/CheckMessages";
 import Archive from "../admin/Archive";
 import Forum from "./forum/Forum";
 import ThreadDetail from "./forum/ThreadDetail";
+import UsersData from "../admin/UsersData";
+import Event from "../events/Event";
 
 export default function Homepage() {
     return (
@@ -28,8 +30,10 @@ export default function Homepage() {
 
                     <Route path="/forum" element={<Forum />}></Route>
 
-                    <Route path="forum/thread/:id" element={<ThreadDetail />}></Route>
-
+                    <Route
+                        path="forum/thread/:id"
+                        element={<ThreadDetail />}
+                    ></Route>
 
                     <Route path="/register" element={<Register />}></Route>
                     <Route path="/log-in" element={<Login />}></Route>
@@ -53,6 +57,8 @@ export default function Homepage() {
                         path={"/contact/archive"}
                         element={<Archive />}
                     ></Route>
+
+                    <Route path="/events/admin" element={<Event />}></Route>
                 </Routes>
             </main>
 

@@ -79,7 +79,7 @@ export default function CheckMessages() {
                 </tbody>
             </table>
 
-            <Link to={"/contact/archive"} className="admin-button">
+            <Link to={"/contact/archive"} className="admin-button-archive">
                 Archive
             </Link>
 

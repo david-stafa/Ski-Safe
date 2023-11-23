@@ -72,10 +72,10 @@ export default function ContactUs() {
             </form>
             {isModalOpen && (
                 <Modal handleDismiss={toggleIsModalOpen}>
-                    <h2 style={{ color: "green" }}>
+                    <h2 style={{ color: "white" }}>
                         Your message has been successfully sent!
                     </h2>
-                    <h4>You help us grow!</h4>
+                    <h4 style={{ color: "white" }}>You help us grow!</h4>
                     <img
                         className="image"
                         src="/images/Modal/Feedback.jpeg"
