@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { Navigate, redirect, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import PostCreate from "./PostCreate";
 import ThreadCRUD from "./ThreadCRUD";
 import UserContext from "../../../context/UserContext";
