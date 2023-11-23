@@ -1,9 +1,11 @@
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import UserContext from "../../../context/UserContext";
 
 export default function PostCreate({ setOpenAnswer, openAnswer, id, setRefreshFetch, refreshFetch }) {
+    const { user, setUser } = useContext(UserContext);
     const [createPost, setCreatePost] = useState({
-        user_id: 1,
+        user_id: user?.id || null,
         content: "",
         forum_thread_id: id,
     });
@@ -20,6 +22,7 @@ export default function PostCreate({ setOpenAnswer, openAnswer, id, setRefreshFe
                 "/api/forum/posts/create",
                 createPost
             );
+            setOpenAnswer(!openAnswer);
             setRefreshFetch(!refreshFetch);
         } catch (error) {
             if (error.response && error.response.status === 422) {
@@ -55,7 +58,7 @@ export default function PostCreate({ setOpenAnswer, openAnswer, id, setRefreshFe
                     value={createPost.content}
                     onChange={handleChange}
                 ></textarea>
-                <button onClick={() => setOpenAnswer(!openAnswer)}>Send answer</button>
+                <button>Send answer</button>
             </form>
         </>
     );
