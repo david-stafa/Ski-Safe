@@ -19,11 +19,11 @@ public function store(Request $request)
 {
     // Validate and store a new event
     $data = $request->validate([
-        'title' => 'required|string',
-        'description' => 'required|string',
-        'start_date' => 'required|date',
-        'end_date' => 'required|date',
-        'creator_id' => 'required|exists:users,id',
+        'title' => 'string',
+        'description' => 'string',
+        'start_date' => 'date',
+        'end_date' => 'date',
+        'creator_id' => 'exists:users,id',
     ]);
 
     $event = Event::create($data);
@@ -54,6 +54,15 @@ public function update(Request $request, $id)
 
     return response()->json($event, 200);
 }
+public function edit($id)
+{
+    // Retrieve the event with the given $id from the database
+    $event = Event::findOrFail($id);
+
+    // Pass the event data to the view
+    return view('events.edit', ['event' => $event]);
+}
+
 
 public function destroy($id)
 {

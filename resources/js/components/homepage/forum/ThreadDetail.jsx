@@ -75,15 +75,15 @@ export default function ThreadDetail({ data }) {
                     </div>
                 </div>
                 <p className="thread__post__content">{event.content}</p>
-                {user.id === event.user_id ||
-                    (user.role === "admin" && (
-                        <button
-                            onClick={() => deletePost(thread.id, event.id)}
-                            className="thread__post__button-delete"
-                        >
-                            Delete post
-                        </button>
-                    ))}
+
+                {(user.id === event.user_id || user.role === "admin") && (
+                    <button
+                        onClick={() => deletePost(thread.id, event.id)}
+                        className="thread__post__button-delete"
+                    >
+                        Delete post
+                    </button>
+                )}
             </div>
         );
     });
@@ -118,18 +118,19 @@ export default function ThreadDetail({ data }) {
     return (
         <div className="thread">
             <div className="thread__buttons">
-                {user?.id === thread?.user_id ||
-                    (user.role === "admin" && (
-                        <>
-                            <button onClick={() => setOpenEdit(!openEdit)}>
-                                {openEdit ? "Cancel editting" : "Edit"}
-                            </button>
-                            <button onClick={() => deleteThread(thread.id)}>
-                                Delete
-                            </button>
-                        </>
-                    ))}
-                <button onClick={navigateToContacts}>Forum</button>
+
+                {(user?.id === thread?.user_id || user.role === 'admin') && (
+                    <>
+                        <button onClick={() => setOpenEdit(!openEdit)}>
+                            {openEdit ? "Cancel editting" : "Edit"}
+                        </button>
+                        <button onClick={() => deleteThread(thread.id)}>
+                            Delete
+                        </button>
+                    </>
+                )}
+                <button onClick={navigateToContacts}>Back to Forum</button>
+
             </div>
             {openEdit ? (
                 <ThreadCRUD

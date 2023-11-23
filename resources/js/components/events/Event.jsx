@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import UserContext from "../../context/UserContext";
-import "./events.scss";
 
 export default function Event() {
     const [events, setEvents] = useState([]);
@@ -27,7 +26,7 @@ export default function Event() {
 
     useEffect(() => {
         fetchEventsData();
-    }, []);
+    }, [editEventId]);
 
     const handleEventInputChange = (e) => {
         setNewEvent({ ...newEvent, [e.target.name]: e.target.value });
@@ -37,36 +36,36 @@ export default function Event() {
         e.preventDefault();
         const eventData = { ...newEvent, creator_id: user.id };
 
-        if (editEventId) {
-            // Update existing event
-            try {
+        try {
+            if (editEventId) {
+                // Update existing event
+
                 await axios.put(`/api/events/${editEventId}`, eventData);
                 setEditEventId(null); // Exit edit mode
-            } catch (error) {
-                console.error("Error updating event:", error);
-            }
-        } else {
-            // Create new event
-            try {
+            } else {
                 await axios.post("/api/events", eventData);
-            } catch (error) {
-                console.error("Error creating event:", error);
+                setEditEventId(null);
             }
-        }
+            fetchEventsData();
+            // Clear form and refresh events
+            setNewEvent({
+                title: "",
+                description: "",
+                start_date: "",
+                end_date: "",
+            });
 
-        // Clear form and refresh events
-        setNewEvent({
-            title: "",
-            description: "",
-            start_date: "",
-            end_date: "",
-        });
-        fetchEventsData();
+            fetchEventsData();
+        } catch (error) {
+            console.error("Error creating event:", error);
+            console.error("Error response:", error.response);
+        }
     };
 
     const loadEventForEditing = async (eventId) => {
         try {
             const response = await axios.get(`/api/events/${eventId}`);
+            console.log("Event data:", response.data);
             setNewEvent({
                 title: response.data.title,
                 description: response.data.description,
