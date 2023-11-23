@@ -116,11 +116,17 @@ export default function Admin() {
                         ))}
                     </ul>
 
-                    <Link to={"/profilepictures"} className="admin-button">
+                    <Link
+                        to={"/profilepictures"}
+                        className="admin-button admin-pictures"
+                    >
                         Check Pictures
                     </Link>
-                    <Link to={"/contactusmessages"} className="admin-button">
-                        Check Messages
+                    <Link
+                        to={"/contactusmessages"}
+                        className="admin-button admin-messages"
+                    >
+                        {/* Check Messages */}
                     </Link>
                 </div>
             ) : (
