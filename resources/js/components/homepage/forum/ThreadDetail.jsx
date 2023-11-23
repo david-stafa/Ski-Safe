@@ -59,7 +59,7 @@ export default function ThreadDetail({ data }) {
                     Created at: {createdAtPost}
                 </p>
                 <p className="thread__post__content">{event.content}</p>
-                {user.id === event.user_id && (
+                {user.id === event.user_id || user.role === "admin" && (
                     <button
                         onClick={() => deletePost(thread.id, event.id)}
                         className="thread__post__button-delete"
@@ -105,7 +105,7 @@ export default function ThreadDetail({ data }) {
     return (
         <div className="thread">
             <div className="thread__buttons">
-                {user?.id === thread?.user_id && (
+                {user?.id === thread?.user_id || user.role === 'admin' && (
                     <>
                         <button onClick={() => setOpenEdit(!openEdit)}>
                             {openEdit ? "Cancel editting" : "Edit"}
