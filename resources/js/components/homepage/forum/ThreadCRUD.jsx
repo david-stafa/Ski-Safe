@@ -1,5 +1,6 @@
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import UserContext from "../../../context/UserContext";
 
 export default function ThreadCRUD({
     refreshFetch,
@@ -7,11 +8,14 @@ export default function ThreadCRUD({
     threadData,
     id,
     setOpenEdit,
-    refreshThread
+    refreshThread,
+    forumData,
+    setForumData
 }) {
+    const { user, setUser } = useContext(UserContext);
     const [errors, setErrors] = useState();
     const [createThread, setCreateThread] = useState({
-        user_id: 1,
+        user_id: user.id,
         title: threadData?.title || "",
         content: threadData?.content || "",
     });
@@ -24,6 +28,8 @@ export default function ThreadCRUD({
             };
         });
     };
+
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -48,7 +54,12 @@ export default function ThreadCRUD({
                 createThread
             );}
             // refreshes fetch for ALL threads after post
-            setRefreshFetch(true);
+            setRefreshFetch(!refreshFetch);
+            // toggles creation window off
+            setForumData({
+                ...forumData,
+                toggleForm: !forumData.toggleForm,
+            });
         } catch (error) {
             if (error.response && error.response.status === 422) {
                 console.log(

@@ -57,6 +57,8 @@ export default function Forum() {
                     <ThreadCRUD
                         refreshFetch={refreshFetch}
                         setRefreshFetch={setRefreshFetch}
+                        forumData={forumData}
+                        setForumData={setForumData}
                     />
                 </>
             ) : (
